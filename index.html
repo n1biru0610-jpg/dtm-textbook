@@ -392,7 +392,7 @@ body.y2k #me .face{border-color:#0b1020;box-shadow:3px 4px 0 #0b1020}
 <button class="pchip" id="pchip"></button>
 <button id="thBtn" aria-label="見た目" title="見た目を切り替え（UKガレージ / クラシック）">🎨</button>
 <button id="bgmBtn" aria-label="BGM" title="BGMのオン/オフ">🔊</button>
-<style>body.dm #modeTabs{display:none!important}</style><div id="modeTabs"><button id="mtB" aria-pressed="true">🎵 基礎編</button><button id="mtR" aria-pressed="false">🥁 リズム編</button><button id="mtD" aria-pressed="false">🎛 DAW編</button><button id="mtS" aria-pressed="false">⌨ ショートカット</button></div>
+<style>body.dm:not(.dmap) #modeTabs{display:none!important}</style><div id="modeTabs"><button id="mtB" aria-pressed="true">🎵 基礎編</button><button id="mtR" aria-pressed="false">🥁 リズム編</button><button id="mtD" aria-pressed="false">🎛 DAW編</button><button id="mtS" aria-pressed="false">⌨ ショートカット</button></div>
 <iframe id="scf" title="DAWショートカット"></iframe>
 <div id="clr" role="dialog" aria-label="基礎編クリア"><div class="cc"><div class="tr">🏆</div><h1>基礎編クリア！</h1><p>おめでとう！ 音楽づくりの基本はぜんぶマスターしたよ。<br>つぎは<b>DAW編</b>で、いよいよ曲を作ってみよう！</p><div class="cs" id="clrS"></div><div class="cb"><button class="go" id="clrGo">🎛 DAW編で曲を作る →</button></div><div class="cb"><button class="sub" id="clrSc">⌨ ショートカットを覚える</button><button class="sub" id="clrHome">🏠 ホームへ</button></div></div></div>
 <iframe id="dawf" title="DAW編"></iframe>
