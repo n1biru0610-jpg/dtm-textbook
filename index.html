@@ -567,7 +567,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.2.0',APP_BUILD='2026.11.22 18:31';
+var APP_VER='1.3.0',APP_BUILD='2026.11.22 18:32';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -772,4 +772,11 @@ if(k>=0){startLesson(k)}else if(h==='studio'){openStudio()}else if(h==='daw'){op
 </script><script>(function(){try{if(!('serviceWorker' in navigator)||!/^https?:$/.test(location.protocol))return;var had=!!navigator.serviceWorker.controller;
 function bar(){if(document.getElementById('updBar'))return;var b=document.createElement('div');b.id='updBar';b.style.cssText='position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:99999;background:#16304a;color:#fff;padding:12px 18px;border-radius:16px;font:600 15px "M PLUS Rounded 1c","Yu Gothic",sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.35);display:flex;gap:14px;align-items:center';b.innerHTML='<span>新しいバージョンになったよ</span><button style="font:inherit;background:#ffc531;color:#16304a;border:0;border-radius:12px;padding:6px 14px;cursor:pointer">更新する</button>';b.querySelector('button').onclick=function(){location.reload()};document.body.appendChild(b)}
 navigator.serviceWorker.addEventListener('controllerchange',function(){if(had){had=false;try{if(typeof homeOn!=='undefined'&&homeOn){setTimeout(function(){location.reload()},1200);return}}catch(e){}bar()}else had=true});
+
+/* バージョン確認：version.json（ごく小さいファイル）と、いまの版を比べて、ちがえば更新 */
+function vChk(){try{fetch('version.json?'+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.build||typeof APP_BUILD==='undefined'||j.build===APP_BUILD)return;vNew()}).catch(function(){})}catch(e){}}
+function vNew(){var home=false;try{home=(typeof homeOn!=='undefined'&&homeOn)&&!document.querySelector('#prof.on,#setM.on,#clr.on')}catch(e){}
+  var go=function(){try{navigator.serviceWorker.getRegistration().then(function(r){return r&&r.update()}).then(function(){location.reload()},function(){location.reload()})}catch(e){location.reload()}};
+  if(home){if(vNew.t)return;vNew.t=setTimeout(go,1500)}else bar()}
+setTimeout(vChk,4000);setInterval(vChk,5*60*1000);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(vChk,300)});
 navigator.serviceWorker.register('sw.js').then(function(r){r.update().catch(function(){});document.addEventListener('visibilitychange',function(){if(!document.hidden)r.update().catch(function(){})});setInterval(function(){r.update().catch(function(){})},10*60*1000)}).catch(function(){})}catch(e){}})();</script></body></html>
