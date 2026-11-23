@@ -433,6 +433,7 @@ body.uk #setBtn{background:rgba(26,20,51,.82);color:var(--ink);border-color:var(
 .pill{font-size:13px;padding:6px 11px}
 #setBtn,#bgmBtn,#thBtn{width:44px;height:44px}#setBtn{left:62px}
 #home #jump{bottom:auto;top:108px;right:12px;padding:8px 12px;font-size:13px}
+#bar{left:8px;right:8px;top:8px;gap:6px}.hb{white-space:nowrap;flex:none;font-size:13px;padding:7px 10px}#bar select{flex:1 1 0;min-width:0;max-width:none;font-size:13px;height:36px}
 button,select,a{touch-action:manipulation}html{-webkit-text-size-adjust:100%}
 }</style></head><body>
 <button class="pchip" id="pchip"></button>
@@ -597,7 +598,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.8.1',APP_BUILD='2026.11.23 11:51';
+var APP_VER='1.8.2',APP_BUILD='2026.11.23 12:10';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -620,7 +621,7 @@ function bgmSync(){var cl=document.body.classList,w=null;
     if(k===w){if(!t.a){t.a=new Audio(t.src);t.a.loop=true;if(bgmVolOK())t.a.volume=0;else{t.a.muted=false;bgmSet(t,0)}}
       if(t.a.paused){var p=t.a.play();if(p&&p.catch)p.catch(function(){var h=function(){document.removeEventListener('pointerdown',h);bgmSync()};document.addEventListener('pointerdown',h)})}
       bgmTo(t,t.vol)}
-    else if(t.a&&!t.a.paused){bgmTo(t,0,function(){t.a.pause()})}})}
+    else if(t.a&&!t.a.paused){if(bgmVolOK())bgmTo(t,0,function(){t.a.pause()});else{clearInterval(t.f);try{if(t.g)t.g.gain.value=0}catch(e){}t.a.pause()}}})}
 $('bgmBtn').onclick=function(){bgmMuted=!bgmMuted;try{localStorage.setItem('dtm-bgm-mute',bgmMuted?'1':'0')}catch(e){}bgmBtnUpd();bgmSync()};bgmBtnUpd();
 /* ---------- チャプターカード ---------- */
 var chapT=[],lastChap=0;
