@@ -619,7 +619,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.9.6',APP_BUILD='2026.11.23 13:32';
+var APP_VER='1.9.7',APP_BUILD='2026.11.23 13:39';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -735,6 +735,12 @@ var QZ={
 '6-3':[['曲のはじまりと終わりのブロックは？',['はじまり＝イントロ、終わり＝アウトロ','はじまり＝サビ、終わり＝イントロ','どこでもOK'],0,'はじまりはイントロ、終わりはアウトロだよ。'],['同じブロックをくりかえすと？',['曲の流れが変わる','曲が消える','かならず失敗する'],0,'並び方しだいで、曲の流れが変わるよ。']],
 '6-4':[['曲は、何を並べてできている？',['ブロック（イントロ・Aメロ・サビ・アウトロ）','1つの音だけ','ドラムだけ'],0,'ブロックを並べて、1曲になるよ。'],['ここまでに学んだ4つのパートは？',['メロディ・コード・ベース・リズム','ピアノ・ギター・歌・笛','はじめ・なか・おわり・つづき'],0,'メロディ・コード・ベース・リズムを組み合わせて、曲を作ったね。']]
 };
+var qzCtx=null;
+function qzTone(t0,f,d,type,v,f2){try{var c=qzCtx,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t0);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.02)}catch(e){}}
+function qzSnd(k){try{if(!qzCtx){var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;qzCtx=new AC()}if(qzCtx.state==='suspended')qzCtx.resume();var t=qzCtx.currentTime+0.01;
+if(k==='sel'){qzTone(t,740,0.07,'triangle',0.12)}
+else if(k==='ok'){qzTone(t+0.08,660,0.14,'sine',0.16);qzTone(t+0.2,880,0.14,'sine',0.16);qzTone(t+0.32,1175,0.32,'sine',0.16)}
+else{qzTone(t+0.08,200,0.32,'sawtooth',0.1,120)}}catch(e){}}
 var qzI=0,qzQ=null,qzAfter=null;
 function qzShuffle(q){var o=q[1].map(function(t,i){return {t:t,c:i===q[2]}});for(var i=o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=o[i];o[i]=o[j];o[j]=x}return o}
 function quizStart(id,after){var qs=QZ[id];try{f.contentWindow.postMessage({lessonMute:1},'*')}catch(e){}if(!qs||!qs.length){after();return}qzQ=qs;qzI=0;qzAfter=after;$('qz').classList.add('on');qzShow()}
@@ -742,7 +748,7 @@ function qzClose(){$('qz').classList.remove('on');var a=qzAfter;qzAfter=null;if(
 function qzShow(){var q=qzQ[qzI],c=$('qc'),opts=qzShuffle(q);
   c.innerHTML='<div class="qh"><span>ふり返りクイズ '+(qzI+1)+' / '+qzQ.length+'</span><button type="button" id="qSk">とばす</button></div><div class="qq"></div><div class="qo"></div><div class="qe" aria-live="polite"></div><button type="button" class="qn" id="qNx"></button>';
   c.querySelector('.qq').textContent=q[0];var box=c.querySelector('.qo'),ex=c.querySelector('.qe'),nx=$('qNx');
-  opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o.t;b.onclick=function(){
+  opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o.t;b.onclick=function(){qzSnd('sel');qzSnd(o.c?'ok':'ng');
     if(o.c){b.classList.add('ok');Array.prototype.forEach.call(box.children,function(x){x.disabled=true});ex.className='qe ok';ex.textContent='⭕ せいかい！ '+q[3];nx.textContent=qzI<qzQ.length-1?'つぎの問題へ':'ホームにもどる';nx.classList.add('on');nx.focus()}
     else{b.classList.add('ng');b.disabled=true;ex.className='qe ng';ex.textContent='おしい！ もう一度かんがえてみよう。'}};box.appendChild(b)});
   nx.onclick=function(){if(qzI<qzQ.length-1){qzI++;qzShow()}else qzClose()};
