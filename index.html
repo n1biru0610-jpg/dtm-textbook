@@ -647,7 +647,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.10.0',APP_BUILD='2026.11.23 15:27';
+var APP_VER='1.10.1',APP_BUILD='2026.11.25 13:16';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -960,9 +960,9 @@ function stfLocal(){return Object.keys(DB.profiles).map(function(k){var p=DB.pro
 function stfLoad(){STF.note='';if(STF.mode==='me'){STF.rows=stfLocal();stfDraw();return}
   if(!ACC){STF.rows=[];STF.note='全アカウントの集計を見るには、スタッフのアカウントでログインしてね。';stfDraw();return}
   $('stfBd').textContent='読みこみ中…';
-  tokOK().then(function(t){return sbf('/rest/v1/progress?select=user_id,updated_at,name:data->>nick,last:data->profile->>last,ls:data->profile->ls,dw:data->profile->dw,st:data->profile->st&order=updated_at.desc&limit=1000',{},t)}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){
+  tokOK().then(function(t){return sbf('/rest/v1/progress?select=user_id,updated_at,name:data->>nick,last:data->profile->>last,ls:data->profile->ls,dw:data->profile->dw,st:data->profile->st&order=updated_at.desc&limit=1000',{},t)}).then(function(r){if(!r.ok)return r.text().then(function(x){throw {s:r.status,t:x}});return r.json()}).then(function(a){
     STF.rows=a.map(function(x){return{uid:x.user_id,name:x.name||'?',upd:Date.parse(x.updated_at)||0,last:x.last,ls:x.ls||{},dw:x.dw||{},st:x.st||null}});
-    if(STF.rows.length<=1)STF.note='いまは自分のデータだけが見えています。全アカウントを見るには、Supabaseで下のSQLを1回だけ実行してね（管理者の登録）。';stfDraw()}).catch(function(){STF.rows=[];STF.note='サーバーからデータを取れませんでした。ネットを確認してね。';stfDraw()})}
+    if(STF.rows.length<=1)STF.note='いまは自分のデータだけが見えています。全アカウントを見るには、Supabaseで下のSQLを1回だけ実行してね（管理者の登録）。';stfDraw()}).catch(function(e){STF.rows=[];STF.note='サーバーからデータを取れませんでした。'+(e&&e.s?'（エラー '+e.s+'：'+String(e.t).replace(/\s+/g,' ').slice(0,200)+'）':'（通信できませんでした。ネットを確認してね）');stfDraw()})}
 function stfMin(s){s=s||0;return s>=3600?(s/3600).toFixed(1)+'時間':Math.round(s/60)+'分'}
 function stfEsc(t){return String(t==null?'':t).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function stfAgg(rows){var A={n:rows.length,act1:0,act7:0,tot:0,clr:0,lz:{},ft:{},ftA:{},ar:{},er:{},dv:{},d1:[0,0],d7:[0,0],stuck:[]},now=Date.now();
