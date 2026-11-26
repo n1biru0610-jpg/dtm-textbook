@@ -488,7 +488,7 @@ body.rm:not(.rmap) #modeTabs{display:none!important}#stCta{top:44px;right:8px;fo
 #rpBtn:focus-visible,#rpM button:focus-visible,#rpM textarea:focus-visible{outline:4px solid #ffc531;outline-offset:2px}
 body.mt #rpBtn,body.dm.dmap #rpBtn,body.om #rpBtn{top:12px;bottom:auto;left:112px}
 html.phone body.mt #rpBtn,html.phone body.dm.dmap #rpBtn,html.phone body.om #rpBtn{left:56px;top:6px;height:36px;font-size:14px}
-html.phone #rpBtn{height:36px;font-size:14px;padding:0 10px}
+html.phone #rpBtn{height:36px;font-size:14px;padding:0 10px}@media (max-height:500px) and (orientation:landscape) and (pointer:coarse){body.classic:not(.ho):not(.mt):not(.dm):not(.rm):not(.om):not(.gm):not(.sm) #rpBtn{left:150px;bottom:14px;height:34px;font-size:14px;padding:0 10px}}
 body.rm.rmap #rpBtn,body.gm #rpBtn,body.sm #rpBtn{top:12px;bottom:auto;left:12px}
 body.rm:not(.rmap) #rpBtn{left:auto;right:12px}
 body.dm:not(.dmap) #rpBtn{top:7px;bottom:auto;left:auto;right:112px;height:34px;font-size:14px}
@@ -688,7 +688,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.11.16',APP_BUILD='2026.11.26 21:56';
+var APP_VER='1.11.17',APP_BUILD='2026.11.26 21:56';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
