@@ -1,0 +1,10 @@
+const {chromium}=require('/opt/npm-tools/node_modules/playwright');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:1366,height:768}});const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.route(/supabase|googleapis|gstatic/,r=>r.abort());
+await p.goto('file:///home/claude/dtm-textbook/preview/index.html');await p.waitForTimeout(2500);await p.click('#fgs').catch(()=>{});await p.waitForTimeout(800);
+await p.evaluate(()=>showClear());await p.waitForTimeout(400);
+const act=()=>p.evaluate(()=>{const a=document.activeElement;return a.tagName+'#'+a.id+':'+(a.textContent||'').slice(0,10)});
+console.log('開いた直後',await act());await p.keyboard.press('Enter');await p.waitForTimeout(200);console.log('Enter後 open=',await p.evaluate(()=>document.getElementById('clr').classList.contains('on')));
+await p.keyboard.press('Tab');console.log('Tab1',await act());await p.screenshot({path:'clrfocus.png'});
+console.log('errors',errs);await b.close()})();

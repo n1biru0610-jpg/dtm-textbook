@@ -536,7 +536,7 @@ html.phone body.dm:not(.dmap) #rpBtn{top:4px;height:28px;font-size:12px;padding:
 <iframe id="glf" title="音楽用語辞典"></iframe>
 <iframe id="scf" title="DAWショートカット"></iframe>
 <div id="qz" role="dialog" aria-label="ふり返りクイズ" aria-modal="true"><div class="qc" id="qc"></div></div>
-<div id="clr" role="dialog" aria-modal="true" aria-label="基礎編クリア"><div class="cc"><div class="tr">🏆</div><h1>基礎編クリア！</h1><p>おめでとう！ 音楽づくりの基本はぜんぶマスターしたよ。<br>つぎは<b>DAW編</b>で、いよいよ曲を作ってみよう！</p><div class="cs" id="clrS"></div><div class="cb"><button class="go" id="clrGo">🎛 DAW編で曲を作る →</button></div><div class="cb"><button class="sub" id="clrSc">⌨ ショートカットを覚える</button><button class="sub" id="clrHome">🏠 ホームへ</button></div></div></div>
+<div id="clr" role="dialog" aria-modal="true" aria-label="基礎編クリア"><div class="cc"><div class="tr">🏆</div><h1 tabindex="-1" style="outline:none">基礎編クリア！</h1><p>おめでとう！ 音楽づくりの基本はぜんぶマスターしたよ。<br>つぎは<b>DAW編</b>で、いよいよ曲を作ってみよう！</p><div class="cs" id="clrS"></div><div class="cb"><button class="go" id="clrGo">🎛 DAW編で曲を作る →</button></div><div class="cb"><button class="sub" id="clrSc">⌨ ショートカットを覚える</button><button class="sub" id="clrHome">🏠 ホームへ</button></div></div></div>
 <iframe id="dawf" title="DAW編"></iframe>
 <iframe id="rhf" title="リズム編"></iframe>
 <div id="bar"><button class="hb" id="homeBtn">🏠 ホーム</button><button class="hb" id="stBtn">🎛 スタジオ</button><select id="sel" aria-label="レッスンを選ぶ"></select></div>
@@ -688,7 +688,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.11.25',APP_BUILD='2026.11.27 03:09';
+var APP_VER='1.11.26',APP_BUILD='2026.11.27 03:09';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -850,7 +850,7 @@ var clrShown=false,clrT=null;
 function showClear(){clearTimeout(clrT);try{f.contentWindow.postMessage({lessonMute:1},'*')}catch(e){}var n=L.filter(function(l){return isDone(l.id)}).length;$('clrS').innerHTML='<span>✓ レッスン '+n+' / '+L.length+' クリア</span><span>🎵 基礎編コンプリート</span>';
   var c=$('clr');c.querySelectorAll('.cf').forEach(function(x){x.remove()});var cols=['#ffd43b','#ff8ad0','#6ee7ff','#8cf29b','#ff7a5c','#b48cff'];
   for(var i=0;i<46;i++){var x=document.createElement('i');x.className='cf';x.style.left=Math.random()*100+'%';x.style.background=cols[i%cols.length];x.style.animationDuration=(2.6+Math.random()*2.6)+'s';x.style.animationDelay=(Math.random()*1.6)+'s';x.style.width=(6+Math.random()*8)+'px';c.appendChild(x)}
-  c.classList.add('on');clrShown=true}
+  c.classList.add('on');clrShown=true;setTimeout(function(){try{c.querySelector('h1').focus({preventScroll:true})}catch(e){}},30)}
 $('clrGo').onclick=function(){$('clr').classList.remove('on');openDaw()};
 $('clrSc').onclick=function(){$('clr').classList.remove('on');openShortcut()};
 $('clrHome').onclick=function(){$('clr').classList.remove('on');openHome(true)};
