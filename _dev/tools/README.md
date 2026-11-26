@@ -11,3 +11,4 @@
    - `finish=true` … クリア画面まで到達
    - スクショ shot_<ID>_<ステップ>.png を出力
 4. `node page.js` … preview/index.html 全体を開いてページエラーを確認（Supabase等の通信は遮断）
+5. `node chord.js [幅] [高さ] [t]` … D-17/D-18 のコードボタン操作を実操作で確認
