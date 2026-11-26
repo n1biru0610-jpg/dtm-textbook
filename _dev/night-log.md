@@ -51,9 +51,17 @@
   - 見送り（オーナー確認待ちへ）：「＋ 追加」ボタン（緑地に白文字、コントラスト4.14）やオートメーション「A」ボタン（3.35）は色の変更になるため触っていない。
   - 検証：D-1／D-7／D-25 のスクショでレイアウト崩れなし、ページエラー0件。
 
+- **確認のみ（変更なし）**
+  - スマホ横で DAWマップの「はじめる」に章ピルが重なる件：実機に近いタッチ端末の設定（isMobile/hasTouch）で 844×390・740×360・932×430・667×375 を確認 → どれも重ならず押せる。前回の検出はタッチなし（PCの小さいウィンドウ）設定での誤検出だったので、問題なしとして閉じる。
+  - C. 用語・手順の下調べ（本格的な照合は次回）：DAWのツールバー用語（クオンタイズ／タイムベース／スナップ）は Studio One 系の公式用語どおり。D-34 の「音量 → パン → EQ → コンプ → リバーブ・ディレイ」は初心者向けミックス解説の一般的な順番と一致。
+    - 出典候補：Sound On Sound「Studio One: Snap, Grid & Quantize Settings」https://www.soundonsound.com/techniques/studio-one-snap-grid-quantize-settings ／ Packt「The Ultimate Studio One Pro Book: Understanding Snap and various Snap modes」https://subscription.packtpub.com/book/business-and-other/9781803241012/10/ch10lvl1sec43/understanding-snap-and-various-snap-modes ／ Yamaha Hub「Recording Basics: Get Ready, Get Set, Mix」https://hub.yamaha.com/proaudio/recording/recording-basics-get-ready-get-set-mix/ ／ LANDR ミキシングガイド（日本語）https://blog.landr.com/ja/landr%E3%83%9F%E3%82%AD%E3%82%B7%E3%83%B3%E3%82%B0%E3%82%AC%E3%82%A4%E3%83%89/
+
 ## 残課題・気づき
-- スマホ横（844×390）で DAWマップの「はじめる」ボタンの上に章のピル（#drail）が重なり、クリックできない（自動テストで検出。ルート版からある既存の問題の可能性）→ B の DAW 見直しで確認する。
+- スマホ横（タッチ端末）では DAW編 D-10①（説明だけのステップ）で吹き出しが鍵盤に少し重なる（画面が小さく避けきれない）。
+- 自動テストの道具（scratchpad の walk.js 等）は次回セッションでは消えるので、必要なら作り直す（DAW_HTML の showStep 前に __dbg を差し込んで LES/stp を操作する方式）。
 
 ## 次にやること（優先順）
-1. スマホ横：DAWマップの「はじめる」に章ピルが重なる問題（#dgo と #drail）、D-10① の説明が鍵盤に重なる点
-2. C. DAW編レッスンの精度確認（出典つき）→ 不足レッスン追加（メロディ → コード → ベース → 構成 → ミックス・エフェクト → DnB）
+1. C. DAW編レッスンの精度確認（出典つき）→ 不足レッスン追加（メロディ → コード → ベース → 構成 → ミックス・エフェクト → DnB）
+
+### 21:46 今回の終了
+最新：v1.11.4（preview）。A・B（ログイン／DAW吹き出し重なり／クイズ／DAW見づらさ）は一通り完了。次回は C から。
