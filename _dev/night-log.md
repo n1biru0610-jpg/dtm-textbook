@@ -1,6 +1,7 @@
 # 夜間開発メモ（night-log）
 
 ## オーナー確認待ち
+- 製品名の表記：方針は「製品名は明言しない」だが、DAW編の D-15・D-24 のまとめ文に「Fender Studio Pro（Studio One）でも同じ手順で作れるよ」、MIDI書き出しメニューやスタジオに「Studio One に持っていける」、ショートカット編に「Fender Studio Pro のショートカット」とある。意図して入れているのであればそのまま。消す場合は「ほかのDAWソフトでも」等に言いかえる。
 - ドラムの段の並び順：基礎編・スタジオとDAW編で上下が逆。DAW編を基礎編に合わせる（見た目が変わる）か、今のままにするか。
 - 新しい章「ジャンルを知ろう」（D-35 ドラムンベース）の内容・難易度・位置づけ（自由に選べる章）でよいか。
 - DAW編「＋ 追加」ボタン（#1c7f74 地に白、4.14）と「A」ボタン（3.35）のコントラスト：WCAG AA 未満。色を少し濃くしてよいか。
@@ -74,8 +75,13 @@
   - 吹き出しの自動よけ：画面上端のときに「ほうこく」「マップ」ボタンと重ならないよう、上端の候補位置を少し下げた。
   - 根拠：テンポ160〜180（多くは170〜175前後）、キックが「1拍め」と「3拍めのウラ（16分で11番め）」、スネアが2・4拍めの「ツーステップ」は、DnBの打ち込み解説で基本形として紹介されている。
     - 出典：MusicRadar「How to program 6 different jungle and drum 'n' bass grooves」https://www.musicradar.com/how-to/how-to-program-6-different-jungle-and-drum-n-bass-grooves ／ Native Instruments Blog「Drum and bass」https://www.native-instruments.com/ja/blogs/blog/drum-and-bass ／ EDMProd「What is Drum and Bass?」https://www.edmprod.com/what-is-drum-and-bass/ ／ Attack Magazine「Beat Dissected: Raw Drum & Bass」https://www.attackmagazine.com/technique/beat-dissected/raw-drum-bass/
-    - ※今回は検索結果の段階での確認。本文を読み込んでの細かい照合は次回に。
+    - 本文で確認済み（21:57）：EDMProd「tracks are usually 170-175 BPM」「170 to 180 BPM, with 174 BPM being the most common」「the second kick of each bar falls on the 'and' of beat 3」「Drum and Bass emerged in the UK in the early 1990s」。MusicRadar「tempos rise to around 170bpm」「the second kick in a bar is pushed later in time to the eighth-note before the second snare」。→ レッスンの「160〜180くらい」「キック1・11番め、スネア5・13番め」「イギリスで生まれた」は出典と一致。
   - 検証：実際のマウス操作（▶・ダブルクリック・手のヒント位置のクリック）で最初からクリア画面まで進めることを PC（1366×768）とスマホ横（844×390・タッチ）で確認。DAW編33レッスンの通しテストもすべてクリア画面まで到達。吹き出しで対象が隠れるステップは0件、ページエラーも0件。ほうこく機能とクイズの回帰テストもOK。
+
+- **v1.11.7 preview: DAW編の説明文の精度確認（メロディ・コード・ベース・ミックス・エフェクト）**
+  - D-10〜D-21、D-25〜D-34 の全セリフを読み、用語・手順を一般的な初心者向け解説と照らして確認。C→G→Am→F（I–V–vi–IV）、ベースはコードのルート、パンは「キック・ベース・主役は真ん中／背景は左右」、EQ は「削って場所をあける」が基本、ミックスは「音量→パン→EQ→コンプ→空間系」、メーターが赤＝ひずむ、などはいずれも一般的な説明と一致していて問題なし。
+  - 修正は1か所：D-27「コード」のパンが「左いっぱいに向けよう（−0.4より左）」と、言葉と条件が食い違っていた → 「左に向けよう（−0.4より左）」に（次のステップの「右に向けよう（0.4より右）」とそろえた）。
+  - 検証：D-27 を通しでクリア画面まで到達、ページエラー0件。
 
 ## 残課題・気づき
 - ドラムの段の並びが「基礎編・スタジオ＝上からハイハット・スネア・キック」と「DAW編＝上からキック・スネア・ハイハット…」で逆になっている（説明文はそれぞれ正しく直してある）。並びをそろえるかどうか → オーナー確認待ち。
@@ -83,8 +89,11 @@
 - 自動テストの道具（scratchpad の walk.js 等）は次回セッションでは消えるので、必要なら作り直す（DAW_HTML の showStep 前に __dbg を差し込んで LES/stp を操作する方式）。
 
 ## 次にやること（優先順）
-1. C. D-35 の出典本文を読んで照合する。DnB の続き（ベース：低いベースを2小節で置く）を1レッスン追加するか検討
-2. C. ほかのDAWレッスン（メロディ・コード・ベース・ミックス）の説明の精度確認（出典つき）
+1. C. DnB の続き（オーナーOK後）（ベース：低いベースを2小節で置く）を1レッスン追加するか検討
+2. C. DAW編 A〜B章（D-1〜D-7）の用語・説明の精度確認。リズム編・スタジオのレッスンも同様に
 
 ### 21:46 今回の終了
 最新：v1.11.4（preview）。A・B（ログイン／DAW吹き出し重なり／クイズ／DAW見づらさ）は一通り完了。次回は C から。
+
+### 22:01 今回の終了
+最新：v1.11.7（preview）。次回は night-log の「次にやること」から。
