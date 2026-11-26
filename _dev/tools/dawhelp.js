@@ -1,0 +1,14 @@
+const {chromium}=require('/opt/npm-tools/node_modules/playwright');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:1366,height:768}});const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.route(/google/,r=>r.abort());
+await p.goto('file://'+__dirname+'/dawt2.html');await p.waitForTimeout(1500);
+const E=c=>p.evaluate(c=>window.__g(c),c);
+await E(`startLesson(0)`);await p.waitForTimeout(9000);
+const act=()=>p.evaluate(()=>{const a=document.activeElement;return (document.getElementById('kbhelp').contains(a)?'IN:':'OUT:')+a.tagName+'#'+a.id+'.'+a.className});
+await p.focus('#bv').catch(()=>{});console.log('before',await act());
+await E('showHelp()');await p.waitForTimeout(300);console.log('open',await act(),await E("$('kbhelp').classList.contains('on')"));
+for(let i=0;i<3;i++){await p.keyboard.press('Tab')}console.log('Tab x3',await act());
+await p.screenshot({path:'dawhelp.png'});
+await p.keyboard.press('Escape');await p.waitForTimeout(200);console.log('Esc',await act(),await E("$('kbhelp').classList.contains('on')"));
+await p.keyboard.press('F1');await p.waitForTimeout(300);console.log('F1',await E("$('kbhelp').classList.contains('on')"));await p.mouse.click(50,50);await p.waitForTimeout(200);console.log('click',await E("$('kbhelp').classList.contains('on')"));
+console.log('errors',errs);await b.close()})();
