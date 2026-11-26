@@ -297,9 +297,10 @@ body.sm{background:#15181c}body.sm #bar{display:none}body.sm #modeTabs{display:f
 #qz .qo button.ok{border-color:#22a06b;background:#e3f8ee;color:#0b5d3b}
 #qz .qo button.ng{border-color:#e5484d;background:#ffecec;color:#9b1c20;animation:qzS .35s}
 #qz .qo button:disabled{cursor:default}
+#qz .qo button.hint{border-color:#f0a500;background:#fff8e1;box-shadow:0 0 0 4px rgba(240,165,0,.3);animation:qzH 1.2s ease-in-out infinite}@keyframes qzH{50%{box-shadow:0 0 0 8px rgba(240,165,0,.15)}}@media (prefers-reduced-motion:reduce){#qz .qo button.hint{animation:none}}
 @keyframes qzS{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 #qz .qe{margin-top:14px;font-size:clamp(15px,2.4vw,17px);line-height:1.7;font-weight:600;min-height:1.7em}
-#qz .qe.ok{color:#0b5d3b}#qz .qe.ng{color:#9b1c20}
+#qz .qe.ok{color:#0b5d3b}#qz .qe.ng{color:#9b1c20}#qz .qe.hn{color:#7a4f00}
 #qz .qn{display:none;margin-top:14px;font:inherit;font-weight:800;font-size:18px;padding:13px 30px;border:0;border-radius:40px;background:#22c3b0;color:#05302b;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25);min-height:48px}
 #qz .qn.on{display:inline-block}
 #qz .qr{text-align:center;padding:6px 0}#qz .qr .tr{font-size:64px}
@@ -687,7 +688,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.11.2',APP_BUILD='2026.11.26 21:37';
+var APP_VER='1.11.3',APP_BUILD='2026.11.26 21:38';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -814,11 +815,11 @@ function qzShuffle(q){var o=q[1].map(function(t,i){return {t:t,c:i===q[2]}});for
 function quizStart(id,after){var qs=QZ[id];try{f.contentWindow.postMessage({lessonMute:1},'*')}catch(e){}if(!qs||!qs.length){after();return}qzQ=qs;qzI=0;qzAfter=after;$('qz').classList.add('on');qzShow()}
 function qzClose(){$('qz').classList.remove('on');var a=qzAfter;qzAfter=null;if(a)a()}
 function qzShow(){var q=qzQ[qzI],c=$('qc'),opts=qzShuffle(q);
-  c.innerHTML='<div class="qh"><span>ふり返りクイズ '+(qzI+1)+' / '+qzQ.length+'</span><button type="button" id="qSk">とばす</button></div><div class="qq"></div><div class="qo"></div><div class="qe" aria-live="polite"></div><button type="button" class="qn" id="qNx"></button>';
-  c.querySelector('.qq').textContent=q[0];var box=c.querySelector('.qo'),ex=c.querySelector('.qe'),nx=$('qNx');
+  c.innerHTML='<div class="qh"><span>ふり返りクイズ '+(qzI+1)+' / '+qzQ.length+'</span><button type="button" id="qSk" style="visibility:hidden">とばす</button></div><div class="qq"></div><div class="qo"></div><div class="qe" aria-live="polite"></div><button type="button" class="qn" id="qNx"></button>';
+  c.querySelector('.qq').textContent=q[0];var box=c.querySelector('.qo'),ex=c.querySelector('.qe'),nx=$('qNx'),miss=0;
   opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o.t;b.onclick=function(){qzSnd('sel');qzSnd(o.c?'ok':'ng');
     if(o.c){b.classList.add('ok');Array.prototype.forEach.call(box.children,function(x){x.disabled=true});ex.className='qe ok';ex.textContent='⭕ せいかい！ '+q[3];nx.textContent=qzI<qzQ.length-1?'つぎの問題へ':'ホームにもどる';nx.classList.add('on');nx.focus()}
-    else{b.classList.add('ng');b.disabled=true;ex.className='qe ng';ex.textContent='おしい！ もう一度かんがえてみよう。'}};box.appendChild(b)});
+    else{miss++;b.classList.add('ng');b.disabled=true;ex.className='qe ng';var rest=Array.prototype.filter.call(box.children,function(x){return !x.disabled});if(rest.length<=1){rest.forEach(function(x){x.classList.add('hint')});ex.className='qe hn';ex.textContent='💡 ヒント：のこった答えが せいかいだよ。おして、たしかめてみよう。'}else ex.textContent='おしい！ もう一度かんがえてみよう。💡 ヒント：のこりは'+rest.length+'つ。レッスンでやったことを思い出してみてね。';$('qSk').style.visibility=''}};box.appendChild(b)});
   nx.onclick=function(){if(qzI<qzQ.length-1){qzI++;qzShow()}else qzClose()};
   $('qSk').onclick=qzClose}
 var dawLoaded=false;
