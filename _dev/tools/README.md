@@ -13,3 +13,4 @@
 4. `node page.js` … preview/index.html 全体を開いてページエラーを確認（Supabase等の通信は遮断）
 5. `node chord.js [幅] [高さ] [t]` … D-17/D-18 のコードボタン操作を実操作で確認
 6. `node mixwalk.js D-26,D-27 [幅] [高さ] [t]` … ミキサー系レッスン（D-26〜D-34）をフェーダー・パン・M/S・EQ等の実操作で進める。`COACH over` ＝操作する場所が吹き出しに隠れている、`needed-scroll` ＝自分でスクロールしないと見えない
+7. `node d23.js [幅] [高さ] [t]` … D-23（消しゴムでクリップを消す）を実操作で確認。ok:false ＝そのクリップが画面に見えていない
