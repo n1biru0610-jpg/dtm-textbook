@@ -290,7 +290,7 @@ body.sm{background:#15181c}body.sm #bar{display:none}body.sm #modeTabs{display:f
 #qz .qc{width:min(600px,100%);max-height:100%;overflow:auto;background:#fffdf6;color:#2b2540;border-radius:22px;padding:22px 22px 18px;box-shadow:0 14px 50px rgba(0,0,0,.45);animation:clrIn .4s ease both;font-family:inherit}
 #qz .qh{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:#6b5fa8;margin-bottom:8px}
 #qz .qh button{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:#8a82b8;cursor:pointer;padding:8px 4px;min-height:44px}
-#qz .qq{font-size:clamp(19px,3.4vw,24px);font-weight:800;line-height:1.55;margin:4px 0 14px}
+#qz .qq{font-size:clamp(19px,3.4vw,24px);font-weight:800;line-height:1.55;margin:4px 0 14px}.qq:focus{outline:none}
 #qz .qo{display:flex;flex-direction:column;gap:10px}
 #qz .qo button{font:inherit;font-size:clamp(16px,2.6vw,19px);font-weight:700;text-align:left;min-height:52px;padding:12px 16px;border-radius:14px;border:2.5px solid #d9d3f2;background:#fff;color:#2b2540;cursor:pointer}
 #qz .qo button:hover:not(:disabled){border-color:#8b7bff;background:#f4f1ff}
@@ -688,7 +688,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.11.23',APP_BUILD='2026.11.26 21:56';
+var APP_VER='1.11.24',APP_BUILD='2026.11.27 03:07';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -815,13 +815,13 @@ function qzShuffle(q){var o=q[1].map(function(t,i){return {t:t,c:i===q[2]}});for
 function quizStart(id,after){var qs=QZ[id];try{f.contentWindow.postMessage({lessonMute:1},'*')}catch(e){}if(!qs||!qs.length){after();return}qzQ=qs;qzI=0;qzAfter=after;$('qz').classList.add('on');qzShow()}
 function qzClose(){$('qz').classList.remove('on');var a=qzAfter;qzAfter=null;if(a)a()}
 function qzShow(){var q=qzQ[qzI],c=$('qc'),opts=qzShuffle(q);
-  c.innerHTML='<div class="qh"><span>ふり返りクイズ '+(qzI+1)+' / '+qzQ.length+'</span><button type="button" id="qSk" style="visibility:hidden">とばす</button></div><div class="qq"></div><div class="qo"></div><div class="qe" aria-live="polite"></div><button type="button" class="qn" id="qNx"></button>';
+  c.innerHTML='<div class="qh"><span>ふり返りクイズ '+(qzI+1)+' / '+qzQ.length+'</span><button type="button" id="qSk" style="visibility:hidden">とばす</button></div><div class="qq" tabindex="-1"></div><div class="qo"></div><div class="qe" aria-live="polite"></div><button type="button" class="qn" id="qNx"></button>';
   c.querySelector('.qq').textContent=q[0];var box=c.querySelector('.qo'),ex=c.querySelector('.qe'),nx=$('qNx'),miss=0;
   opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o.t;b.onclick=function(){qzSnd('sel');qzSnd(o.c?'ok':'ng');
     if(o.c){b.classList.add('ok');Array.prototype.forEach.call(box.children,function(x){x.disabled=true});ex.className='qe ok';ex.textContent='⭕ せいかい！ '+q[3];nx.textContent=qzI<qzQ.length-1?'つぎの問題へ':'ホームにもどる';nx.classList.add('on');nx.focus()}
     else{miss++;b.classList.add('ng');b.disabled=true;ex.className='qe ng';var rest=Array.prototype.filter.call(box.children,function(x){return !x.disabled});if(rest.length<=1){rest.forEach(function(x){x.classList.add('hint')});ex.className='qe hn';ex.textContent='💡 ヒント：のこった答えが せいかいだよ。おして、たしかめてみよう。'}else ex.textContent='おしい！ もう一度かんがえてみよう。💡 ヒント：のこりは'+rest.length+'つ。レッスンでやったことを思い出してみてね。';$('qSk').style.visibility=''}};box.appendChild(b)});
   nx.onclick=function(){if(qzI<qzQ.length-1){qzI++;qzShow()}else qzClose()};
-  $('qSk').onclick=qzClose}
+  $('qSk').onclick=qzClose;setTimeout(function(){try{c.querySelector('.qq').focus({preventScroll:true})}catch(e){}},30)}
 var dawLoaded=false;
 function openDaw(){setTimeout(function(){try{$('dawf').focus();$('dawf').contentWindow.focus()}catch(e){}},200);hide();closeHome();$('glf').style.display='none';$('mtG').setAttribute('aria-pressed',false);document.body.classList.remove('gm');$('clr').classList.remove('on');$('scf').style.display='none';$('mtS').setAttribute('aria-pressed',false);document.body.classList.remove('sm');setTimeout(bgmSync,50);document.body.classList.remove('rm','rmap');$('rhf').style.display='none';$('mtR').setAttribute('aria-pressed',false);inStudio=false;f.srcdoc='';document.body.classList.add('dm');$('mtB').setAttribute('aria-pressed',false);$('mtD').setAttribute('aria-pressed',true);var d=$('dawf');d.style.display='block';if(!dawLoaded){dawLoaded=true;d.srcdoc=DAW_HTML}document.body.classList.toggle('dmap',dawLoaded&&dawMapOn);try{history.replaceState(null,'','#daw')}catch(e){}}
 var rhLoaded=false;
