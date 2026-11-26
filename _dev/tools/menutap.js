@@ -1,0 +1,10 @@
+const {chromium}=require('/opt/npm-tools/node_modules/playwright');
+(async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+const p=await b.newPage({viewport:{width:844,height:390},hasTouch:true,isMobile:true});const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.route(/google/,r=>r.abort());
+await p.goto('file://'+__dirname+'/dawt2.html');await p.waitForTimeout(1500);
+const E=c=>p.evaluate(c=>window.__g(c),c);await E(`startLesson(0)`);await p.waitForTimeout(9000);
+const r=await p.evaluate(()=>{const s=[...document.querySelectorAll('#menu span.mm')].find(x=>x.textContent==='編集').getBoundingClientRect();return [s.x+s.width/2,s.y+s.height/2]});
+await p.touchscreen.tap(r[0],r[1]);await p.waitForTimeout(300);console.log('tap open',await E("$('ctxm').classList.contains('on')"));
+const it=await p.evaluate(()=>{const b=[...document.querySelectorAll('#ctxm button')].find(x=>!x.disabled);const q=b.getBoundingClientRect();return [q.x+q.width/2,q.y+q.height/2,b.textContent]});
+await p.touchscreen.tap(it[0],it[1]);await p.waitForTimeout(300);console.log('tap item',it[2],'closed',!(await E("$('ctxm').classList.contains('on')")));
+console.log('errors',errs);await b.close()})();
