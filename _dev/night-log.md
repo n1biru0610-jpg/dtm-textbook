@@ -56,7 +56,18 @@
   - C. 用語・手順の下調べ（本格的な照合は次回）：DAWのツールバー用語（クオンタイズ／タイムベース／スナップ）は Studio One 系の公式用語どおり。D-34 の「音量 → パン → EQ → コンプ → リバーブ・ディレイ」は初心者向けミックス解説の一般的な順番と一致。
     - 出典候補：Sound On Sound「Studio One: Snap, Grid & Quantize Settings」https://www.soundonsound.com/techniques/studio-one-snap-grid-quantize-settings ／ Packt「The Ultimate Studio One Pro Book: Understanding Snap and various Snap modes」https://subscription.packtpub.com/book/business-and-other/9781803241012/10/ch10lvl1sec43/understanding-snap-and-various-snap-modes ／ Yamaha Hub「Recording Basics: Get Ready, Get Set, Mix」https://hub.yamaha.com/proaudio/recording/recording-basics-get-ready-get-set-mix/ ／ LANDR ミキシングガイド（日本語）https://blog.landr.com/ja/landr%E3%83%9F%E3%82%AD%E3%82%B7%E3%83%B3%E3%82%B0%E3%82%AC%E3%82%A4%E3%83%89/
 
+### 2026-11-26 21:43 起動（2回目・手動起動）
+起動時に「初回なので preview 作成と A から」という補足が付いていたが、preview/・night-log・A はすでに完了済みだったため、night-log の「次にやること」どおり C（DAW編の精度確認）から進めた。
+
+- **v1.11.5 preview: DAW編の説明とヒントの誤りを修正（C: 精度確認）**
+  - D-6「ドラムを打ち込もう」：実際の打ち込み画面は上から「キック・スネア・ハイハット・オープンハット・クラップ」の5段なのに、説明が「上からハイハット・スネア・キック」「一番下のキック」になっていた → 「左に音の名前が書いてあるよ。いちばん上がキック、その下がスネア、ハイハット。」「まず一番上の「キック」」に修正。
+  - 同じく D-6：手のアニメ（クリック位置のヒント）が3段前提で計算されていて、スネアのヒントがハイハットの段、ハイハットのヒントがクラップの段を指していた → 段数（5段）で計算するよう修正。キック・スネア・ハイハットそれぞれ正しい段の中央を指すことを座標で確認。
+  - D-21「ウラ拍でノリを出そう」：説明の「2・6・10・14番めのマス」は、他のレッスン（D-6：1番め・5番め…）の数え方（1から数える）とずれていた。判定と手のヒントは0から数えて2・6・10・14＝1から数えて3・7・11・15番め（8分のウラ拍）なので、説明を「3・7・11・15番めのマス」に修正。
+  - 判断理由：16分音符グリッドでは、拍アタマが1・5・9・13番め、8分のウラ拍（「エン」）が3・7・11・15番めになる（初心者向けのリズム解説で一般的な数え方）。
+  - 検証：DAW編32レッスン全部を通しで確認。全部クリア画面まで到達し、吹き出しで対象が隠れるステップは0件、ページエラーも0件。
+
 ## 残課題・気づき
+- スタジオ（STUDIO_HTML）のミッション 2-3「ドラムの一番下の列（キック）」：スタジオ画面のドラムの並び順が DAW編と同じ（キックが一番上）なら同じ誤り。まだ確認していない。
 - スマホ横（タッチ端末）では DAW編 D-10①（説明だけのステップ）で吹き出しが鍵盤に少し重なる（画面が小さく避けきれない）。
 - 自動テストの道具（scratchpad の walk.js 等）は次回セッションでは消えるので、必要なら作り直す（DAW_HTML の showStep 前に __dbg を差し込んで LES/stp を操作する方式）。
 
