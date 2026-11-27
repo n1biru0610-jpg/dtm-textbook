@@ -61,3 +61,10 @@ function tssDraw(){if(STF.tab!=='ts')return;var bd=$('stfBd'),rows=TSS.rows||[],
    tokOK().then(function(t){return sbf('/rest/v1/teacher_songs?id=eq.'+encodeURIComponent(r.id),{method:'PATCH',headers:{Prefer:'return=minimal'},body:JSON.stringify(patch)},t)}).then(function(x){if(!x.ok)return x.text().then(function(y){throw {s:x.status,t:y}});for(var k in patch)r[k]=patch[k];tssDraw()}).catch(function(e){b.disabled=false;sm.textContent='おくれませんでした'+(e&&e.s?'（エラー '+e.s+'）':'')})};
   bd.appendChild(d)})}
 var _tsD0=stfDraw;stfDraw=function(){_tsD0.apply(this,arguments);if(STF.tab==='ts'){if(TSS.rows===null&&!TSS.loading)tssLoad();else if(!TSS.loading)tssDraw()}};
+
+/* アカウント（左下のチップ）を開いたら、すぐ「もちもの」を表示。ログアウト等は もちもの内の「👤 アカウント」から */
+var BDTAB='ti';
+function bdAcBtn(){var d=document.querySelector('#dcc .db');if(!d||$('bdAc'))return;var b=document.createElement('button');b.type='button';b.id='bdAc';b.textContent='👤 アカウント・ログアウト';b.onclick=function(){dcClose();_tsOp()};d.appendChild(b)}
+var _tsBs2=bdShow;bdShow=function(tab){if(tab&&tab!=='ts'||tab==='ts')BDTAB=tab==='ts'||tab==='sk'||tab==='ic'?tab:'ti';_tsBs2(tab);bdAcBtn()};
+var _tsOp=openProf;openProf=function(){if(bdAcc())bdShow(BDTAB);else _tsOp()};
+$('pchip').onclick=function(){openProf()};

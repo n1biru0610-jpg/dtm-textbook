@@ -11,7 +11,7 @@ await pg.evaluate(()=>{DAW_HTML=DAW_HTML.replace('function showStep(){','window.
 const fh=await pg.$('#dawf');const fr=await fh.contentFrame();const E=c=>fr.evaluate(c=>__g(c),c);const box=await fh.boundingBox();
 await fr.evaluate(()=>document.querySelector('#dfree').click());await pg.waitForTimeout(800);
 const lr=JSON.parse(await E(`JSON.stringify((function(){var r=$('lanes').getBoundingClientRect();return {x:r.left,y:r.top,w:r.width,h:r.height}})())`));
-const mx=box.x+(lr.x+400)*1.25,my=box.y+(lr.y+60)*1.25;
+const mx=box.x+(lr.x+400),my=box.y+(lr.y+60);
 await pg.mouse.move(mx,my);
 // shift+ホイールで横スクロール
 await E(`$('lanes').scrollLeft=0`);await pg.keyboard.down('Shift');await pg.mouse.wheel(0,300);await pg.waitForTimeout(200);await pg.keyboard.up('Shift');
@@ -33,7 +33,7 @@ ok('ページ全体のズームは起きない',(await pg.evaluate(()=>window.vi
 // 打ち込み画面
 await E(`$('lanes').scrollLeft=0;ZX=1;renderTracks();sel=0;openEd(T[0],T[0].clips[0])`);await pg.waitForTimeout(500);
 const er=JSON.parse(await E(`JSON.stringify((function(){var r=$('escroll').getBoundingClientRect();return {x:r.left,y:r.top,w:r.width}})())`));
-await pg.mouse.move(box.x+(er.x+500)*1.25,box.y+(er.y+60)*1.25);
+await pg.mouse.move(box.x+(er.x+500),box.y+(er.y+60));
 const c0=await E(`cw`);
 await pg.keyboard.down('Shift');await pg.keyboard.down('Control');await pg.mouse.wheel(0,-400);await pg.waitForTimeout(300);await pg.keyboard.up('Control');await pg.keyboard.up('Shift');
 const c1=await E(`cw`);ok('打ち込み画面もshift+ctrl+ホイールで横に拡大',c1>c0,c0+'→'+c1);
