@@ -2,7 +2,7 @@
 body.ho #zkBtn,body.om #zkBtn{display:block}
 body.dm.dmap #zkBtn,body.rm.rmap #zkBtn{display:block;top:56px;right:12px}
 #zkBarBtn{white-space:nowrap}
-#zkBtn:focus-visible,#zk .zkc:focus-visible,#zk .zkback:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
+#zkBtn:focus-visible,#zk .zkc:focus-visible,#zk .zkback:focus-visible,#zk .zkuse:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
 #zk #zkX:focus-visible,#zk .zknav button:focus-visible{outline:4px solid #ffd43b;outline-offset:2px}
 #zk{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(18,10,4,.72);padding:12px;font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif}
 #zk.on{display:flex}
@@ -67,7 +67,7 @@ body.dm.dmap #zkBtn,body.rm.rmap #zkBtn{display:block;top:56px;right:12px}
  #zk .zkc i{width:38px;height:38px;font-size:21px}
  #zk .zkc b{font-size:11.5px}#zk .zkc small{font-size:10px}
  #zk .zkleaf{top:40px;bottom:44px}
- #zk .zkd{width:min(660px,100%);padding:8px 16px;gap:3px}#zk .zkd i{display:none}#zk .zkd h4{font-size:16px}#zk .zkd p,#zk .zkd dl{font-size:12px;line-height:1.45}#zk .zkd dt{margin-top:2px}#zk .zkd .zkback{min-height:32px;font-size:13px;padding:3px 18px}
+ #zk .zkd{width:min(660px,100%);padding:8px 16px;gap:3px}#zk .zkd i{display:none}#zk .zkd h4{font-size:16px}#zk .zkd p,#zk .zkd dl{font-size:12px;line-height:1.45}#zk .zkd dt{margin-top:2px}#zk .zkd .zkback,#zk .zkd .zkuse{min-height:40px;font-size:13px;padding:3px 18px}
  body.om #zkBtn{top:52px}
  #zkBtn{top:124px;padding:5px 10px;font-size:12px}
  body.dm.dmap #zkBtn,body.rm.rmap #zkBtn{top:52px}
@@ -112,3 +112,6 @@ body.ho #zkNext1:not([hidden]){display:flex}
 }
 @media (max-width:640px){#zkGet .zkgrow{flex-wrap:wrap}#zkNext1{top:104px;max-width:calc(100vw - 32px)}}
 @media (prefers-reduced-motion:reduce){#zkGet .zkin{animation:none}}
+#zk .zkbtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+#zk .zkuse{font-weight:800;font-size:15px;min-height:40px;padding:6px 18px;border-radius:20px;border:2px solid #1f5a30;background:#2f7a45;color:#fff;cursor:pointer}
+#zk .zkuse:hover{background:#276a3b}
