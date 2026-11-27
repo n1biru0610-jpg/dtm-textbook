@@ -709,7 +709,28 @@ body.ho #zkNext1:not([hidden]){display:flex}
 #zk .zkuse{font-weight:800;font-size:15px;min-height:40px;padding:6px 18px;border-radius:20px;border:2px solid #1f5a30;background:#2f7a45;color:#fff;cursor:pointer}
 #zk .zkuse:hover{background:#276a3b}
 </style><!--/zkcss-->
-</head><body>
+<style id="sidecss">.side{position:absolute;transform:translate(-50%,-50%);z-index:2;border:3px dashed var(--c);background:var(--panel);color:var(--ink);font:inherit;font-weight:800;font-size:15px;padding:6px 16px;min-height:40px;border-radius:999px;cursor:pointer;white-space:nowrap;box-shadow:0 3px 0 rgba(0,0,0,.1);-webkit-tap-highlight-color:transparent;transition:transform .15s}
+.side.top,.side.top:hover{transform:translate(0,-50%);font-size:14px;padding:4px 10px;min-height:36px}
+.side i{font-style:normal;color:var(--c)}
+.side.done{border-style:solid}
+.side:hover{transform:translate(-50%,-50%) scale(1.05)}
+.side:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+#sideDlg{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;background:rgba(10,20,30,.45);padding:16px}
+#sideDlg.on{display:flex}
+#sideDlg .sdb{background:var(--panel);color:var(--ink);border-radius:22px;border:4px solid var(--c,var(--line));max-width:520px;width:100%;max-height:calc(100% - 8px);overflow:auto;padding:20px 22px;box-sizing:border-box;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#sideDlg h2{margin:0 0 4px;font-size:22px}
+#sideDlg .sdp{margin:0 0 12px;color:var(--sub);font-size:15px}
+#sideDlg .sdi{border:2px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:10px}
+#sideDlg .sdi b{color:var(--c);margin-right:8px;font-size:17px}
+#sideDlg .sdi span{font-weight:800;font-size:17px}
+#sideDlg .sdi p{margin:4px 0 8px;font-size:15px;line-height:1.6}
+#sideDlg .sds{display:inline-block;font:inherit;font-size:14px;font-weight:800;color:var(--sub);background:color-mix(in srgb,var(--c) 10%,var(--panel));border-radius:999px;padding:4px 12px}
+#sideDlg button.sds{border:0;background:var(--c);color:#fff;cursor:pointer;min-height:40px;padding:6px 18px}
+#sideDlg .sdx{display:block;margin:6px auto 0;font:inherit;font-weight:800;font-size:16px;min-height:44px;padding:8px 28px;border-radius:999px;border:3px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+#sideDlg .sdx:focus-visible,#sideDlg button.sds:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.side{transition:none}.side:hover{transform:translate(-50%,-50%)}}
+
+@media (max-height:500px){.side{font-size:14px;padding:4px 14px;min-height:40px;transform:translate(-50%,-102%)}.side:hover{transform:translate(-50%,-102%)}#sideDlg{padding:8px}#sideDlg .sdb{padding:12px 16px;border-width:3px}#sideDlg h2{font-size:18px}#sideDlg .sdp{font-size:13px;margin-bottom:8px}#sideDlg .sdi{padding:6px 12px;margin-bottom:6px}#sideDlg .sdi p{font-size:14px;margin:2px 0 4px}}</style><!--/sidecss--></head><body>
 <div id="rot" role="alert"><i>📱</i><b>スマホを<br>横向きにしてね</b><small>このアプリは横画面で使うよ（画面の向きのロックをオフにしてね）</small></div>
 <button class="pchip" id="pchip"></button>
 <button id="setBtn" aria-label="設定" title="設定（バージョン・画面の明るさ）">⚙️</button>
@@ -842,7 +863,7 @@ function resumeIdx(){var p=P(),k=-1;if(p&&p.last){k=L.map(function(l){return l.i
   if(k<0){for(var i=0;i<L.length;i++)if(!isDone(L[i].id)){k=i;break}}return k<0?L.length-1:k}
 function renderHome(anim){
   var w=$('world'),sc=$('scroll'),H=sc.clientHeight||600;
-  NE=[];Array.prototype.slice.call(w.querySelectorAll('.node,.sign')).forEach(function(e){e.remove()});
+  NE=[];Array.prototype.slice.call(w.querySelectorAll('.node,.sign,.side')).forEach(function(e){e.remove()});
   var x=360,prevCh=0;xs=[];ys=[];
   L.forEach(function(l,i){var c=chapOf(i);if(prevCh&&c!==prevCh)x+=CGAP;prevCh=c;xs.push(x);ys.push(H*.5);x+=GAP});
   var W=x+GAP*.6+200;w.style.width=W+'px';
@@ -868,7 +889,52 @@ function renderHome(anim){
   var done=doneCount(P()||{ls:{}}),cta=$('cta');
   cta.innerHTML=(done===0?'はじめる':(done>=L.length?'もういちど あそぶ':'つづきから'))+'<small></small>';cta.querySelector('small').textContent=L[nxt].id+'　'+L[nxt].title;
   cta.onclick=function(){startLesson(nxt)};
-  pillsR();par()}
+  try{sideR()}catch(e){try{console.warn('sideR',e)}catch(x){}}pillsR();par()}
+/*side*//* よりみちステージ（ステップ5）：メインの道（L）は変えず、カードの下に「よりみち」をぶら下げる */
+var SIDE=[
+{id:'3-A',at:'3-2',t:'階段とジャンプ',d:'となりの音へ進む「階段」と、はなれた音へとぶ「ジャンプ」。歌いやすいメロディは、階段が多めだよ。'},
+{id:'3-B',at:'3-3',t:'のばす音・きざむ音',d:'音の長さで表情をつけよう。長い音は落ち着いて、短い音ははずむよ。'},
+{id:'3-C',at:'3-4',t:'明るいメロディ・さみしいメロディ',d:'ドではなくラで終わると、少しさみしく聞こえるよ。'},
+{id:'3-D',at:'3-6',t:'ウラから始まるメロディ',d:'1拍めより少し前から歌い出すと、はずんだ感じになるよ。'},
+{id:'4-A',at:'4-2',t:'明るいコード・暗いコード',d:'C と Cm のように、明るいコードと暗いコードを聴きくらべよう。'},
+{id:'4-B',at:'4-3',t:'なめらかにつなごう',d:'コードの音を上や下にずらして、となりのコードへ近い音でつなごう。'},
+{id:'4-C',at:'4-4',t:'カノン進行',d:'C → G → Am → Em → F → C → F → G。とても有名なならびを使ってみよう。'},
+{id:'4-D',at:'4-5',t:'おしゃれな4つ重ね',d:'音を4つ重ねたコードで、おしゃれなひびきにしよう。'},
+{id:'4-E',at:'4-5',t:'ばらして弾こう',d:'コードの音を1つずつ順番に鳴らすと、きらきらした伴奏になるよ。'}];
+var SIDE_SHOW_SOON=true; /* まだ作っていない寄り道（じゅんび中）もマップに出すか */
+function sideOk(s){return !!(s.go||SIDE_SHOW_SOON)}
+function sideR(){var w=$('world');Array.prototype.slice.call(w.querySelectorAll('.side')).forEach(function(e){e.remove()});
+  var ids=L.map(function(l){return l.id}),low=matchMedia('(max-height:500px)').matches,ct=$('cta').getBoundingClientRect(),st=$('scroll').getBoundingClientRect().top,ctaTop=ct.height?ct.top:1e9;
+  ids.forEach(function(id,i){var ss=SIDE.filter(function(s){return s.at===id&&sideOk(s)});if(!ss.length||!NE[i])return;
+    var ch=chObj(chapOf(i)),all=ss.every(function(s){return isDone(s.id)}),b=document.createElement('button');
+    b.type='button';b.className='side'+(all?' done':'');b.dataset.at=id;b.style.setProperty('--c',ch.c);
+    var h=NE[i].offsetHeight,wd=NE[i].offsetWidth;
+    if(!low&&st+ys[i]+h/2+28>ctaTop){b.classList.add('top');b.style.left=(xs[i]-wd/2+10)+'px';b.style.top=(ys[i]-h/2)+'px'}
+    else{b.style.left=xs[i]+'px';b.style.top=(ys[i]+h/2)+'px'}
+    b.innerHTML='<span aria-hidden="true">🌿</span> よりみち'+(ss.length>1?' <i>×'+ss.length+'</i>':'')+(all?' <i>★</i>':'');
+    b.setAttribute('aria-label','よりみちステージ：'+ss.map(function(s){return s.id+' '+s.t}).join('、')+(all?'（ぜんぶクリア）':'')+'。やらなくても先へすすめます');
+    b.onclick=function(){sideOpen(ss,b)};NE[i].insertAdjacentElement('afterend',b)})}
+var sideBack=null,sideAt=null,sideT0=0;
+function sideClose(){var d=$('sideDlg');if(!d||!d.classList.contains('on'))return;d.classList.remove('on');try{$('home').inert=false}catch(e){}
+  var b=sideBack&&sideBack.isConnected?sideBack:document.querySelector('.side[data-at="'+sideAt+'"]');if(b)try{b.focus()}catch(e){}sideBack=null}
+function sideOpen(ss,from){var d=$('sideDlg');
+  if(!d){d=document.createElement('div');d.id='sideDlg';d.innerHTML='<div class="sdb" role="dialog" aria-modal="true" aria-labelledby="sdT" aria-describedby="sdP sdL"><h2 id="sdT"><span aria-hidden="true">🌿</span> よりみちステージ</h2><p class="sdp" id="sdP">やらなくても、先へすすめるよ。きょうみがあったら、のぞいてみよう。</p><div class="sdl" id="sdL"></div><button type="button" class="sdx">とじる</button></div>';
+    document.body.appendChild(d);d.onclick=function(e){if(e.target===d)sideClose()};d.querySelector('.sdx').onclick=sideClose;
+    document.addEventListener('keydown',function(e){if(!d.classList.contains('on'))return;
+      if((e.key==='Enter'||e.key===' ')&&(e.repeat||Date.now()-sideT0<400)){e.preventDefault();e.stopPropagation();return}
+      if(e.key==='Escape'){e.preventDefault();e.stopPropagation();sideClose()}
+      else if(e.key==='Tab'){e.stopPropagation();var f=Array.prototype.slice.call(d.querySelectorAll('button')),a=f[0],z=f[f.length-1],ae=document.activeElement;
+        if(!d.contains(ae)){e.preventDefault();(e.shiftKey?z:a).focus()}else if(e.shiftKey&&ae===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&ae===z){e.preventDefault();a.focus()}}},true)}
+  var l=d.querySelector('.sdl');l.innerHTML='';d.querySelector('.sdb').style.setProperty('--c',from.style.getPropertyValue('--c'));
+  ss.forEach(function(s){var it=document.createElement('div');it.className='sdi';it.innerHTML='<b></b><span></span><p></p>';
+    it.querySelector('b').textContent=s.id;it.querySelector('span').textContent=s.t;it.querySelector('p').textContent=s.d;
+    var st=document.createElement(s.go?'button':'div');st.className='sds';
+    if(s.go){st.type='button';st.textContent=isDone(s.id)?'★ クリア（もう一回）':'▶ あそぶ';st.onclick=function(){sideClose();s.go()}}
+    else st.textContent='🔧 じゅんび中（もうすぐ遊べるよ）';
+    it.appendChild(st);l.appendChild(it)});
+  sideBack=from;sideAt=from.dataset.at;sideT0=Date.now();d.classList.add('on');try{$('home').inert=true}catch(e){}try{landSnd()}catch(e){}
+  setTimeout(function(){var f=d.querySelector('.sds[type=button]')||d.querySelector('.sdx');try{f.focus({preventScroll:true})}catch(e){}d.querySelector('.sdb').scrollTop=0},30)}
+/*/side*/
 function celebrate(n){if(!n)return;n.classList.add('celebrate');var b=document.createElement('div');b.className='burst';
   for(var k=0;k<8;k++){var a=k/8*6.283,e=document.createElement('i');e.textContent=k%2?'✨':'⭐';e.style.setProperty('--dx',Math.cos(a)*60+'px');e.style.setProperty('--dy',Math.sin(a)*60+'px');b.appendChild(e)}
   n.appendChild(b);setTimeout(function(){b.remove();n.classList.remove('celebrate')},1000);chimeSnd()}
@@ -893,7 +959,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.25.0',APP_BUILD='2026.11.27 23:22';
+var APP_VER='1.26.0',APP_BUILD='2026.11.28 00:37';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
