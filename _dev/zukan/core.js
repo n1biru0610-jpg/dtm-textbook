@@ -8,7 +8,7 @@ function zkProg(c,p){var acc=!!bdAcc(),b=p&&p.bd||{},have=0,need=1;
   if(c.k==='login'){need=c.n;have=acc&&Array.isArray(b.days)?b.days.length:0}
   else if(c.k==='post'){need=c.n;have=acc&&b.post?Object.keys(b.post).length:0}
   else if(c.k==='lesson'){need=1;have=done(c.id)?1:0}
-  else if(c.k==='chap'||c.k==='basic'){var ids=[];CH.forEach(function(h){if(c.k==='basic'||h.n===c.n)ids=ids.concat(h.ids)});need=ids.length||1;have=ids.filter(done).length}
+  else if(c.k==='chap'||c.k==='basic'){var ids=[];CH.forEach(function(h){if(c.k==='basic'||h.n===c.n)ids=ids.concat(rwIds(h))});need=ids.length||1;have=ids.filter(done).length}
   return {have:Math.min(have,need),need:need,ok:have>=need}}
 function zkHow(c){
   if(c.k==='login')return 'ログインした日が、ぜんぶで'+c.n+'日になる';
