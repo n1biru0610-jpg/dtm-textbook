@@ -860,7 +860,7 @@ function merge(r){if(!r||r.version!==1||!r.profiles)return;
     for(var k in rp.ls){var a=lp.ls[k],b=rp.ls[k];if(!a)lp.ls[k]=b;else{if(b.d&&!a.d){a.d=1;a.at=b.at}a.n=Math.max(a.n||0,b.n||0)}}
     if(rp.bd)lp.bd=bdMerge(lp.bd,rp.bd,(rp.u||0)>(lp.u||0));
     if((rp.su||0)>(lp.su||0)){lp.studio=rp.studio;lp.su=rp.su}
-    if((rp.u||0)>(lp.u||0)){lp.name=rp.name;lp.col=rp.col;lp.last=rp.last;lp.u=rp.u;['st','dprojs','dcur','cprojs','ccur','dw','dr','rh','mel','mode'].forEach(function(k){if(rp[k]!==undefined)lp[k]=rp[k]})}}
+    if((rp.u||0)>(lp.u||0)){lp.name=rp.name;if(rp.dn!==undefined)lp.dn=rp.dn;lp.col=rp.col;lp.last=rp.last;lp.u=rp.u;['st','dprojs','dcur','cprojs','ccur','dw','dr','rh','mel','mode'].forEach(function(k){if(rp[k]!==undefined)lp[k]=rp[k]})}}
   if(!DB.active||!DB.profiles[DB.active])DB.active=(r.active&&DB.profiles[r.active])?r.active:Object.keys(DB.profiles)[0]||null}
 /* ---------- アカウント連携（claude.ai にログイン中なら同期） ---------- */
 var CLOUD=null,sync='local',pt=null;
@@ -873,6 +873,7 @@ function initCloud(){try{if(!window.claude||!claude.use)return;
         if(!P()&&!Object.keys(DB.profiles).length)return;chip();if($('home').classList.contains('on'))renderHome(false)})})}).catch(function(){})}catch(e){}}
 /* ---------- ホーム画面（横スクロールのステージマップ） ---------- */
 var NE=[],GAP=320,CGAP=150,hopPos=null,xs=[],ys=[],homeOn=false;
+function myNm(){var p=P();if(p&&p.dn)return p.dn;if(typeof ACC!=='undefined'&&ACC&&ACC.nick)return ACC.nick;return p?p.name:''}
 function fixNm(){var p=P();if(p&&ACC&&ACC.pid===p.id&&ACC.nick&&p.name==='ゲスト'){p.name=ACC.nick;p.u=Date.now()}}
 function chip(){var p=P(),b=$('pchip');if(!p){b.innerHTML='👤 ログイン／登録';return}fixNm();
   b.innerHTML=(typeof bdAv==='function'?bdAv(p):'<span class="av" style="background:'+p.col+'"></span>')+'<span></span><span class="sync">'+(ACC&&ACC.pid===p.id?(sync==='err'?'☁ 保存まち':'☁ 同期中'):'閉じると消える')+'</span>';b.children[1].textContent=p.name;try{bdBtnUpd()}catch(e){}}
@@ -977,7 +978,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.34.0',APP_BUILD='2026.11.28 08:18';
+var APP_VER='1.35.0',APP_BUILD='2026.11.28 08:22';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -1224,7 +1225,7 @@ function dcTheme(day){var a=day.split('-'),n=Math.floor(Date.UTC(+a[0],+a[1]-1,+
 function dcRec(){try{return JSON.parse(localStorage.getItem('dtm-dc')||'{}')||{}}catch(e){return {}}}
 function dcRecSet(day,v){try{var r=dcRec();r[day]=v;localStorage.setItem('dtm-dc',JSON.stringify(r))}catch(e){}}
 function dcStreak(){var r=dcRec(),n=0,d=new Date();if(!r[dcJst(d)])d=new Date(d.getTime()-86400000);while(r[dcJst(d)]&&n<400){n++;d=new Date(d.getTime()-86400000)}return n}
-function dcNick(){var n=rpNick();return (!n||n==='（なし）')?'ななし':n}
+function dcNick(){var n=myNm();return n||'ななし'}
 function dcEsc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function dcClose(){$('dc').classList.remove('on');try{(dcBack&&dcBack.focus&&document.contains(dcBack)?dcBack:document.body).focus()}catch(e){}}
 function dcStart(){document.body.classList.remove('dchl');var day=dcJst(),th=dcTheme(day),rec=dcRec()[day];th.sent=rec?{ok:rec.ok,total:rec.total}:null;dcOpenDaw({dawChallenge:th})}
@@ -1366,7 +1367,7 @@ function bdShow(tab){tab=tab==='sk'||tab==='ic'?tab:'ti';var p=bdAcc(),c=$('dcc'
  if(tab==='ic'){var i=bdIc(b),pk=function(L,cur,kind){return L.map(function(x){var ok=bdSkOk(x,b),on=cur===x.e;return '<li><button type="button" class="'+(ok?'e':'l')+(on?' w':'')+'" data-k="'+kind+'" data-v="'+x.e+'" data-t="'+(ok?'':dcEsc(x.n+'：'+x.d))+'" aria-pressed="'+on+'" aria-label="'+dcEsc(x.n+(ok?'':'（ロック中：'+x.d+'）'))+'">'+(x.sv||x.e||'✖')+(ok?'':'<u>🔒</u>')+'</button></li>'}).join('')},
   co=BDCO.map(function(x){return '<li><button type="button" class="e cl'+(p.col===x?' w':'')+'" data-k="o" data-v="'+x+'" aria-pressed="'+(p.col===x)+'" aria-label="いろ '+x+'" style="background:'+x+'"></button></li>'}).join('');
  c.innerHTML='<div class="dh"><span>🎒 もちもの</span><button class="dx" id="dcX">✕ とじる</button></div><h2 id="dcH" tabindex="-1">もちもの</h2>'+tabs+'<div class="bdpv">'+bdAv(p,true)+'<span><b id="bdNm"></b><small>ログイン '+b.days.length+'日</small></span></div><p class="ds">キャラ・かざり・いろを えらんで、アイコンを きがえよう。</p><div class="bdsc"><h3 class="bdh">🐾 キャラ</h3><ul class="bdpk">'+pk(BDCH,i.c,'c')+'</ul><h3 class="bdh">🎩 かざり</h3><ul class="bdpk">'+pk(BDAC,i.a,'a')+'</ul><h3 class="bdh">🎨 いろ</h3><ul class="bdpk">'+co+'</ul></div><p class="ds" id="bdHt" role="status" aria-live="polite"></p><div class="db"><button id="dcBk">← とじる</button></div>';
- $('bdNm').textContent=(ACC&&ACC.nick)||p.name;$('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('bdT1').onclick=function(){bdShow('ti')};$('bdT2').onclick=function(){bdShow('sk')};$('bdT3').onclick=function(){bdShow('ic')};
+ $('bdNm').textContent=myNm();$('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('bdT1').onclick=function(){bdShow('ti')};$('bdT2').onclick=function(){bdShow('sk')};$('bdT3').onclick=function(){bdShow('ic')};
  Array.prototype.forEach.call(c.querySelectorAll('.bdpk button'),function(x){x.onclick=function(){if(x.classList.contains('l')){$('bdHt').textContent='🔒 '+x.dataset.t+' ゲットできるよ';return}if(x.dataset.k==='o')bdColSet(x.dataset.v);else bdIcSet(x.dataset.k,x.dataset.v)}});
  setTimeout(function(){try{$('dcH').focus()}catch(e){}},30);return}
  if(tab==='sk'){var sh=BDSK.map(function(x){var ok=bdSkOk(x,b),on=(b.skin||'')===x.id,lack=x.need?'（あと'+Math.max(0,x.need-b.days.length)+'日）':'';return '<li><button type="button" class="'+(ok?'e':'l')+(on?' w':'')+'" data-id="'+x.id+'" aria-pressed="'+on+'"'+(ok?'':' aria-disabled="true"')+'><span class="skw" style="background:'+x.c[0]+'"><u style="background:'+x.c[2]+'"></u><s style="background:'+x.c[1]+'"></s></span><span><b>'+x.ic+' '+dcEsc(x.n)+'</b><small>'+(ok?dcEsc(x.d.replace(/で$/,'')+(x.id?'でゲット':'')):'🔒 '+dcEsc(x.d)+(x.title?'ゲット':'')+lack)+'</small></span>'+(on?'<em>つかってる</em>':'')+'</button></li>'}).join('');
@@ -1479,7 +1480,7 @@ function profNew(first){
   if(first)$('phv').onclick=accScreen;else $('pcx').onclick=profList;setTimeout(function(){$('pn').focus()},50)}
 function profList(){var h='<h2>学習者</h2><div class="pl" id="pl"></div><div class="row2">'+(ACC?'<button class="btn" id="plo">ログアウト</button>':'<button class="btn" id="plg">ログイン</button><button class="btn" id="preg">登録</button>')+'<button class="btn" id="pcl">閉じる</button></div>';
   pb.innerHTML=h;var pl=$('pl'),p=P();
-  if(p){var b=document.createElement('div');b.className='pr act';b.innerHTML=bdAv(p)+'<span></span><small></small>';b.children[1].textContent=(ACC&&ACC.nick)||p.name;b.children[2].textContent=doneCount(p)+'/'+L.length+' クリア';pl.appendChild(b);if(bdAcc()){var x=document.createElement('div');x.className='row2';x.innerHTML='<button class="btn pri" id="pic">🎭 アイコンをきがえる</button><button class="btn" id="pmo">🎒 もちもの</button>';pl.appendChild(x);$('pic').onclick=function(){closeProf();bdShow('ic')};$('pmo').onclick=function(){closeProf();bdShow('ti')}}}
+  if(p){var b=document.createElement('div');b.className='pr act';b.innerHTML=bdAv(p)+'<span></span><small></small>';b.children[1].textContent=myNm();b.children[2].textContent=doneCount(p)+'/'+L.length+' クリア';pl.appendChild(b);if(bdAcc()){var x=document.createElement('div');x.className='row2';x.innerHTML='<button class="btn pri" id="pic">🎭 アイコンをきがえる</button><button class="btn" id="pmo">🎒 もちもの</button>'+(ACC?'<button class="btn" id="pnm">✏️ なまえをかえる</button>':'');pl.appendChild(x);if($('pnm'))$('pnm').onclick=function(){accScreen();$('anE').click()};$('pic').onclick=function(){closeProf();bdShow('ic')};$('pmo').onclick=function(){closeProf();bdShow('ti')}}}
   $('pcl').onclick=closeProf;
   if(ACC)$('plo').onclick=function(){accScreen()};else{$('plg').onclick=function(){accScreen('login')};$('preg').onclick=function(){accScreen('reg')}}}
 function enc(o){return 'DTM1.'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
@@ -1525,8 +1526,8 @@ function mergeProf(pf){var r={version:1,active:pf.id,del:[],profiles:{}};r.profi
 function initAcc(){if(!ACC)return;pullAcc().then(function(pf){if(pf){mergeProf(pf);chip();if(homeOn)renderHome(false)}pushAcc()}).catch(function(){}).then(function(){bdSync=true;try{bdCheck()}catch(e){}})}
 function accScreen(m0){
   if(ACC){var p=DB.profiles[ACC.pid];
-    pb.innerHTML='<h2>☁ ログイン中</h2><p>ニックネーム：<b></b>　（学習者：<span id="an"></span>）</p><p>どのPCでも、このニックネームと合言葉でログインすると、続きから遊べるよ。</p><div class="row2"><button class="btn dng" id="lo">ログアウト</button><button class="btn" id="bk3">もどる</button></div><p class="note" id="m3">ページ（タブ）を閉じると、自動でログアウトして、このPCから記録が消えます（アカウントには残っています）。ページを開いたままでも、「ログアウト」でいつでも消せるよ。</p>';
-    pb.querySelector('b').textContent=ACC.nick;$('an').textContent=p?p.name:'';
+    pb.innerHTML='<h2>☁ ログイン中</h2><p>なまえ：<b id="anD"></b>　<button class="btn" id="anE" type="button">✏️ なまえをかえる</button></p><div id="anF" style="display:none;margin:6px 0 10px"><label for="anI" style="display:block;font-weight:700;margin-bottom:6px">あたらしい なまえ（2〜10文字）</label><input id="anI" maxlength="10" autocomplete="off" style="font:inherit;font-size:20px;padding:10px 14px;border-radius:14px;border:3px solid var(--line);background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box;margin:0 0 8px"><div class="row2"><button class="btn pri" id="anS" type="button">この なまえにする</button><button class="btn" id="anC" type="button">やめる</button></div></div><p class="note" id="anM" role="status" aria-live="polite"></p><p>ログインするときのニックネーム：<b id="anL"></b>（なまえを変えても、ログインはこのニックネームのままだよ）</p><p>どのPCでも、このニックネームと合言葉でログインすると、続きから遊べるよ。</p><div class="row2"><button class="btn dng" id="lo">ログアウト</button><button class="btn" id="bk3">もどる</button></div><p class="note" id="m3">ページ（タブ）を閉じると、自動でログアウトして、このPCから記録が消えます（アカウントには残っています）。ページを開いたままでも、「ログアウト」でいつでも消せるよ。</p>';
+    $('anD').textContent=myNm();$('anL').textContent=ACC.nick;$('anE').onclick=function(){$('anF').style.display='block';$('anE').style.display='none';$('anI').value=myNm();$('anM').textContent='';$('anI').focus();$('anI').select()};$('anC').onclick=function(){$('anF').style.display='none';$('anE').style.display='';$('anM').textContent='';$('anE').focus()};$('anI').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();$('anS').click()}else if(e.key==='Escape'){e.preventDefault();$('anC').click()}};$('anS').onclick=function(){var v=$('anI').value.normalize('NFKC').trim(),q=DB.profiles[ACC.pid];if(v.length<2||v.length>10||/\s/.test(v)){$('anM').textContent='なまえは、2〜10文字で、あいだに空白を入れないでね。（ひらがなもOK）';$('anI').focus();return}if(!q)return;q.dn=v;q.name=v;q.u=Date.now();saveDB();pushAcc();chip();try{if(homeOn)renderHome(false)}catch(e){}$('anD').textContent=v;$('anF').style.display='none';$('anE').style.display='';$('anM').textContent='なまえを「'+v+'」にしたよ ✓';$('anE').focus()};
     $('bk3').onclick=profList;
     $('lo').onclick=function(){var fin=false,id=ACC.pid,p0=DB.profiles[id],a0=ACC;
       var done=function(){if(fin)return;fin=true;ACC=null;accStore();delete DB.profiles[id];DB.active=Object.keys(DB.profiles)[0]||null;try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){mem=DB}hopPos=null;chip();openProf();renderHome(false)};
@@ -1638,7 +1639,7 @@ function rpDev(){var u=navigator.userAgent,b='その他';
   var m=u.match(/Edg\/(\d+)/)||u.match(/OPR\/(\d+)/);if(m)b=(/Edg/.test(m[0])?'Edge ':'Opera ')+m[1];else if((m=u.match(/Chrome\/(\d+)/)))b='Chrome '+m[1];else if((m=u.match(/Firefox\/(\d+)/)))b='Firefox '+m[1];else if((m=u.match(/Version\/(\d+).*Safari/)))b='Safari '+m[1];
   var os=/iPhone|iPad/.test(u)?'iOS':/Android/.test(u)?'Android':/Mac/.test(u)?'Mac':/Windows/.test(u)?'Windows':/CrOS/.test(u)?'ChromeOS':/Linux/.test(u)?'Linux':'?';
   return (os+' / '+b+' / 画面 '+innerWidth+'×'+innerHeight+' (x'+(window.devicePixelRatio||1)+')'+(PHONE?' / スマホ':'')+' / v'+APP_VER).slice(0,200)}
-function rpNick(){if(ACC&&ACC.nick)return ACC.nick;var p=P();return p?p.name:'（なし）'}
+function rpNick(){if(ACC&&ACC.nick){var q=P();return (q&&q.dn&&q.dn!==ACC.nick)?q.dn+'（'+ACC.nick+'）':ACC.nick}var p=P();return p?p.name:'（なし）'}
 function rpOpen(){RP.back=document.activeElement;RP.place=rpPlace();$('rpM').classList.add('on');rpForm('');}
 function rpClose(){$('rpM').classList.remove('on');try{(RP.back&&RP.back.focus?RP.back:$('rpBtn')).focus()}catch(e){}}
 function rpForm(msg,ng){var bx=$('rpBx');
