@@ -73,7 +73,7 @@ def patch(path, lesson):
     s = json.dumps(L, ensure_ascii=False).replace('</', '<\\/')
     h = h[:i] + 'var L=' + s + ';' + h[j:]
     # 2) 章・アイコン・目標
-    if "'4-5','4-6']" not in h:
+    if "'4-5','4-6'" not in h:
         R("ids:['4-1','4-2','4-3','4-4','4-5']}", "ids:['4-1','4-2','4-3','4-4','4-5','4-6']}")
     if "'4-6':{icon:CHORDI}" not in h:
         R("'4-5':{icon:CHORDI},", "'4-5':{icon:CHORDI},'4-6':{icon:CHORDI},")
