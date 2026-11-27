@@ -43,8 +43,8 @@ await pg.waitForTimeout(1200);await pg.screenshot({path:'dc_daw_panel.png'});
 // パネルを閉じる(Esc)
 await fr.evaluate(()=>document.getElementById('chm').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
 ok('Escでお題パネルが閉じる',!(await fr.evaluate(()=>document.getElementById('chm').classList.contains('on'))));
-const lane=await fr.evaluate(()=>{const b=document.getElementById('chBar'),m=document.getElementById('midiBtn'),p=document.getElementById('mapBtn');const rb=b.getBoundingClientRect(),rm=m.getBoundingClientRect(),rp=p.getBoundingClientRect();return {vis:!b.hidden&&rb.width>0,n:b.children.length,dy:Math.abs((rb.top+rb.height/2)-(rm.top+rm.height/2)),left:rb.right<=rm.left+1,mapOk:rp.right<=innerWidth+1&&rm.right<=innerWidth+1,txt:[...b.children].map(x=>x.textContent).join(' / ')}});
-ok('はじめたら、お題の条件が「MIDI書き出し」「マップ」と同じ列に並ぶ',lane.vis&&lane.n===th.conds.length&&lane.dy<12&&lane.left&&lane.mapOk,JSON.stringify({n:lane.n,dy:Math.round(lane.dy),left:lane.left,mapOk:lane.mapOk}));
+const lane=await fr.evaluate(()=>{const b=document.getElementById('chBar'),m=document.getElementById('midiBtn'),p=document.getElementById('mapBtn');const rb=b.getBoundingClientRect(),rp=p.getBoundingClientRect();const chips=[...b.children].map(x=>x.getBoundingClientRect());const inside=chips.every(r=>r.width>0&&r.right<=rp.left+1&&r.left>=0);const wide=innerWidth>=1000;const rows=new Set(chips.map(r=>Math.round(r.top))).size;const txt=[...b.children].every(x=>x.querySelector('.tx')&&x.querySelector('.ci svg'));const rpb=window.parent.document.getElementById('rpBtn').getBoundingClientRect();return {vis:!b.hidden&&rb.width>0,n:b.children.length,midiHidden:getComputedStyle(m).display==='none',mapOk:rp.right<=innerWidth+1&&rp.width>0,inside,wide,rows,icons:txt,rpLeftBottom:rpb.left<140&&rpb.top>innerHeight*0.8}});
+ok('お題の条件が、アイコン付きで全部一覧できる（MIDI書き出しは非表示・マップは残る・ほうこくは左下）',lane.vis&&lane.n===th.conds.length&&lane.midiHidden&&lane.mapOk&&lane.icons&&lane.rpLeftBottom&&(!lane.wide||lane.inside),JSON.stringify(lane));
 await pg.screenshot({path:'dc_lane.png'});
 // 判定ユニット：条件ごとに作った曲で true/false
 const unit=await E(`(function(){

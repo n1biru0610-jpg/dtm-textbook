@@ -289,6 +289,23 @@ body.sm{background:#15181c}body.sm #bar{display:none}body.sm #modeTabs{display:f
 body.dm:not(.dmap) #rpBtn{top:auto!important;right:auto!important;left:12px!important;bottom:14px!important;height:40px!important;font-size:15px!important;padding:0 14px!important;opacity:1!important}html.phone body.dm:not(.dmap) #rpBtn{top:auto!important;right:auto!important;left:8px!important;bottom:9px!important;height:34px!important;font-size:13px!important;padding:0 9px!important;opacity:1!important}
 #dcCta{position:fixed;top:56px;right:12px;z-index:19;display:none;font:inherit;font-weight:800;font-size:15px;padding:8px 16px;border-radius:22px;border:0;background:#ffc531;color:#2a2100;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.25)}
 body.ho #dcCta{display:block}
+#bdBtn{position:fixed;top:100px;right:12px;z-index:19;display:none;font:inherit;font-weight:800;font-size:14px;padding:7px 14px;border-radius:20px;border:2px solid #e3b43a;background:#fff8dc;color:#4a3600;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.2);max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.ho #bdBtn{display:block}#bdBtn:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
+@keyframes dcPulse{0%,100%{box-shadow:0 3px 0 rgba(0,0,0,.25),0 0 0 0 rgba(255,197,49,.9);transform:scale(1)}50%{box-shadow:0 3px 0 rgba(0,0,0,.25),0 0 0 12px rgba(255,197,49,0);transform:scale(1.07)}}
+body.dchl #dcCta,body.dchl #modeTabs #mtC{animation:dcPulse 1.3s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){body.dchl #dcCta,body.dchl #modeTabs #mtC{animation:none;outline:4px solid #ff8a00}}
+#dc .bdn{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:4px 0}#dc .bdn b{font-size:54px;line-height:1;color:#e07a00}#dc .bdn span{font-size:20px;font-weight:800}
+#dc .bds{display:flex;gap:6px;list-style:none;margin:6px 0;padding:0;justify-content:center}#dc .bds li{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:44px;padding:5px 4px;border:2px solid #e3dcf5;border-radius:12px;background:#fff;font-weight:800}#dc .bds li small{font-size:11px;color:#6b6190}#dc .bds li b{font-size:18px;color:#bbb}#dc .bds li.on{background:#e6f8ee;border-color:#1f9d6b}#dc .bds li.on b{color:#1f9d6b}#dc .bds li.today{box-shadow:0 0 0 3px #ffc531}
+#dc .bdnew{background:#fff3c4;border:2px solid #f0b400;border-radius:16px;padding:8px 12px;margin:8px 0}#dc .bdnew ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}#dc .bdnew li{display:flex;gap:10px;align-items:center}#dc .bdnew i{font-style:normal;font-size:30px}#dc .bdnew small{display:block;font-size:13px;color:#6b5a1d}
+#dc .bdsc{max-height:52vh;overflow:auto;margin:6px 0}#dc .bdg{margin:10px 0 4px;font-size:15px;color:#5b4f86}
+#dc .bdl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px}
+#dc .bdl button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;font:inherit;background:#fff;color:#2b2540;border:2px solid #e3dcf5;border-radius:12px;padding:7px 10px;cursor:pointer;position:relative}
+#dc .bdl button i{font-style:normal;font-size:26px;flex:none;width:34px;text-align:center}#dc .bdl button b{display:block;font-size:15px}#dc .bdl button small{display:block;font-size:12px;color:#6b6190;line-height:1.4}
+#dc .bdl button.e{border-color:#e3b43a;background:#fffbea}#dc .bdl button.l{opacity:.55;cursor:default}#dc .bdl button.w{border-color:#1f9d6b;background:#e6f8ee}#dc .bdl button em{position:absolute;top:4px;right:8px;font-style:normal;font-size:11px;font-weight:800;color:#1f9d6b}
+#dc .bdl button:focus-visible,#dc .db button:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
+#dc .dg .n em{font-style:normal;background:#fff3c4;border:1px solid #f0d36a;border-radius:999px;padding:1px 8px;margin-right:6px;font-size:12px;font-weight:800;color:#6b5100}#dc .dg .n b{font-weight:800}
+@media (max-height:500px) and (orientation:landscape){#bdBtn{top:88px;padding:5px 10px;font-size:12px}#dc .bdn b{font-size:30px}#dc .bdn span{font-size:16px}#dc .bds{margin:2px 0}#dc .bds li{min-width:36px;padding:1px 2px}#dc .bds li small{font-size:10px}#dc .bds li b{font-size:14px}#dc .bdnew{padding:4px 10px;margin:4px 0}#dc .bdnew small{display:none}#dc .bdnew i{font-size:22px}#dc .dt p{display:none}#dc .dt{padding:4px 12px}#dc .dc h2,#dc h2{font-size:17px;margin:2px 0}#dc .ds{margin:0}#dc .bdsc{max-height:46vh}}
+
 #dcCta:focus-visible,#dc button:focus-visible,#dc select:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
 #dc{position:fixed;inset:0;z-index:62;display:none;align-items:center;justify-content:center;background:rgba(20,16,40,.82);padding:14px;overflow:auto}
 #dc.on{display:flex}
@@ -572,7 +589,7 @@ html.phone body.dm:not(.dmap) #rpBtn{top:4px;height:28px;font-size:12px;padding:
 <div id="scroll"><div id="world"><svg id="cloud"></svg><div class="ground"></div><svg id="path"></svg><div id="me"><div class="hop"><div class="face"></div></div></div></div></div>
 <button class="arr" id="al" aria-label="左へ">◀</button><button class="arr" id="ar" aria-label="右へ">▶</button>
 <button id="cta"></button><button id="jump">◎ いまの場所へ</button></div>
-<button id="stCta">🎛 スタジオで作ってみよう</button><button id="dcCta">📅 今日のお題</button>
+<button id="stCta">🎛 スタジオで作ってみよう</button><button id="dcCta">📅 今日のお題</button><button id="bdBtn">🏅 しょうごう</button>
 <div id="chap"></div>
 <div id="prof"><div class="pbox" id="pbox"></div></div>
 <script>
@@ -634,7 +651,7 @@ function saveDB(){DB.updated=Date.now();try{localStorage.setItem(KEY,JSON.string
 function P(){return DB.active&&DB.profiles[DB.active]||null}
 function newProf(name,col){var id='p'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);DB.profiles[id]={id:id,name:name,col:col,created:Date.now(),u:Date.now(),last:null,ls:{}};DB.active=id;saveDB();return id}
 function isDone(id){var p=P();return !!(p&&p.ls[id]&&p.ls[id].d)}
-function markDone(id){var p=P();if(!p)return;var e=p.ls[id]||(p.ls[id]={n:0});e.d=1;e.at=Date.now();p.u=Date.now();saveDB()}
+function markDone(id){var p=P();if(!p)return;var e=p.ls[id]||(p.ls[id]={n:0});e.d=1;e.at=Date.now();p.u=Date.now();saveDB();try{bdNote(bdEval())}catch(x){}}
 function markVisit(id){var p=P();if(!p)return;var e=p.ls[id]||(p.ls[id]={n:0});e.n=(e.n||0)+1;p.last=id;p.u=Date.now();saveDB()}
 function doneCount(p){var n=0;L.forEach(function(l){if(p.ls[l.id]&&p.ls[l.id].d)n++});return n}
 function merge(r){if(!r||r.version!==1||!r.profiles)return;
@@ -642,6 +659,7 @@ function merge(r){if(!r||r.version!==1||!r.profiles)return;
   for(var id in r.profiles){if(DB.del.indexOf(id)>=0)continue;var rp=r.profiles[id],lp=DB.profiles[id];
     if(!lp){DB.profiles[id]=rp;continue}
     for(var k in rp.ls){var a=lp.ls[k],b=rp.ls[k];if(!a)lp.ls[k]=b;else{if(b.d&&!a.d){a.d=1;a.at=b.at}a.n=Math.max(a.n||0,b.n||0)}}
+    if(rp.bd)lp.bd=bdMerge(lp.bd,rp.bd,(rp.u||0)>(lp.u||0));
     if((rp.su||0)>(lp.su||0)){lp.studio=rp.studio;lp.su=rp.su}
     if((rp.u||0)>(lp.u||0)){lp.name=rp.name;lp.col=rp.col;lp.last=rp.last;lp.u=rp.u;['st','dprojs','dcur','dw','dr','rh','mel','mode'].forEach(function(k){if(rp[k]!==undefined)lp[k]=rp[k]})}}
   if(!DB.active||!DB.profiles[DB.active])DB.active=(r.active&&DB.profiles[r.active])?r.active:Object.keys(DB.profiles)[0]||null}
@@ -658,7 +676,7 @@ function initCloud(){try{if(!window.claude||!claude.use)return;
 var NE=[],GAP=320,CGAP=150,hopPos=null,xs=[],ys=[],homeOn=false;
 function fixNm(){var p=P();if(p&&ACC&&ACC.pid===p.id&&ACC.nick&&p.name==='ゲスト'){p.name=ACC.nick;p.u=Date.now()}}
 function chip(){var p=P(),b=$('pchip');if(!p){b.innerHTML='👤 ログイン／登録';return}fixNm();
-  b.innerHTML='<span class="av" style="background:'+p.col+'"></span><span></span><span class="sync">'+(ACC&&ACC.pid===p.id?(sync==='err'?'☁ 保存まち':'☁ 同期中'):'閉じると消える')+'</span>';b.children[1].textContent=p.name}
+  b.innerHTML='<span class="av" style="background:'+p.col+'"></span><span></span><span class="sync">'+(ACC&&ACC.pid===p.id?(sync==='err'?'☁ 保存まち':'☁ 同期中'):'閉じると消える')+'</span>';b.children[1].textContent=p.name;try{bdBtnUpd()}catch(e){}}
 function resumeIdx(){var p=P(),k=-1;if(p&&p.last){k=L.map(function(l){return l.id}).indexOf(p.last);if(k>=0&&isDone(L[k].id))k=-1}
   if(k<0){for(var i=0;i<L.length;i++)if(!isDone(L[i].id)){k=i;break}}return k<0?L.length-1:k}
 function renderHome(anim){
@@ -714,7 +732,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.12.9',APP_BUILD='2026.11.27 11:38';
+var APP_VER='1.13.0',APP_BUILD='2026.11.27 11:47';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -931,7 +949,7 @@ function dcStreak(){var r=dcRec(),n=0,d=new Date();if(!r[dcJst(d)])d=new Date(d.
 function dcNick(){var n=rpNick();return (!n||n==='（なし）')?'ななし':n}
 function dcEsc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function dcClose(){$('dc').classList.remove('on');try{(dcBack&&dcBack.focus&&document.contains(dcBack)?dcBack:document.body).focus()}catch(e){}}
-function dcStart(){var day=dcJst(),th=dcTheme(day),rec=dcRec()[day];th.sent=rec?{ok:rec.ok,total:rec.total}:null;dcOpenDaw({dawChallenge:th})}
+function dcStart(){document.body.classList.remove('dchl');var day=dcJst(),th=dcTheme(day),rec=dcRec()[day];th.sent=rec?{ok:rec.ok,total:rec.total}:null;dcOpenDaw({dawChallenge:th})}
 function dcShowGallery(){dcBack=$('dawf');$('dc').classList.add('on');dcGallery(dcJst())}
 function dcOpenDaw(extra){dcClose();dcExtra=extra;dawWantFree=true;var fr=$('dawf');
   if(dawLoaded){openDaw();var pp=P();fr.contentWindow.postMessage(Object.assign({dawFree:1,dawProject:pp&&pp.dproj||null,dawProjs:pp&&pp.dprojs||[],dawCur:pp&&pp.dcur||null},extra),'*');dawWantFree=false;dcExtra=null}else openDaw()}
@@ -940,11 +958,11 @@ function dcGallery(day){var c=$('dcc'),days=[],i,d=new Date();for(i=0;i<7;i++){d
   $('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('dcDay').onchange=function(){dcGallery(this.value)};
   setTimeout(function(){try{$('dcH').focus()}catch(e){}},30);
   var tk=ACC?tokOK().catch(function(){return null}):Promise.resolve(null);
-  tk.then(function(t){return sbf('/rest/v1/daily_entries?day=eq.'+day+'&select=id,created_at,nick,ok,total,bpm&order=created_at.desc&limit=200',{},t)}).then(function(r){if(!r.ok)return r.text().then(function(x){throw {s:r.status,t:x}});return r.json()}).then(function(a){
+  tk.then(function(t){var q=function(s){return '/rest/v1/daily_entries?day=eq.'+day+'&select=id,created_at,nick,'+s+'ok,total,bpm&order=created_at.desc&limit=200'};return sbf(q('badge,'),{},t).then(function(r){if(r.ok)return r;return r.text().then(function(x){if(!/badge/i.test(x))return {ok:false,status:r.status,text:function(){return Promise.resolve(x)}};return sbf(q(''),{},t)})})}).then(function(r){if(!r.ok)return r.text().then(function(x){throw {s:r.status,t:x}});return r.json()}).then(function(a){
     if(!$('dcL')||$('dcDay').value!==day)return;var seen={},L=[];(a||[]).forEach(function(e){var k=e.nick||'';if(seen[k])return;seen[k]=1;L.push(e)});
     L.sort(function(x,y){return ((y.ok/(y.total||1))-(x.ok/(x.total||1)))||0});
     $('dcMs').textContent=L.length?L.length+'人の作品があるよ。「♪きく」でDAWにひらけるよ（きくだけで、保存はされないよ）。':'この日の作品は、まだないよ。いちばん乗りになろう！';
-    var ol=$('dcL');L.forEach(function(e){var li=document.createElement('li');var full=e.total&&e.ok===e.total;li.innerHTML='<span class="n"></span><span class="k"></span><button type="button">♪ きく</button>';li.children[0].textContent=e.nick||'ななし';li.children[1].textContent=(full?'🎉 全クリア ':'')+e.ok+'/'+e.total+'　テンポ'+e.bpm;
+    var ol=$('dcL');L.forEach(function(e){var li=document.createElement('li');var full=e.total&&e.ok===e.total;li.innerHTML='<span class="n"><em></em><b></b></span><span class="k"></span><button type="button">♪ きく</button>';li.children[0].children[1].textContent=e.nick||'ななし';if(e.badge)li.children[0].children[0].textContent=e.badge;else li.children[0].children[0].remove();li.children[1].textContent=(full?'🎉 全クリア ':'')+e.ok+'/'+e.total+'　テンポ'+e.bpm;
       li.children[2].setAttribute('aria-label',(e.nick||'ななし')+'さんの作品をきく');li.children[2].onclick=function(){dcListen(e.id,this)};ol.appendChild(li)})}).catch(function(e){if(!$('dcMs'))return;
     var miss=e&&(e.s===404||/PGRST205|does not exist|schema cache/i.test(e.t||''));
     $('dcMs').textContent=miss?'みんなの作品ひろばは、まだ準備中だよ（先生が準備しているよ）。':(navigator.onLine===false?'インターネットにつながっていないみたい。':'みんなの作品を読みこめなかったよ。あとでもう一度ためしてね。');try{if(e&&e.s)console.warn('daily',e.s,e.t)}catch(x){}})}
@@ -955,18 +973,70 @@ function dcListen(id,btn){if(btn){btn.disabled=true;btn.textContent='ひらい�
 function dcSubmit(s){var fr=$('dawf').contentWindow;function say(ok,msg,sent){try{fr.postMessage({dcDone:{ok:ok,msg:msg,sent:sent}},'*')}catch(e){}}
   if(!s||!/^\d{4}-\d\d-\d\d$/.test(s.day||'')){say(false,'うまく送れなかったよ。');return}
   var pj=JSON.stringify(s.proj||{});if(pj.length>90000){say(false,'曲が大きすぎて送れなかったよ。音をへらしてね。');return}
-  var row={day:s.day,theme:String(s.title||'').slice(0,60),nick:dcNick().slice(0,40),ok:s.ok|0,total:s.total|0,bpm:s.bpm|0,proj:s.proj};
+  var row={day:s.day,theme:String(s.title||'').slice(0,60),nick:dcNick().slice(0,40),ok:s.ok|0,total:s.total|0,bpm:s.bpm|0,proj:s.proj};var bt=bdTitle();if(bt)row.badge=bt.slice(0,30);
   var tk=ACC?tokOK().catch(function(){return null}):Promise.resolve(null);
-  tk.then(function(t){return sbf('/rest/v1/daily_entries',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(row)},t)}).then(function(r){
+  tk.then(function(t){var go=function(rw){return sbf('/rest/v1/daily_entries',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(rw)},t)};return go(row).then(function(r){if(r.ok||!row.badge)return r;return r.text().then(function(x){if(!/badge/i.test(x))return {ok:false,status:r.status,text:function(){return Promise.resolve(x)}};var r2=Object.assign({},row);delete r2.badge;return go(r2)})})}).then(function(r){
     if(!r.ok)return r.text().then(function(x){throw {s:r.status,t:x}});
-    dcRecSet(row.day,{ok:row.ok,total:row.total,t:Date.now()});anHit('デイリー提出');
-    say(true,'出せたよ！ '+row.ok+'/'+row.total+(row.ok===row.total?'　全クリア🎉':'')+'。ホームの「今日のお題」から、みんなの作品も聴けるよ。',{ok:row.ok,total:row.total})}).catch(function(e){
+    dcRecSet(row.day,{ok:row.ok,total:row.total,t:Date.now()});anHit('デイリー提出');var nb=[];try{nb=bdPost(row.day,row.ok,row.total)}catch(e){}
+    say(true,'出せたよ！ '+row.ok+'/'+row.total+(row.ok===row.total?'　全クリア🎉':'')+'。ホームの「今日のお題」から、みんなの作品も聴けるよ。'+(nb.length?'　🏅新しい称号：'+nb.map(function(d){return d.ic+' '+d.n}).join('、'):''),{ok:row.ok,total:row.total})}).catch(function(e){
     var miss=e&&(e.s===404||/PGRST205|does not exist|schema cache/i.test(e.t||''));
     if(miss){dcRecSet(row.day,{ok:row.ok,total:row.total,t:Date.now()});say(false,'クリアは記録したけど、みんなへの提出は、まだ準備中で送れなかったよ。')}
     else{try{if(e&&e.s)console.warn('daily submit',e.s,e.t)}catch(x){}say(false,navigator.onLine===false?'インターネットにつながっていないみたい。つながったら、もう一度おしてね。':'うまく送れなかったよ。もう一度ためしてね。')}})}
 $('dcCta').onclick=dcStart;$('mtC').onclick=dcStart;
 $('dc').addEventListener('keydown',function(e){if(e.key==='Escape'){e.preventDefault();dcClose()}});
 $('dc').addEventListener('pointerdown',function(e){if(e.target===$('dc'))dcClose()});
+/* ---------- 称号（バッジ）・ログインボーナス ---------- */
+var bdDay='',bdSync=false;
+function bdAcc(){var p=P();return (p&&ACC&&ACC.pid===p.id)?p:null}
+function bdOf(p){var b=p.bd;if(!b||typeof b!=='object')b=p.bd={};if(!Array.isArray(b.days))b.days=[];if(!b.earned||typeof b.earned!=='object')b.earned={};if(!b.post||typeof b.post!=='object')b.post={};if(typeof b.wear!=='string')b.wear='';return b}
+function bdFull(b){return Object.keys(b.post).filter(function(k){var x=b.post[k];return x&&x.total&&x.ok===x.total}).length}
+function bdDefs(){var a=[],dd=[[1,'hello','はじめまして','👋','はじめてログインした'],[3,'d3','ちょっと なれてきた','🌱','ログインした日が3日になった'],[7,'d7','いつもの あの人','🌿','ログインした日が7日になった'],[14,'d14','かよいびと','🚶','ログインした日が14日になった'],[30,'d30','ひとつき マスター','🌙','ログインした日が30日になった'],[60,'d60','おとの ともだち','🎵','ログインした日が60日になった'],[100,'d100','ひゃくにちの おと','💯','ログインした日が100日になった']];
+ dd.forEach(function(x){a.push({id:x[1],g:'login',n:x[2],ic:x[3],d:x[4],need:x[0],t:function(b){return b.days.length>=x[0]}})});
+ CH.forEach(function(c){a.push({id:'ch'+c.n,g:'learn',n:'第'+c.n+'章 クリア',ic:'📘',d:'第'+c.n+'章「'+c.title+'」のレッスンを全部クリアした',t:function(){return c.ids.every(isDone)}})});
+ a.push({id:'basic',g:'learn',n:'基礎マスター',ic:'🎓',d:'基礎編のレッスンを全部クリアした',t:function(){return CH.every(function(c){return c.ids.every(isDone)})}});
+ [[1,'p1','最高の一歩','👣','DAWでつくった曲を、はじめて投稿した（デイリーチャレンジ）'],[2,'p2','地道な成功','🧱','2曲目を投稿した（べつの日のお題でね）'],[5,'p5','投稿の常連','📮','5曲を投稿した'],[10,'p10','おとの職人','🛠','10曲を投稿した']].forEach(function(x){a.push({id:x[1],g:'post',n:x[2],ic:x[3],d:x[4],t:function(b){return Object.keys(b.post).length>=x[0]}})});
+ a.push({id:'f1',g:'post',n:'お題マスター',ic:'🏆',d:'お題の条件を全部クリアして投稿した',t:function(b){return bdFull(b)>=1}});
+ a.push({id:'f5',g:'post',n:'お題ハンター',ic:'🎯',d:'お題を全部クリアして投稿したのが5回になった',t:function(b){return bdFull(b)>=5}});
+ return a}
+function bdDef(id){return bdDefs().filter(function(d){return d.id===id})[0]}
+function bdTitle(p){p=p||bdAcc();if(!p)return '';var b=bdOf(p),d=b.wear&&b.wear!=='-'&&b.earned[b.wear]?bdDef(b.wear):null;return d?d.ic+' '+d.n:''}
+function bdEval(){var p=bdAcc();if(!p)return [];var b=bdOf(p),nw=[];bdDefs().forEach(function(d){if(!b.earned[d.id]){var ok=false;try{ok=!!d.t(b,p)}catch(e){}if(ok){b.earned[d.id]=Date.now();nw.push(d)}}});
+ if(nw.length){if(!b.wear)b.wear=nw[0].id;p.u=Date.now();saveDB();bdBtnUpd()}return nw}
+function bdNote(nw){if(nw&&nw.length)accToast('🏅 新しい称号をゲット！ 『'+nw.map(function(d){return d.ic+' '+d.n}).join('』『')+'』')}
+function bdPost(day,ok,total){var p=bdAcc();if(!p)return [];var b=bdOf(p),o=b.post[day];if(!o||ok/(total||1)>=o.ok/(o.total||1))b.post[day]={ok:ok,total:total};
+ var k=Object.keys(b.post).sort();while(k.length>400)delete b.post[k.shift()];p.u=Date.now();saveDB();return bdEval()}
+function bdMerge(a,r,rNew){a=a||{};r=r||{};var o={days:[],earned:{},post:{},wear:''},m={};(a.days||[]).concat(r.days||[]).forEach(function(d){if(/^\d{4}-\d\d-\d\d$/.test(d))m[d]=1});o.days=Object.keys(m).sort().slice(-400);
+ [a.earned||{},r.earned||{}].forEach(function(e){for(var k in e){if(!o.earned[k]||e[k]<o.earned[k])o.earned[k]=e[k]}});
+ [a.post||{},r.post||{}].forEach(function(e){for(var k in e){var x=e[k];if(!x)continue;var y=o.post[k];if(!y||x.ok/(x.total||1)>y.ok/(y.total||1))o.post[k]={ok:x.ok,total:x.total}}});
+ o.wear=(rNew?(r.wear||a.wear):(a.wear||r.wear))||'';return o}
+function bdBtnUpd(){var b=$('bdBtn');if(!b)return;var t=bdTitle();b.textContent=t?'🏅 '+t.replace(/^\S+\s/,''):'🏅 しょうごう'}
+function bdHL(){document.body.classList.add('dchl')}
+function bdCheck(){var p=bdAcc(),today=dcJst();
+ if(!p){if(!bdSync&&ACC)return;try{var done=localStorage.getItem('dtm-dchl')===today;if(!done&&$('home').classList.contains('on')&&!$('prof').classList.contains('on')&&!$('dc').classList.contains('on')){localStorage.setItem('dtm-dchl',today);bdHL()}}catch(e){}return}
+ if(!bdSync)return;var key=today+'|'+p.id;if(bdDay===key)return;
+ if(!$('home').classList.contains('on')||$('prof').classList.contains('on')||$('dc').classList.contains('on'))return;
+ bdDay=key;var b=bdOf(p),first=b.days.indexOf(today)<0;
+ if(first){b.days.push(today);b.days.sort();if(b.days.length>400)b.days=b.days.slice(-400);p.u=Date.now();saveDB()}
+ var nw=bdEval();if(first){bdWelcome(p,nw)}else if(nw.length)bdNote(nw);bdHL()}
+function bdWelcome(p,nw){var b=bdOf(p),c=$('dcc'),today=dcJst(),th=dcTheme(today),n=b.days.length,i,st='';dcBack=$('home');
+ for(i=6;i>=0;i--){var dd=dcJst(new Date(Date.now()-i*86400000));st+='<li class="'+(b.days.indexOf(dd)>=0?'on':'')+(i===0?' today':'')+'"><small>'+dcEsc(dcMd(dd).replace(/（.*$/,''))+'</small><b>'+(b.days.indexOf(dd)>=0?'✔':'・')+'</b></li>'}
+ var nx=bdDefs().filter(function(d){return d.g==='login'&&!b.earned[d.id]})[0],nxt=nx?'つぎの称号『'+nx.ic+' '+nx.n+'』まで、あと '+(nx.need-n)+'日':'ログインの称号は ぜんぶ そろったよ！';
+ c.innerHTML='<div class="dh"><span>🎁 ログインボーナス</span><button class="dx" id="dcX">✕ とじる</button></div><h2 id="dcH" tabindex="-1"></h2><div class="bdn"><b>'+n+'</b><span>日め</span></div><ol class="bds" aria-label="さいきん7日のログイン">'+st+'</ol><p class="ds" id="bdNx"></p>'+(nw.length?'<div class="bdnew" role="status"><b>🏅 新しい称号をゲット！</b><ul>'+nw.map(function(d){return '<li><i>'+d.ic+'</i><span><b>'+dcEsc(d.n)+'</b><small>'+dcEsc(d.d)+'</small></span></li>'}).join('')+'</ul></div>':'')+'<div class="dt"><b>📅 今日のお題　『'+dcEsc(th.title)+'』</b><p>'+dcEsc(th.desc)+'</p></div><div class="db"><button class="go" id="bdGo">📅 今日のお題にちょうせん</button><button id="bdSh">🏅 しょうごうを見る</button><button id="bdLt">あとで</button></div>';
+ $('dcH').textContent='ようこそ、'+(p.name||'')+'さん！';$('bdNx').textContent=nxt;
+ $('dcX').onclick=dcClose;$('bdLt').onclick=dcClose;$('bdGo').onclick=function(){dcClose();dcStart()};$('bdSh').onclick=function(){bdShow()};
+ $('dc').classList.add('on');setTimeout(function(){try{$('dcH').focus()}catch(e){}},30)}
+function bdWear(id){var p=bdAcc();if(!p)return;var b=bdOf(p);if(id!=='-'&&!b.earned[id])return;b.wear=id;p.u=Date.now();saveDB();bdBtnUpd();bdShow()}
+function bdShow(){var p=bdAcc(),c=$('dcc');dcBack=$('home');$('dc').classList.add('on');
+ if(!p){c.innerHTML='<div class="dh"><span>🏅 しょうごう</span><button class="dx" id="dcX">✕ とじる</button></div><h2 id="dcH" tabindex="-1">しょうごう（バッジ）</h2><p class="ds">ログインすると、毎日のログインや、レッスン・曲の投稿で「称号」がもらえるよ。もらった称号は、えらんで、みんなの作品といっしょに表示できるよ。</p><div class="db"><button class="go" id="bdLg">ログイン／登録する</button><button id="dcBk">とじる</button></div>';
+  $('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('bdLg').onclick=function(){dcClose();openProf()};setTimeout(function(){try{$('dcH').focus()}catch(e){}},30);return}
+ var b=bdOf(p),defs=bdDefs(),gn={login:'📆 ログイン',learn:'📘 レッスン',post:'🎼 曲の投稿'},h='';
+ ['login','learn','post'].forEach(function(g){h+='<h3 class="bdg">'+gn[g]+'</h3><ul class="bdl">'+defs.filter(function(d){return d.g===g}).map(function(d){var e=!!b.earned[d.id],w=b.wear===d.id;return '<li><button type="button" class="'+(e?'e':'l')+(w?' w':'')+'" data-id="'+d.id+'" aria-pressed="'+w+'"'+(e?'':' aria-disabled="true"')+'><i>'+(e?d.ic:'🔒')+'</i><span><b>'+dcEsc(d.n)+'</b><small>'+dcEsc(d.d)+'</small></span>'+(w?'<em>つけてる</em>':'')+'</button></li>'}).join('')+'</ul>'});
+ c.innerHTML='<div class="dh"><span>🏅 しょうごう</span><button class="dx" id="dcX">✕ とじる</button></div><h2 id="dcH" tabindex="-1">しょうごう（バッジ）</h2><p class="ds">いま つけている称号：<b id="bdNow"></b>　（ログイン <b>'+b.days.length+'</b>日・投稿 <b>'+Object.keys(b.post).length+'</b>曲）<br>もらった称号をおすと、みんなの作品に表示する称号に えらべるよ。</p><div class="bdsc">'+h+'</div><div class="db"><button id="bdNo">称号をつけない</button><button id="dcBk">← とじる</button></div>';
+ $('bdNow').textContent=bdTitle(p)||'（なし）';$('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('bdNo').onclick=function(){bdWear('-')};
+ Array.prototype.forEach.call(c.querySelectorAll('.bdl button.e'),function(x){x.onclick=function(){bdWear(x.dataset.id)}});
+ setTimeout(function(){try{$('dcH').focus()}catch(e){}},30)}
+$('bdBtn').onclick=bdShow;
+setInterval(function(){try{bdCheck()}catch(e){}},3000);
 function openStudioOld(){hide();closeHome();document.body.classList.add('ho');inStudio=true;$('stCta').classList.remove('on');f.srcdoc=STUDIO_HTML;try{history.replaceState(null,'','#studio')}catch(e){}if(!P())openProf()}
 $('stBtn').onclick=function(){pendMis=null;openStudio()};$('stCta').onclick=function(){var m=pendMis;openStudio();pendMis=m};
 function saveMidi(m){var bin=atob(m.b64),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);var blob=new Blob([u],{type:'audio/midi'});
@@ -1029,7 +1099,7 @@ function pushAcc(){if(!ACC||!ACC.pid||!DB.profiles[ACC.pid])return;clearTimeout(
 function accToast(m){var t=$('accT');if(!t){t=document.createElement('div');t.id='accT';t.setAttribute('role','status');t.setAttribute('aria-live','polite');t.style.cssText='position:fixed;left:50%;bottom:72px;transform:translateX(-50%);z-index:95;max-width:min(560px,92vw);background:#16304a;color:#fff;padding:12px 18px;border-radius:16px;font:700 16px/1.6 "M PLUS Rounded 1c","Yu Gothic",sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.35);transition:opacity .4s;pointer-events:none';document.body.appendChild(t)}t.textContent=m;t.style.opacity='1';clearTimeout(accToast.t);accToast.t=setTimeout(function(){t.style.opacity='0'},6000)}
 function pullAcc(){return tokOK().then(function(t){return sbf('/rest/v1/progress?select=data&user_id=eq.'+ACC.uid,{},t)}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){return a&&a[0]&&a[0].data&&a[0].data.profile||null})}
 function mergeProf(pf){var r={version:1,active:pf.id,del:[],profiles:{}};r.profiles[pf.id]=pf;merge(r);DB.profiles[pf.id].tmp=1;DB.active=pf.id;ACC.pid=pf.id;accStore();try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){mem=DB}}
-function initAcc(){if(!ACC)return;pullAcc().then(function(pf){if(pf){mergeProf(pf);chip();if(homeOn)renderHome(false)}pushAcc()}).catch(function(){})}
+function initAcc(){if(!ACC)return;pullAcc().then(function(pf){if(pf){mergeProf(pf);chip();if(homeOn)renderHome(false)}pushAcc()}).catch(function(){}).then(function(){bdSync=true;try{bdCheck()}catch(e){}})}
 function accScreen(m0){
   if(ACC){var p=DB.profiles[ACC.pid];
     pb.innerHTML='<h2>☁ ログイン中</h2><p>ニックネーム：<b></b>　（学習者：<span id="an"></span>）</p><p>どのPCでも、このニックネームと合言葉でログインすると、続きから遊べるよ。</p><div class="row2"><button class="btn dng" id="lo">ログアウト</button><button class="btn" id="bk3">もどる</button></div><p class="note" id="m3">ページ（タブ）を閉じると、自動でログアウトして、このPCから記録が消えます（アカウントには残っています）。ページを開いたままでも、「ログアウト」でいつでも消せるよ。</p>';
@@ -1054,7 +1124,7 @@ function accScreen(m0){
       if(!r.ok)throw {m:jerr(r,j)};if(!j.access_token)throw {m:'サーバーの設定（メール確認）がオンのままです。先生に伝えてね。'};return j})}).then(function(j){
       if(mode==='reg'){if(!P())newProf(nk,AVC[0]);ACC=null;session(j,nk);ACC.pid=DB.active;DB.profiles[DB.active].tmp=1;fixNm();accStore();saveDB();pushAcc();return 'reg'}
       ACC=null;session(j,nk);return pullAcc().catch(function(){ACC=null;accStore();throw {pull:1}}).then(function(pf){if(pf){mergeProf(pf)}else{if(!P())newProf(nk,AVC[0]);ACC.pid=DB.active;DB.profiles[DB.active].tmp=1;fixNm();accStore();saveDB()}fixNm();pushAcc();return 'login'})}).then(function(){
-      closeProf();chip();hopPos=null;renderHome(false)}).catch(function(e){$('go2').disabled=false;m4.textContent=(e&&e.m)||(e&&e.pull?'ログインはできたけど、記録の読みこみがうまくいかなかったよ。すこし待って、もう一度「ログイン」をおしてね。':(e&&e.name==='SyntaxError')?'サーバーの調子がよくないみたい。すこし時間をおいて、もう一度ためしてね。登録しなくても「ゲスト」のまま続けられるよ。':('サーバーにつながらなかったよ。インターネットのつながりを確認してね。登録しなくても「ゲスト」のまま続けられるよ。（'+((e&&(e.name+' '+e.message))||'不明')+'）'));
+      bdSync=true;closeProf();chip();hopPos=null;renderHome(false)}).catch(function(e){$('go2').disabled=false;m4.textContent=(e&&e.m)||(e&&e.pull?'ログインはできたけど、記録の読みこみがうまくいかなかったよ。すこし待って、もう一度「ログイン」をおしてね。':(e&&e.name==='SyntaxError')?'サーバーの調子がよくないみたい。すこし時間をおいて、もう一度ためしてね。登録しなくても「ゲスト」のまま続けられるよ。':('サーバーにつながらなかったよ。インターネットのつながりを確認してね。登録しなくても「ゲスト」のまま続けられるよ。（'+((e&&(e.name+' '+e.message))||'不明')+'）'));
       if(!(e&&e.m)&&!P()&&!$('gb4')){var gb=document.createElement('button');gb.id='gb4';gb.className='btn';gb.textContent='ログインせずに使う';gb.onclick=function(){newProf('ゲスト',AVC[0]);DB.profiles[DB.active].tmp=1;closeProf();chip();hopPos=null;renderHome(false)};m4.parentNode.insertBefore(gb,m4)}})}}
 /* ---------- 学習データ（改善用の統計）---------- */
 var AN={idle:Date.now(),dirty:0,sess:null};
