@@ -25,22 +25,21 @@ await pg.evaluate(()=>openHome(false));await pg.waitForTimeout(600);
 const vis=async s=>pg.evaluate(s=>{const e=document.querySelector(s);if(!e)return false;const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).display!=='none'},s);
 ok('ホームに「今日のお題」ボタンが見える',await vis('#dcCta'));
 await pg.screenshot({path:'dc_home.png'});
-await pg.click('#dcCta');await pg.waitForTimeout(400);
-ok('お題パネルが開く',await vis('#dc.on .dcc'));
+ok('モードの並びに「今日のお題」がある',await pg.evaluate(()=>{const t=[...document.querySelectorAll('#modeTabs button')].filter(b=>getComputedStyle(b).display!=='none').map(b=>b.textContent.trim());window.__tabs=t;return t.some(x=>x.includes('今日のお題'))&&t.indexOf('🎛 DAW編')<t.findIndex(x=>x.includes('今日のお題'))}),await pg.evaluate(()=>window.__tabs.join(' | ')));
+await pg.screenshot({path:'dc_home_tabs.png'});
 const th=await pg.evaluate(()=>dcTheme(dcJst()));
-const txt=await pg.evaluate(()=>document.querySelector('#dcc').innerText);
-ok('お題名と条件が表示される',txt.includes(th.title)&&th.conds.every(c=>txt.includes(c.label)),th.title+' / 条件'+th.conds.length);
-await pg.screenshot({path:'dc_panel.png'});
 // 日付ごとのお題が決まっている（同じ日は同じ）
 const t2=await pg.evaluate(()=>[dcTheme('2026-11-27').title,dcTheme('2026-11-27').title,dcTheme('2026-11-28').title]);
 ok('同じ日は同じお題・次の日は別のお題',t2[0]===t2[1]&&t2[0]!==t2[2],t2.join(' / '));
 // DAWで作る
-await pg.click('#dcGo');await pg.waitForTimeout(2500);
+await pg.click('#mtC');await pg.waitForTimeout(2800);
 const fh=await pg.$('#dawf');const fr=await fh.contentFrame();
 const E=c=>fr.evaluate(c=>__g(c),c);
-ok('DAWが開き、お題パネルが出る',await fr.evaluate(()=>document.getElementById('chm').classList.contains('on')));
+ok('タブを押すとDAWが直接開き、お題カードが配られる',await fr.evaluate(()=>document.getElementById('chm').classList.contains('on')));
 ok('お題ボタンが「お題 0/N」',(await fr.evaluate(()=>document.getElementById('chBtn').textContent)).includes('お題 0/'+th.conds.length),await fr.evaluate(()=>document.getElementById('chBtn').textContent));
-await pg.screenshot({path:'dc_daw_panel.png'});
+const ctxt=await fr.evaluate(()=>document.getElementById('chm').innerText);
+ok('カードにお題名と条件がぜんぶ出る',ctxt.includes(th.title)&&th.conds.every(c=>ctxt.includes(c.label)),th.conds.length+'枚');
+await pg.waitForTimeout(1200);await pg.screenshot({path:'dc_daw_panel.png'});
 // パネルを閉じる(Esc)
 await fr.evaluate(()=>document.getElementById('chm').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
 ok('Escでお題パネルが閉じる',!(await fr.evaluate(()=>document.getElementById('chm').classList.contains('on'))));
@@ -77,7 +76,7 @@ const btn=await fr.evaluate(()=>document.getElementById('chBtn').textContent);
 ok('お題ボタンの達成数が更新される',/お題 \d+\/\d+/.test(btn)&&!/お題 0\//.test(btn),btn);
 await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
 const li=await fr.evaluate(()=>[...document.querySelectorAll('#chL li')].map(l=>l.className+':'+l.textContent));
-ok('条件リストに「できた」が出る',li.some(x=>x.startsWith('ok')),li.length+'件');
+ok('条件リストに「できた」が出る',li.some(x=>/(^|\s)ok[ :]/.test(x)),li.length+'件');
 await pg.screenshot({path:'dc_daw_panel2.png'});
 await fr.evaluate(()=>document.getElementById('chSub').click());await pg.waitForTimeout(800);
 ok('提出が1件サーバーに届いた',rows.length===1,rows[0]&&(rows[0].nick+' '+rows[0].ok+'/'+rows[0].total+' bpm'+rows[0].bpm));
@@ -92,9 +91,9 @@ await fr.evaluate(()=>document.getElementById('chX').click());
 await pg.evaluate(()=>{});
 // ホームへ→みんなの作品
 await pg.evaluate(()=>openHome(false));await pg.waitForTimeout(500);
-await pg.click('#dcCta');await pg.waitForTimeout(300);
-const stl=await pg.evaluate(()=>document.querySelector('#dcc .ds').textContent);ok('ホームのお題に「提出ずみ」が出る',/提出ずみ/.test(stl),stl);
-await pg.click('#dcAll');await pg.waitForTimeout(900);
+await pg.click('#dcCta');await pg.waitForTimeout(2800);
+const stl=await fr.evaluate(()=>document.getElementById('chS').textContent);ok('ホームのボタンからも直接開き、「提出ずみ」が出る',/提出ずみ/.test(stl),stl);
+await fr.evaluate(()=>document.getElementById('chAll').click());await pg.waitForTimeout(1000);
 const g=await pg.evaluate(()=>[...document.querySelectorAll('#dcL li')].map(l=>l.innerText.replace(/\s+/g,' ')));
 ok('みんなの作品に自分の作品が出る',g.length===1,g.join('|'));
 await pg.screenshot({path:'dc_gallery.png'});
@@ -109,12 +108,8 @@ const after=await pg.evaluate(()=>JSON.stringify(P().dprojs||[]));
 ok('聴くだけのときは、自分のプロジェクトに保存されない',after===pb,after.length+' vs '+pb.length);
 await pg.screenshot({path:'dc_listen.png'});
 // 準備中（テーブルなし）
-missing=true;await pg.evaluate(()=>openHome(false));await pg.waitForTimeout(400);await pg.click('#dcCta');await pg.waitForTimeout(300);await pg.click('#dcAll');await pg.waitForTimeout(800);
+missing=true;await pg.evaluate(()=>dcClose());await pg.evaluate(()=>dcShowGallery());await pg.waitForTimeout(900);
 const ms=await pg.evaluate(()=>document.querySelector('#dcMs').textContent);ok('テーブルが無いときは「準備中」と出る',/準備中/.test(ms),ms);
-// その他のカード
-await pg.evaluate(()=>{dcClose();openOther()});await pg.waitForTimeout(400);
-ok('「その他」にデイリーチャレンジのカードがある',await pg.evaluate(()=>!!document.querySelector('#oth .og button[data-o="c"]')));
-await pg.click('#oth .og button[data-o="c"]');await pg.waitForTimeout(300);ok('カードからお題が開く',await vis('#dc.on .dcc'));
 ok('ページエラー0件',errs.length===0,errs.slice(0,3).join(' | '));
 console.log(res.every(x=>x)?'結果：すべてOK':'結果：NG あり');
 await b.close()})();
