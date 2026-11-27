@@ -32,7 +32,7 @@ for i,(nm,ic,o,mood,ok,use) in enumerate(SC):
     pcs=js(o)
     lid='D-%d'%(41+i)
     steps=[
-     "{say:%s,tg:'#keys,#grid',next:1}"%js('【%s】%sだよ。色がついた段が、このスケールの音。ド・レ…ではなく「%s」の%d音だけ使うよ。濃い色は「おうち」のド。'%(nm,mood,names,n)),
+     "{say:%s,tg:'#keys,#grid',next:1}"%js('【%s】%sだよ。色がついた段が、このスケールの音（%d音）。濃い色は「おうち」のド。'%(nm,mood,n)),
      "{say:%s,tg:'#keys',ev:'keyPress',need:function(a){return a>=6},ok:%s}"%(js('左の鍵盤で、色がついた段を下から順に6回おして、音を聴いてみよう。'),js(ok)),
      "{say:%s,tg:'#escroll',rs:'#grid .nt',gs:'pts',pts:%s,ev:'notes',need:function(){return openClip&&openClip.notes.length>=5&&openClip.notes.every(function(n){return inG(n.p)})},ok:%s}"%(js('こんどは自分で作ろう。色がついた段だけを使って、音を5つ以上ならべてみてね。（光っているところは、置き方の例だよ）'),js(hint),js('「%s」だけで作ると、ちゃんと雰囲気が出るね。'%nm.split('（')[0])),
      "{say:%s,tg:'#play',ev:'played',ok:%s}"%(js('▶ で、自分のメロディを聴いてみよう！'),js(ok)),
