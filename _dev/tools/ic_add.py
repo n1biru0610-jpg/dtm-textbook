@@ -4,7 +4,7 @@ K = '#2b2233'
 def S(body):
     return ('<svg class="bdsv" viewBox="0 0 32 32" aria-hidden="true" focusable="false">' + body + '</svg>').replace('K', K)
 SW = 'stroke="K" stroke-width="1.6" stroke-linejoin="round"'
-EY = lambda x1, x2, y: '<circle cx="%s" cy="%s" r="1.2" fill="K"/><circle cx="%s" cy="%s" r="1.2" fill="K"/>' % (x1, y, x2, y)
+EY = lambda x1, x2, y: '<circle cx="%s" cy="%s" r="1.5" fill="K"/><circle cx="%s" cy="%s" r="1.5" fill="K"/>' % (x1, y, x2, y)
 CH = [
  ('onpu', 'おんぷの ようせい', 'ログイン2日で', {'need': 2},
   '<path d="M19.5 21V4.5q1 3 5 5t2 8q-1-4-7-5" fill="#ffd23f" ' + SW + '/><ellipse cx="13.5" cy="22" rx="7" ry="5.6" fill="#ffd23f" ' + SW + '/>' + EY(11.3, 15.7, 21.3) + '<path d="M12 24q1.5 1.3 3 0" stroke="K" stroke-width="1.1" fill="none" stroke-linecap="round"/><circle cx="9" cy="23.4" r="1.1" fill="#ff8fa3"/><circle cx="18" cy="23.4" r="1.1" fill="#ff8fa3"/>'),
@@ -58,18 +58,23 @@ def js_list(L):
 A_CH = "{e:'🤖',n:'ロボット',title:'p2',d:'称号『地道な成功』で'}"
 A_AC = "{e:'⭐',n:'ほし',title:'f1',d:'称号『お題マスター』で'}"
 R = [
+ ("var nsk=bdSkNew(n,nw);var nx=", "var nsk=bdSkNew(n,nw),nic=bdIcNew(n,nw);var nx="),
+ ("<small>ホーム画面の色と もようが かわるよ</small></span></li>'}).join('')+'</ul></div>':'')+'<div class=\"dt\">",
+  "<small>ホーム画面の色と もようが かわるよ</small></span></li>'}).join('')+'</ul></div>':'')+(nic.length?'<div class=\"bdnew\" role=\"status\"><b>🎭 新しいアイコンをゲット！</b><ul>'+nic.map(function(x){return '<li><i>'+(x.sv||x.e)+'</i><span><b>'+dcEsc(x.n)+'</b><small>アイコンの きがえに 使えるよ</small></span></li>'}).join('')+'</ul></div>':'')+'<div class=\"dt\">"),
+ ("$('bdSh').onclick=function(){bdShow(nsk.length?'sk':'')};", "$('bdSh').onclick=function(){bdShow(nsk.length?'sk':nic.length?'ic':'')};"),
+
  ("+'\" style=\"background:'+col+'\"><i>'+(i.c||'🙂')+'</i>'+(i.a?'<b>'+i.a+'</b>':'')+'</span>'}",
-  "+'\" style=\"background:'+col+'\"><i>'+(bdGl(BDCH,i.c)||'🙂')+'</i>'+(i.a?'<b>'+bdGl(BDAC,i.a)+'</b>':'')+'</span>'}"),
+  "+'\" aria-hidden=\"true\" style=\"background:'+col+'\"><i>'+(bdGl(BDCH,i.c)||'🙂')+'</i>'+(i.a?'<b>'+bdGl(BDAC,i.a)+'</b>':'')+'</span>'}"),
  ("+'\">'+(x.e||'✖')+(ok?'':'<u>🔒</u>')+'</button></li>'",
   "+'\">'+(x.sv||x.e||'✖')+(ok?'':'<u>🔒</u>')+'</button></li>'"),
 ]
-FN = "/*ic7f*/function bdGl(L,e){var x=L.filter(function(y){return y.e===e})[0];return x?(x.sv||x.e):''}function bdIcT(nw){var n=BDCH.concat(BDAC).filter(function(x){return x.title&&nw.some(function(d){return d.id===x.title})}).length;return n?'　🎭 アイコンも '+n+'こ！':''}/*/ic7f*/\n"
+FN = "/*ic7f*/function bdGl(L,e){var x=L.filter(function(y){return y.e===e})[0];return x?(x.sv||x.e):''}function bdIcT(nw){var n=BDCH.concat(BDAC).filter(function(x){return x.title&&nw.some(function(d){return d.id===x.title})}).length;return n?'　🎭 アイコンも '+n+'こ！':''}function bdIcNew(n,nw){return BDCH.concat(BDAC).filter(function(x){return x.e&&(x.need?x.need===n:!!x.title&&nw.some(function(d){return d.id===x.title}))})}/*/ic7f*/\n"
 N_A = ("+(k3.length?'　🎨 きせかえも '+k3.length+'こ！':'')+'　「🎒 もちもの」で 見てね')",
        "+(k3.length?'　🎨 きせかえも '+k3.length+'こ！':'')+bdIcT(nw)+'　「🎒 もちもの」で 見てね')")
 N_B = ("+(k.length?'　🎨 きせかえ『'+k.map(function(x){return x.n}).join('』『')+'』も！':''))}}",
        "+(k.length?'　🎨 きせかえ『'+k.map(function(x){return x.n}).join('』『')+'』も！':'')+bdIcT(nw))}}")
 CSS_A = ".avx{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;overflow:visible}"
-CSS = "/*ic7c*/.bdsv{width:1.15em;height:1.15em;display:block}.avx b .bdsv{width:1.05em;height:1.05em}.bdpk button .bdsv{margin:auto}/*/ic7c*/"
+CSS = "/*ic7c*/.bdpk button.w{border-width:3px}.bdpk button.w::after{content:'✔';position:absolute;left:2px;top:0;font-size:11px;line-height:1;color:#1f9d6b;font-weight:900}.bdnew li i .bdsv{width:1.2em;height:1.2em}.bdsv{width:1.15em;height:1.15em;display:block}.avx b .bdsv{width:1.05em;height:1.05em}.bdpk button .bdsv{margin:auto}/*/ic7c*/"
 def run():
     for f in ['index.html', 'preview/index.html']:
         s = open(f, encoding='utf-8').read()

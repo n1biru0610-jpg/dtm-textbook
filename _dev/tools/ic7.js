@@ -42,5 +42,9 @@ async function login(p){await p.goto(URL_);await p.waitForSelector('#prof.on');a
  const lg=await p.evaluate(()=>bdAv(P(),1));ok(lg.includes('lg'),'大きいアイコン');
  await p.context().close();
  // 別の端末で読み込み
- p=await ctx(b);await login(p);await p.waitForTimeout(2500);ok(await p.evaluate(()=>P().bd.ic==='s:deshi|s:boushi'),'別の端末で読み込み');await p.context().close();
+ p=await ctx(b);await login(p);await p.waitForTimeout(2500);ok(await p.evaluate(()=>P().bd.ic==='s:deshi|s:boushi'),'別の端末で読み込み');
+ ok(await p.evaluate(()=>{const a=bdIcNew(2,[]).map(x=>x.e),b=bdIcNew(5,[{id:'ch1'}]).map(x=>x.e);return a.includes('s:onpu')&&b.includes('s:slime')&&b.includes('s:fukuro')&&!b.includes('s:onpu')}),'ログインボーナスで新しいアイコンを数える');
+ await p.evaluate(()=>{const q=P();q.bd.days=q.bd.days.slice(0,5);bdWelcome(q,bdDefs().filter(d=>d.id==='ch1'))});await p.waitForTimeout(500);
+ ok(await p.evaluate(()=>{const t=document.getElementById('dcc').textContent;return t.includes('新しいアイコンをゲット')&&t.includes('リズムスライム')&&t.includes('ふくろうの せんせい')&&document.querySelectorAll('#dcc .bdnew svg.bdsv').length===2}),'ログインボーナスの画面に新しいアイコン');
+ await p.screenshot({path:OUT+'/ic_welcome.png'});for(let i=0;i<4;i++){if(await p.isVisible('#zkGetOk'))await p.click('#zkGetOk');await p.waitForTimeout(500)}await p.evaluate(()=>{dcClose();const q=P();q.bd.days=q.bd.days.slice(0,2);bdWelcome(q,[])});await p.waitForTimeout(400);ok(await p.evaluate(()=>document.getElementById('dcc').textContent.includes('おんぷの ようせい')),'2日めに おんぷの ようせい');await p.screenshot({path:OUT+'/ic_welcome2.png'});await p.evaluate(()=>document.getElementById('bdSh').click());await p.waitForTimeout(400);ok(await p.evaluate(()=>!!document.querySelector('#dc .bdpk')),'「もちもの」でアイコンのタブが開く');await p.context().close();
  ok(!errs.length,'ページエラー0件 '+errs.slice(0,3));console.log(ng?'NG '+ng:'ALL OK');await b.close();process.exit(ng?1:0)})();
