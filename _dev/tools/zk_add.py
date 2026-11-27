@@ -14,13 +14,15 @@ def block(s,begin,end,body,anchor):
     return s.replace(anchor,new+anchor,1)
 css=rd('_dev/zukan/zukan.css')
 html=rd('_dev/zukan/zukan.html').strip('\n')
-js=rd('_dev/zukan/cards.js')+rd('_dev/zukan/core.js')+rd('_dev/zukan/ui.js')
+js=rd('_dev/zukan/cards.js')+rd('_dev/zukan/core.js')+rd('_dev/zukan/ui.js')+rd('_dev/zukan/reward.js')
 assert '</script' not in js
 OLD="o.wear=(rNew?(r.wear||a.wear):(a.wear||r.wear))||'';"
-NEW="var cd={};[a.cards||{},r.cards||{}].forEach(function(e){for(var k in e){if(e[k]&&(!cd[k]||e[k]<cd[k]))cd[k]=e[k]}});o.cards=cd;/*zk-merge*/\n "
+NEW="var cd={};[a.cards||{},r.cards||{}].forEach(function(e){for(var k in e){if(e[k]&&(!cd[k]||e[k]<cd[k]))cd[k]=e[k]}});o.cards=cd;var sn={};[a.seen||{},r.seen||{}].forEach(function(e){for(var k in e){if(e[k])sn[k]=1}});o.seen=sn;/*zk-merge*/\n "
 for path in ('index.html','preview/index.html'):
     s=rd(path)
-    if '/*zk-merge*/' not in s:
+    if '/*zk-merge*/' in s:
+        s,n=re.subn(r'var cd=\{\};.*?/\*zk-merge\*/\n ',lambda m:NEW,s,flags=re.S); assert n==1,'zk-merge'
+    else:
         assert s.count(OLD)==1,'bdMerge'
         s=s.replace(OLD,NEW+OLD,1)
     if css: s=block(s,'<style id="zkcss">\n','</style><!--/zkcss-->\n',css,'</head><body>')
