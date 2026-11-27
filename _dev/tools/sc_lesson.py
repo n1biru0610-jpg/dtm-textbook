@@ -16,7 +16,8 @@ steps='''var CFG={cols:8,bpm:100,drums:false,steps:[
 {t:'さいごは「ブルース」。ちょっとおとなっぽくて、かっこいい感じ！ 聴いてみよう。',home:1,btns:['sa','sj','so','sb','play'],spot:'sb',gate:function(){return heard.b&&played>=1}},
 {t:'まだまだあるよ！ 「かなしい」「ふしぎ」「スペイン風」「ミステリー」も、ぜんぶ聴いてみよう。',home:1,btns:['sm','sw','ss','sd','play'],spot:'sm',gate:function(){return heard.m&&heard.w&&heard.s&&heard.d&&played>=1}},
 {t:'まだあるよ！ 「ふわふわ」「かっこいい」「アラビア風」「ロック風」も、聴いてみよう。',home:1,btns:['sl','sr','sx','su','play'],spot:'sl',gate:function(){return heard.l&&heard.r&&heard.x&&heard.u&&played>=1}},
-{t:'スケールをかえるだけで、気分がガラッと変わるね。好きなスケールをえらんで、自分のメロディを作ってみよう！',home:1,btns:['sa','sj','so','sb','sm','sw','ss','sd','sl','sr','sx','su','play','rand','clear'],last:1}
+{t:'もっといくよ！ 「しっとり和風」「うきうき」「ジプシー風」「ひろびろ」も聴いてみよう。',home:1,btns:['sy','sg','sz','sh','play'],spot:'sy',gate:function(){return heard.y&&heard.g&&heard.z&&heard.h&&played>=1}},
+{t:'スケールをかえるだけで、気分がガラッと変わるね。好きなスケールをえらんで、自分のメロディを作ってみよう！',home:1,btns:['sa','sj','so','sb','sm','sw','ss','sd','sl','sr','sx','su','sy','sg','sz','sh','play','rand','clear'],last:1}
 ]};
 '''
 h=h[:i]+steps+h[j:]
@@ -24,8 +25,8 @@ h=h[:i]+steps+h[j:]
 R("var ROWS=[{n:'ド',m:72},{n:'ラ',m:69},{n:'ソ',m:67},{n:'ミ',m:64},{n:'レ',m:62},{n:'ド',m:60}];",
 """var ROWS=[{n:'ド',m:72},{n:'ラ',m:69},{n:'ソ',m:67},{n:'ミ',m:64},{n:'レ',m:62},{n:'ド',m:60}];
 var NN=['ド','ド♯','レ','ミ♭','ミ','ファ','ファ♯','ソ','ラ♭','ラ','シ♭','シ'];
-var SC={a:{nm:'あかるい（ペンタトニック）',o:[0,2,4,7,9,12]},j:{nm:'日本風',o:[0,2,3,7,8,12]},o:{nm:'沖縄風',o:[0,4,5,7,11,12]},b:{nm:'ブルース',o:[0,3,5,6,7,10]},m:{nm:'かなしい（マイナー）',o:[0,3,5,7,10,12]},w:{nm:'ふしぎ（全音）',o:[0,2,4,6,8,10]},s:{nm:'スペイン風',o:[0,1,4,5,7,8]},d:{nm:'ミステリー',o:[0,3,5,7,8,11]},l:{nm:'ふわふわ（リディアン）',o:[0,2,4,6,7,9]},r:{nm:'かっこいい（ドリアン）',o:[0,2,3,5,7,9]},x:{nm:'アラビア風',o:[0,1,4,5,7,11]},u:{nm:'ロック風（ミクソリディアン）',o:[0,2,4,5,7,10]}};
-var SK={sa:'a',sj:'j',so:'o',sb:'b',sm:'m',sw:'w',ss:'s',sd:'d',sl:'l',sr:'r',sx:'x',su:'u'},curSc='a';""")
+var SC={a:{nm:'あかるい（ペンタトニック）',o:[0,2,4,7,9,12]},j:{nm:'日本風',o:[0,2,3,7,8,12]},o:{nm:'沖縄風',o:[0,4,5,7,11,12]},b:{nm:'ブルース',o:[0,3,5,6,7,10]},m:{nm:'かなしい（マイナー）',o:[0,3,5,7,10,12]},w:{nm:'ふしぎ（全音）',o:[0,2,4,6,8,10]},s:{nm:'スペイン風',o:[0,1,4,5,7,8]},d:{nm:'ミステリー',o:[0,3,5,7,8,11]},l:{nm:'ふわふわ（リディアン）',o:[0,2,4,6,7,9]},r:{nm:'かっこいい（ドリアン）',o:[0,2,3,5,7,9]},x:{nm:'アラビア風',o:[0,1,4,5,7,11]},u:{nm:'ロック風（ミクソリディアン）',o:[0,2,4,5,7,10]},y:{nm:'しっとり和風（都節）',o:[0,1,5,7,8,12]},g:{nm:'うきうき（ゴスペル）',o:[0,2,3,4,7,9]},z:{nm:'ジプシー風',o:[0,2,3,6,7,8]},h:{nm:'ひろびろ',o:[0,2,5,7,10,12]}};
+var SK={sa:'a',sj:'j',so:'o',sb:'b',sm:'m',sw:'w',ss:'s',sd:'d',sl:'l',sr:'r',sx:'x',su:'u',sy:'y',sg:'g',sz:'z',sh:'h'},curSc='a';""")
 R("var GRAY={0:{n:'シ',m:71},2:{n:'ファ',m:65}};","var GRAY={};")
 R("labs.forEach(function(l,r){l.classList.toggle('home',!!s.home&&(r===5||r===0))});","labs.forEach(function(l,r){l.classList.toggle('home',(ROWS[r].m-60)%12===0)});")
 # setScale + buttons
@@ -34,7 +35,7 @@ R("var BTN={","""function setScale(k){curSc=k;var o=SC[k].o;for(var r=0;r<ROWS.l
 function pressSc(){Array.prototype.forEach.call($('mbtns').children,function(b){if(SK[b.dataset.k])b.setAttribute('aria-pressed',SK[b.dataset.k]===curSc?'true':'false')})}
 function scBtn(k,t){return {t:t,f:function(){var s=SK[k];setScale(s);heard[s]=1;playMel(false);gate()}}}
 var BTN={
- sa:scBtn('sa','🌞 あかるい'),sj:scBtn('sj','🎌 日本風'),so:scBtn('so','🌺 沖縄風'),sb:scBtn('sb','🎷 ブルース'),sm:scBtn('sm','🌧 かなしい'),sw:scBtn('sw','🔮 ふしぎ'),ss:scBtn('ss','💃 スペイン風'),sd:scBtn('sd','🦇 ミステリー'),sl:scBtn('sl','☁ ふわふわ'),sr:scBtn('sr','😎 かっこいい'),sx:scBtn('sx','🐪 アラビア風'),su:scBtn('su','🎸 ロック風'),""")
+ sa:scBtn('sa','🌞 あかるい'),sj:scBtn('sj','🎌 日本風'),so:scBtn('so','🌺 沖縄風'),sb:scBtn('sb','🎷 ブルース'),sm:scBtn('sm','🌧 かなしい'),sw:scBtn('sw','🔮 ふしぎ'),ss:scBtn('ss','💃 スペイン風'),sd:scBtn('sd','🦇 ミステリー'),sl:scBtn('sl','☁ ふわふわ'),sr:scBtn('sr','😎 かっこいい'),sx:scBtn('sx','🐪 アラビア風'),su:scBtn('su','🎸 ロック風'),sy:scBtn('sy','🏯 しっとり和風'),sg:scBtn('sg','🎉 うきうき'),sz:scBtn('sz','🔥 ジプシー風'),sh:scBtn('sh','🏞 ひろびろ'),""")
 R("b.onclick=function(){BTN[k].f()};m.appendChild(b)})}","b.onclick=function(){BTN[k].f()};m.appendChild(b)});pressSc()}")
 R("function show(i){\n  timers.forEach","function show(i){\n  if(i===0)setScale('a');\n  timers.forEach")
 # play with drums false default: playMel(false) ok. again resets via show(0)
