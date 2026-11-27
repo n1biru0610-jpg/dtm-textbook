@@ -7,7 +7,7 @@ let ng=0;const ok=(c,m,i)=>{console.log((c?'OK ':'NG ')+m+(i!==undefined?'  ('+i
 const ctx=await b.newContext(MOB?{viewport:{width:W,height:H},isMobile:true,hasTouch:true}:{viewport:{width:W,height:H}});
 const pg=await ctx.newPage();const errs=[];pg.on('pageerror',e=>errs.push(e.message));
 await pg.route(/supabase\.co|googleapis|gstatic|accounts\.google/,r=>r.abort());
-await pg.goto('http://localhost:8765/preview/index.html',{waitUntil:'load'});await pg.waitForTimeout(1500);
+await pg.goto('http://localhost:8765/preview/index.html',{waitUntil:'load'});await pg.waitForTimeout(1500);await pg.addStyleTag({content:'body.dchl #dcCta,body.dchl #modeTabs #mtC{animation:none!important}'});
 await pg.evaluate(()=>{const e=document.querySelector('#fgs');if(e)e.click()});await pg.waitForTimeout(600);
 await pg.evaluate(()=>{DAW_HTML=DAW_HTML.replace('function showStep(){','window.__g=function(c){return eval(c)};function showStep(){')});
 const ids=['m-beat8','m-four','m-melody','m-oudou','m-root','m-canon','m-marusa','s-orgel','s-mokkin','s-8bit'];

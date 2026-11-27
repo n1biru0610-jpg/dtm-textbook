@@ -42,7 +42,7 @@ p=await play();ok('16分スウィング：8分の音は動かない（16分の�
 await E("T[0].clips[0].notes.push({s:1,p:0,l:1});renderEd()");p=await play();
 await E("T[0].clips[0].notes.pop();renderEd()");
 const d1=JSON.parse(await E('JSON.stringify(__log.filter(function(x){return x[0]==="d"&&x[1]===0}).map(function(x){return x[2]}))'));
-ok('16分スウィング：16分のうら（1）が 1.22 に',d1.length>0,JSON.stringify(p.d));
+ok('16分スウィング：16分のうら（1）が 1.22 に',p.d[1]===1.22,JSON.stringify(p.d));
 // キーボード
 await press('#swBtn');await pg.keyboard.press('Escape');await pg.waitForTimeout(150);
 await fr.evaluate(()=>document.getElementById('swBtn').focus());await pg.keyboard.press('Enter');await pg.waitForTimeout(200);
@@ -79,7 +79,9 @@ ok('ほかの人の作品を開くときも sw が残る（へんな値は直す
 const sp=JSON.parse(await E("(function(){T[1].clips=[{s:0,l:2,sw:33,notes:[{s:2,p:60,l:1},{s:18,p:62,l:1}]}];cursor=1;splitClip(T[1].clips[0]);return JSON.stringify(T[1].clips.map(function(c){return c.sw||0}))})()"));
 ok('クリップを2つに分けても、両方にスウィングが残る',JSON.stringify(sp)==='[33,33]',JSON.stringify(sp));
 // レッスン（free でない）ではボタンを出さない
-const les=await E("(function(){var f=free;free=false;renderEd();var h=$('swBtn').hidden;free=f;renderEd();return h})()");ok('レッスン中のDAWには出さない',les===true);
+const les=await E("(function(){var f=free;free=false;renderEd();var b=$('swBtn'),h=b.hidden&&b.getClientRects().length===0,i=$('inspBtn').getClientRects().length===0;b.click();var m=$('ctxm').classList.contains('on');var c=openClip,w=c.sw;swSet(100,2);var ch=c.sw!==w;free=f;renderEd();return JSON.stringify({h:h,i:i,m:m,ch:ch})})()");ok('レッスン中のDAWには出さない（見えない・押せない・変えられない）',les==='{"h":true,"i":true,"m":false,"ch":false}',les);
+const du=JSON.parse(await E("(function(){var t=T[0],c=t.clips[0];t.clips=[c];c.sw=66;c.swg=1;openEd(t,c);$('dupBtn').click();return JSON.stringify(t.clips.map(function(x){return[x.sw||0,x.swg||0]}))})()"));ok('「クリップを複製」でもスウィングが残る',JSON.stringify(du)==='[[66,1],[66,1]]',JSON.stringify(du));
+await E("T[0].clips=[T[0].clips[0]];delete T[0].clips[0].swg;openEd(T[0],T[0].clips[0]);renderTracks()");
 // お題DAW
 await pg.evaluate(()=>openHome(false));await pg.waitForTimeout(500);await pg.click('#mtC');await pg.waitForTimeout(2800);
 let fc=null;for(let k=0;k<20;k++){fc=await (await pg.$('#dawc')).contentFrame();if(fc&&await fc.evaluate(()=>typeof __g==='function'&&__g("typeof swSet==='function'")).catch(()=>false))break;await pg.waitForTimeout(500)}

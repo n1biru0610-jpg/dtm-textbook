@@ -13,7 +13,7 @@ def patch(h):
     # 1 ボタン（ピアノロールの上の帯）
     rep('<button class="tbn" id="dupBtn">','<button class="tbn" id="swBtn" type="button" aria-haspopup="menu" title="スウィング（はねるリズム）" hidden>〰 スウィング：<b>なし</b></button><button class="tbn" id="dupBtn">')
     # 2 見た目
-    rep('#inspBtn,#smBulk,#dupBtn{white-space:nowrap;flex:none;margin-left:6px}','#inspBtn,#smBulk,#dupBtn,#swBtn{white-space:nowrap;flex:none;margin-left:6px}#swBtn{width:auto;padding:0 10px;height:24px;display:inline-flex;align-items:center;font-weight:800}#inspBtn,#smBulk{width:auto;padding:0 8px}#swBtn b{color:var(--sun,#ffc531);font-weight:800}.swl{position:absolute;top:0;bottom:0;width:0;border-left:2px dotted rgba(255,197,49,.6);pointer-events:none}')
+    rep('#inspBtn,#smBulk,#dupBtn{white-space:nowrap;flex:none;margin-left:6px}','#inspBtn,#smBulk,#dupBtn,#swBtn{white-space:nowrap;flex:none;margin-left:6px}#swBtn{width:auto;padding:0 10px;height:24px;display:inline-flex;align-items:center;font-weight:800}#inspBtn,#smBulk{width:auto;padding:0 8px}#swBtn[hidden],#inspBtn[hidden],#smBulk[hidden]{display:none}#swBtn b{color:var(--sun,#ffc531);font-weight:800}.swl{position:absolute;top:0;bottom:0;width:0;border-left:2px dotted rgba(255,197,49,.6);pointer-events:none}')
     # 3 本体
     A='/* ---------- ピアノロール ---------- */'
     if B in h:
@@ -24,7 +24,7 @@ def patch(h):
     rep("$('inspBtn').hidden=!free}catch(_){}","$('inspBtn').hidden=!free;swUI()}catch(_){}")
     rep("  c.notes.forEach(function(n){var e=document.createElement('div');e.className='nt';","  [].slice.call(g.querySelectorAll('.swl')).forEach(function(x){x.remove()});if(c.sw>0){var sg=c.swg===1?1:2;for(var q=sg;q<steps;q+=2*sg){var sl=document.createElement('div');sl.className='swl';sl.style.left=(swW(c,q)*cw)+'px';g.appendChild(sl)}}\n  c.notes.forEach(function(n){var e=document.createElement('div');e.className='nt';")
     # 5 再生
-    rep("c.notes.forEach(function(n){var fs=Math.floor(n.s+1e-9);if(fs===ls){var off=(n.s-fs)*sd();","c.notes.forEach(function(n){var ns=c.sw?swW(c,n.s):n.s,fs=Math.floor(ns+1e-9);if(fs===ls){var off=(ns-fs)*sd();")
+    rep("c.notes.forEach(function(n){var fs=Math.floor(n.s+1e-9);if(fs===ls){var off=(n.s-fs)*sd();","c.notes.forEach(function(n){var ns=c.sw?Math.min(swW(c,n.s),c.l*16-.001):n.s,fs=Math.floor(ns+1e-9);if(fs===ls){var off=(ns-fs)*sd();")
     rep("else tone(n.p+(t.oct||0)*12,nextT+off,n.l*sd()*.95*(t.len||1),t.inst);OUT=O0}","else tone(n.p+(t.oct||0)*12,nextT+off,(c.sw?swW(c,n.s+n.l)-ns:n.l)*sd()*.95*(t.len||1),t.inst);OUT=O0}")
     # 6 MIDI書き出し（ほかのDAWでも同じノリで鳴るように、ずらした位置で書く）
     rep("a=Math.round((c.s*16+n.s)*U),l=Math.max(30,Math.round(n.l*U));","a=Math.round((c.s*16+swW(c,n.s))*U),l=Math.max(30,Math.round((swW(c,n.s+n.l)-swW(c,n.s))*U));")
@@ -32,6 +32,8 @@ def patch(h):
     rep("var d={s:at,l:c.l-l1,notes:B};","var d={s:at,l:c.l-l1,notes:B};if(c.sw){d.sw=c.sw;if(c.swg===1)d.swg=1}")
     # 8 ほかの人の作品を聴くとき（お題の提出）
     rep("var cl={s:Math.max(0,Math.min(200,+c.s||0)),l:Math.max(1,Math.min(64,+c.l||1)),notes:[]};","var cl={s:Math.max(0,Math.min(200,+c.s||0)),l:Math.max(1,Math.min(64,+c.l||1)),notes:[]};var sw0=Math.round(+c.sw||0);if(sw0>0){cl.sw=Math.min(100,sw0);if(c.swg===1)cl.swg=1}")
+    # 9 ピアノロールの「クリップを複製」でも引きつぐ
+    rep("t.clips.push({s:st,l:c.l,notes:c.notes.map(function(n){return cpN(n)})});renderTracks();sfx('add');fire('dup'","var dd={s:st,l:c.l,notes:c.notes.map(function(n){return cpN(n)})};if(c.sw){dd.sw=c.sw;if(c.swg===1)dd.swg=1}t.clips.push(dd);renderTracks();sfx('add');fire('dup'")
     return h
 for path in ('index.html','preview/index.html'):
     p=os.path.join(ROOT,path);s=io.open(p,encoding='utf8',newline='').read()
