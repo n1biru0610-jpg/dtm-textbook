@@ -50,8 +50,10 @@ function zkDetail(d,from){var own=zkOwned(),has=!!own[d.id],p=P(),g=zkProg(d.c,p
   var dd=row('🗝 もらい方',zkHow(d.c));
   if(!has){var pr=document.createElement('progress');pr.max=g.need;pr.value=g.have;pr.setAttribute('aria-label','すすみぐあい');dd.appendChild(document.createElement('br'));dd.appendChild(pr);dd.appendChild(zkEl('span','',g.have+' / '+g.need+'（'+zkLeft(d.c,p)+'）'))}
   else if(p&&p.bd&&p.bd.cards&&p.bd.cards[d.id]){var t=new Date(p.bd.cards[d.id]);row('📅 図鑑にのった日',t.getFullYear()+'年'+(t.getMonth()+1)+'月'+t.getDate()+'日')}
-  if(d.type!=='tips'&&ZK_PACK_SOON)row('🎛 スタジオで使う','いま じゅんび中だよ。使えるようになるまで、カードは図鑑にのこるよ。');
-  c.appendChild(dl);var bk=zkEl('button','zkback','もどる');bk.type='button';bk.onclick=zkDetClose;c.appendChild(bk);
+  var use=null;
+  if(d.type!=='tips'){if(has){row('🎛 つかいかた',(d.type==='sound'?'この音のトラックを作れるよ。':'新しいトラックに、そのまま置けるよ。')+'DAW編のスタジオ（自由につくる）と今日のお題の画面の右「もらった素材」からも使えるよ。');use=zkEl('button','zkuse','🎛 DAW編のスタジオで使う');use.type='button';use.onclick=function(){zkToStudio(d)}}
+   else row('🎛 DAWで使う','手に入れると、DAW編のスタジオと今日のお題で使えるよ。')}
+  c.appendChild(dl);var bw=zkEl('div','zkbtns');if(use)bw.appendChild(use);var bk=zkEl('button','zkback','もどる');bk.type='button';bk.onclick=zkDetClose;bw.appendChild(bk);c.appendChild(bw);
   box.appendChild(c);box.classList.add('on');box.setAttribute('aria-label',(has?d.name:'まだ持っていないカード')+'のくわしい説明');zkBehind(true);setTimeout(function(){try{h.focus()}catch(e){}},30)}
 function zkDetClose(){zkBehind(false);$('zkDet').classList.remove('on');$('zkDet').innerHTML='';try{if(zkPick&&document.contains(zkPick))zkPick.focus()}catch(e){}}
 function zkOpen(){if(zkIsOpen)return;zkBack=document.activeElement;

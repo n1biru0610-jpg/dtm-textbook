@@ -32,12 +32,25 @@ var ZKCARDS=[
  zkC('m-four','midi','n','🪩','4つ打ちの小箱','ダンス音楽の土台になる、4つ打ちのドラムパターン。','おどれるビートを、すぐスタジオに置けるようになる',{k:'post',n:1}),
  zkC('m-melody','midi','r','🕊','ペンタの ことり','ド・レ・ミ・ソ・ラで作った、短いメロディのお手本。','お手本のふしをもとに、自分のメロディを作れるようになる',{k:'chap',n:3}),
  zkC('m-oudou','midi','r','👑','王道進行の巻物','「4536」とよばれる、F → G → Em → Am のコード進行。','J-POPでよく聴くコード進行を、すぐ使えるようになる',{k:'chap',n:4}),
- zkC('m-root','midi','r','🪨','ルートの石だたみ','コードのルートを弾く、基本のベースライン。','ベースの土台を、すぐスタジオに置けるようになる',{k:'chap',n:5}),
+ zkC('m-root','midi','r','🪨','ルートの石だたみ','C → G → Am → F のルート（土台の音）を弾く、基本のベースライン。','ベースの土台を、すぐスタジオに置けるようになる',{k:'chap',n:5}),
  zkC('m-canon','midi','s','🏛','カノンの宝箱','C → G → Am → Em → F → C → F → G。昔から愛されるコード進行。','長いコード進行で、物語のような曲を作れるようになる',{k:'post',n:5}),
  zkC('m-marusa','midi','s','🌃','夜の街の進行','「丸サ進行」ともよばれる、FM7 → E7 → Am7 → C7。おとなっぽいひびき。（かんたんにした形）','おしゃれな雰囲気の曲を作れるようになる',{k:'login',n:21}),
  zkC('s-orgel','sound','r','🎁','オルゴール','ぜんまいで鳴る、小さくてやさしい音。','やさしい子守歌のような音色を使えるようになる',{k:'login',n:14}),
  zkC('s-mokkin','sound','s','🪵','森の木琴','木をたたいた、ころころとした温かい音。','はずむような木の音色を使えるようになる',{k:'basic'}),
  zkC('s-8bit','sound','s','👾','8ビットの精','むかしのゲーム機のような、ピコピコした音。','ゲーム音楽のような曲を作れるようになる',{k:'post',n:10})
 ];
-/* スタジオで実際に使えるようになるまで true（ステップ4で外す） */
-var ZK_PACK_SOON=true;
+/* ---------- MIDIパックの中身と音源（ステップ4） ----------
+   ZKPK[カードid] = {k:'drum' か 'inst', inst:音色, oct:オクターブ, bars:小節数, tn:トラック名, n:[[位置(16分), 高さ(ドラムは0キック1スネア2ハット3オープンハット4クラップ), 長さ(16分), 強さ(0〜1・省略で最強)], ...]}
+   ZKSND[カードid] = DAWの音色の名前（DAW側の INST.orgel など） */
+function zkDr(bars,f){var n=[];for(var b=0;b<bars;b++)f(b,function(s,p,v){n.push([b*16+s,p,1,v])});return n}
+function zkCh(a,len){var n=[];a.forEach(function(c,i){c.forEach(function(p){n.push([i*len,p,len])})});return n}
+var ZKPK={
+ 'm-beat8':{k:'drum',bars:2,tn:'8ビート',sub:'ドラム 2小節',n:zkDr(2,function(b,a){[0,8,10].forEach(function(s){a(s,0)});if(b===1)a(7,0,.7);[4,12].forEach(function(s){a(s,1)});for(var s=0;s<16;s+=2){if(b===1&&s===14)a(s,3,.8);else a(s,2,s%4?.65:1)}})},
+ 'm-four':{k:'drum',bars:2,tn:'4つ打ち',sub:'ドラム 2小節（手びょうしはクラップ）',n:zkDr(2,function(b,a){[0,4,8,12].forEach(function(s){a(s,0)});[4,12].forEach(function(s){a(s,4)});[2,6,10,14].forEach(function(s){a(s,3,.8)});[0,4,8,12].forEach(function(s){a(s,2,.5)})})},
+ 'm-melody':{k:'inst',inst:'pluck',bars:2,tn:'ペンタのメロディ',sub:'メロディ 2小節（さいごはド）',n:[[0,64,2],[2,67,2],[4,69,4],[8,67,2],[10,64,2],[12,62,4],[16,64,2],[18,67,2],[20,69,4],[24,67,2],[26,62,2],[28,60,4]]},
+ 'm-oudou':{k:'inst',bars:4,tn:'王道進行',sub:'F → G → Em → Am 4小節',n:zkCh([[57,60,65],[59,62,67],[59,64,67],[60,64,69]],16)},
+ 'm-root':{k:'inst',inst:'bass',oct:-1,bars:4,tn:'ルートのベース',sub:'C → G → Am → F のベース 4小節',n:(function(){var n=[];[48,55,57,53].forEach(function(r,i){for(var s=0;s<16;s+=2)n.push([i*16+s,r,2,s%4?.8:1])});return n})()},
+ 'm-canon':{k:'inst',bars:8,tn:'カノン進行',sub:'C → G → Am → Em → F → C → F → G 8小節',n:zkCh([[60,64,67],[59,62,67],[60,64,69],[59,64,67],[60,65,69],[60,64,67],[60,65,69],[59,62,67]],16)},
+ 'm-marusa':{k:'inst',inst:'ep',bars:4,tn:'夜の街の進行',sub:'FM7 → E7 → Am7 → C7 4小節',n:zkCh([[53,57,60,64],[52,56,59,62],[57,60,64,67],[48,52,55,58]],16)}
+};
+var ZKSND={'s-orgel':'orgel','s-mokkin':'mokkin','s-8bit':'chip'};
