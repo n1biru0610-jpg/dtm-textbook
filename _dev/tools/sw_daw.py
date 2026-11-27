@@ -24,7 +24,7 @@ def patch(h):
     rep("$('inspBtn').hidden=!free}catch(_){}","$('inspBtn').hidden=!free;swUI()}catch(_){}")
     rep("  c.notes.forEach(function(n){var e=document.createElement('div');e.className='nt';","  [].slice.call(g.querySelectorAll('.swl')).forEach(function(x){x.remove()});if(c.sw>0){var sg=c.swg===1?1:2;for(var q=sg;q<steps;q+=2*sg){var sl=document.createElement('div');sl.className='swl';sl.style.left=(swW(c,q)*cw)+'px';g.appendChild(sl)}}\n  c.notes.forEach(function(n){var e=document.createElement('div');e.className='nt';")
     # 5 再生
-    rep("c.notes.forEach(function(n){var fs=Math.floor(n.s+1e-9);if(fs===ls){var off=(n.s-fs)*sd();","c.notes.forEach(function(n){var ns=c.sw?Math.min(swW(c,n.s),c.l*16-.001):n.s,fs=Math.floor(ns+1e-9);if(fs===ls){var off=(ns-fs)*sd();")
+    rep("c.notes.forEach(function(n){var fs=Math.floor(n.s+1e-9);if(fs===ls){var off=(n.s-fs)*sd();","c.notes.forEach(function(n){var ns=(c.sw&&n.s<c.l*16)?Math.min(swW(c,n.s),c.l*16-.001):n.s,fs=Math.floor(ns+1e-9);if(fs===ls){var off=(ns-fs)*sd();")
     rep("else tone(n.p+(t.oct||0)*12,nextT+off,n.l*sd()*.95*(t.len||1),t.inst);OUT=O0}","else tone(n.p+(t.oct||0)*12,nextT+off,(c.sw?swW(c,n.s+n.l)-ns:n.l)*sd()*.95*(t.len||1),t.inst);OUT=O0}")
     # 6 MIDI書き出し（ほかのDAWでも同じノリで鳴るように、ずらした位置で書く）
     rep("a=Math.round((c.s*16+n.s)*U),l=Math.max(30,Math.round(n.l*U));","a=Math.round((c.s*16+swW(c,n.s))*U),l=Math.max(30,Math.round((swW(c,n.s+n.l)-swW(c,n.s))*U));")

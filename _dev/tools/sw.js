@@ -43,6 +43,8 @@ await E("T[0].clips[0].notes.push({s:1,p:0,l:1});renderEd()");p=await play();
 await E("T[0].clips[0].notes.pop();renderEd()");
 const d1=JSON.parse(await E('JSON.stringify(__log.filter(function(x){return x[0]==="d"&&x[1]===0}).map(function(x){return x[2]}))'));
 ok('16分スウィング：16分のうら（1）が 1.22 に',p.d[1]===1.22,JSON.stringify(p.d));
+await E("T[0].clips[0].notes.push({s:20,p:0,l:1});renderEd()");p=await play();await E("T[0].clips[0].notes.pop();renderEd()");
+ok('クリップを縮めて外に残った音は、スウィングを入れても鳴らない',!JSON.parse(await E('JSON.stringify(__log.filter(function(x){return x[0]==="d"&&x[1]===0}).length)')),JSON.stringify(p.d));
 // キーボード
 await press('#swBtn');await pg.keyboard.press('Escape');await pg.waitForTimeout(150);
 await fr.evaluate(()=>document.getElementById('swBtn').focus());await pg.keyboard.press('Enter');await pg.waitForTimeout(200);
