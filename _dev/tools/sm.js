@@ -17,7 +17,7 @@ const fh=await pg.$('#dawf');const fr=await fh.contentFrame();const E=c=>fr.eval
 await fr.evaluate(()=>document.querySelector('#dfree').click());await pg.waitForTimeout(800);
 await E(`addTrack('ドラム','drum');T[T.length-1].clips.push({s:0,l:4,notes:[{s:0,p:0,l:1},{s:4,p:1,l:1},{s:8,p:2,l:1},{s:12,p:4,l:1}]});sel=T.length-1;renderTracks();openEd(T[sel],T[sel].clips[0])`);await pg.waitForTimeout(600);
 const bt=await fr.evaluate(()=>({n:document.querySelectorAll('#keys .sb').length,bulk:!document.getElementById('smBulk').hidden}));
-ok('ドラムの鍵盤に読み込みボタンが5つ・まとめて読み込みボタンが出る',bt.n===5&&bt.bulk,JSON.stringify(bt));
+ok('ドラムの鍵盤（16パッド）に読み込みボタンが16個・まとめて読み込みボタンが出る',bt.n===16&&bt.bulk,JSON.stringify(bt));
 // まとめて（名前から自動割り当て）
 await E(`smTarget='bulk'`);
 await fr.locator('#smIn').setInputFiles(['/tmp/w/smp/Splice_Kick_01.wav','/tmp/w/smp/snare_tight.wav','/tmp/w/smp/closed_hat.wav','/tmp/w/smp/Clap-Big.wav']);await pg.waitForTimeout(1200);
