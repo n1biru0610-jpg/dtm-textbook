@@ -20,6 +20,7 @@ await pg.route(/fonts\.googleapis|accounts\.google/,r=>r.abort());
 await pg.goto('http://localhost:8765/preview/index.html',{waitUntil:'load'});await pg.waitForTimeout(1500);
 await pg.evaluate(()=>{const e=document.querySelector('#fgs');if(e)e.click()});await pg.waitForTimeout(600);
 await pg.evaluate(()=>{DAW_HTML=DAW_HTML.replace('function showStep(){','window.__g=function(c){return eval(c)};function showStep(){')});
+await pg.evaluate(()=>document.body.classList.add('x'));await pg.addStyleTag({content:'body.dchl #dcCta,body.dchl #modeTabs #mtC{animation:none!important}'});
 // ホームにいるか
 await pg.evaluate(()=>openHome(false));await pg.waitForTimeout(600);
 const vis=async s=>pg.evaluate(s=>{const e=document.querySelector(s);if(!e)return false;const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).display!=='none'},s);
