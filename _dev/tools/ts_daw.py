@@ -1,0 +1,6 @@
+rep('<button id="midiBtn"','<button id="tcBtn" type="button" aria-label="先生に聴いてもらう">🎧 <span>先生に聴いてもらう</span></button><button id="midiBtn"')
+rep("body.chon #midiBtn{display:none}","body.chon #midiBtn,body.chon #tcBtn{display:none}#tcBtn{display:none;font:inherit;font-weight:800;padding:5px 12px;border-radius:14px;border:0;background:#ffc531;color:#2a2100;cursor:pointer;margin-right:8px}body.free:not(.chon) #tcBtn{display:inline-block}#tcBtn:focus-visible{outline:3px solid #fff;outline-offset:2px}@media (max-width:1000px){#tcBtn span{display:none}#tcBtn{padding:5px 10px}}")
+rep("$('midiBtn').onclick=function(){stat('midiExport');","""$('tcBtn').onclick=function(){stat('teacherSend');if(!free||listenOnly||!T.some(function(t){return t.clips.some(function(c){return !c.au&&c.notes&&c.notes.length})})){toast('まず音をおいてから、送ってね');sfx('low');return}
+  if(curId)saveFree();var tt=JSON.parse(JSON.stringify(T)).map(function(t){t.clips=t.clips.filter(function(c){return !c.au});return t}),pj=projs.filter(function(x){return x.id===curId})[0];
+  try{parent.postMessage({tsSend:{name:pj?pj.name:'',bpm:bpm,proj:{T:tt,bpm:bpm,bars:BARS}}},'*')}catch(e){}};
+$('midiBtn').onclick=function(){stat('midiExport');""")
