@@ -14,3 +14,15 @@ body.dchl #dcCta,body.dchl #modeTabs #mtC{animation:dcPulse 1.3s ease-in-out inf
 #dc .bdl button:focus-visible,#dc .db button:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
 #dc .dg .n em{font-style:normal;background:#fff3c4;border:1px solid #f0d36a;border-radius:999px;padding:1px 8px;margin-right:6px;font-size:12px;font-weight:800;color:#6b5100}#dc .dg .n b{font-weight:800}
 @media (max-height:500px) and (orientation:landscape){#bdBtn{top:88px;padding:5px 10px;font-size:12px}#dc .bdn b{font-size:30px}#dc .bdn span{font-size:16px}#dc .bds{margin:2px 0}#dc .bds li{min-width:36px;padding:1px 2px}#dc .bds li small{font-size:10px}#dc .bds li b{font-size:14px}#dc .bdnew{padding:4px 10px;margin:4px 0}#dc .bdnew small{display:none}#dc .bdnew i{font-size:22px}#dc .dt p{display:none}#dc .dt{padding:4px 12px}#dc .dc h2,#dc h2{font-size:17px;margin:2px 0}#dc .ds{margin:0}#dc .bdsc{max-height:46vh}}
+
+/* きせかえ（ホーム画面の色） */
+body.sk-sakura{--bg:#fdeef2;--panel:#fff;--ink:#4a2433;--sub:#8a5a6b;--blue:#e0527a;--line:#f2c9d6}
+body.sk-forest{--bg:#e6f3e2;--panel:#fff;--ink:#1c3a24;--sub:#4f6f58;--blue:#2e8b57;--line:#b9d8bd}
+body.sk-sunset{--bg:#ffe9d6;--panel:#fff;--ink:#3d2314;--sub:#8a5a3c;--blue:#e8590c;--line:#f0c4a0}
+body.sk-night{--bg:#0b1030;--panel:#171e4a;--ink:#eef0ff;--sub:#a6aee0;--blue:#8aa4ff;--line:#2e3878}
+body.sk-gold{--bg:#fff6d6;--panel:#fffdf3;--ink:#3b2f00;--sub:#7a6420;--blue:#c58a00;--line:#ecd27a}
+body.sk-mono{--bg:#f2f2f2;--panel:#fff;--ink:#111;--sub:#555;--blue:#333;--line:#ccc}
+body.sk-gb{--bg:#c9d9a2;--panel:#e0efbf;--ink:#1f2d10;--sub:#4a6030;--blue:#306230;--line:#9db36e}
+body.skx #home{background:var(--bg)!important;color:var(--ink)!important}
+#dc .bdtb{display:flex;gap:6px;margin:4px 0}#dc .bdtb button{font:inherit;font-weight:800;font-size:14px;padding:6px 14px;border-radius:999px;border:2px solid #d9d0f0;background:#fff;color:#4a3f7a;cursor:pointer}#dc .bdtb button[aria-selected="true"]{background:#5b4fd6;border-color:#5b4fd6;color:#fff}#dc .bdtb button:focus-visible{outline:4px solid #2c64f0;outline-offset:2px}
+#dc .bdsk .skw{position:relative;flex:none;width:46px;height:34px;border-radius:8px;border:2px solid rgba(0,0,0,.2);overflow:hidden;display:block}#dc .bdsk .skw u{position:absolute;left:5px;right:5px;top:6px;height:12px;border-radius:4px;display:block}#dc .bdsk .skw s{position:absolute;left:5px;bottom:4px;width:16px;height:7px;border-radius:4px;display:block}
