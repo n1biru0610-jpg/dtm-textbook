@@ -21,7 +21,7 @@ CH = [
  ('drum', 'たいこの ドンちゃん', '称号『投稿の常連』で', {'title': 'p5'},
   '<path d="M20 2.5l-4.5 8M27 5l-8 5.5" stroke="#c8935a" stroke-width="2.2" stroke-linecap="round"/><path d="M6 13v11a10 3.5 0 0 0 20 0V13" fill="#e34b4b" ' + SW + '/><ellipse cx="16" cy="13" rx="10" ry="3.5" fill="#f4efe6" ' + SW + '/><path d="M6.5 26h19" stroke="#ffd23f" stroke-width="1.4"/><circle cx="12.5" cy="19" r="1.8" fill="#fff"/><circle cx="12.6" cy="19.1" r=".95" fill="K"/><circle cx="19.5" cy="19" r="1.8" fill="#fff"/><circle cx="19.4" cy="19.1" r=".95" fill="K"/><path d="M14.5 22q1.5 1.2 3 0" stroke="#fff" stroke-width="1.1" fill="none" stroke-linecap="round"/>'),
  ('kujira', 'うたう くじら', 'ログイン21日で', {'need': 21},
-  '<path d="M3.5 18c0-5 5-8.5 11-8.5 6.5 0 10.5 3.5 11.5 7.5l3-4-.4 7.5-3.6 1.2c-2 3-6 5-10.5 5-6.5 0-11-3.8-11-8.7z" fill="#4b8fe0" ' + SW + '/><path d="M5.5 21q5 4.5 15 2" stroke="#cfe3fb" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="10" cy="16" r="1.3" fill="K"/><path d="M13.5 9c0-2-1.6-3-3-4.2M13.5 9c0-2 1.6-3 3-4.2" stroke="#4b8fe0" stroke-width="1.6" fill="none" stroke-linecap="round"/>'),
+  '<path d="M3.5 18c0-5 5-8.5 11-8.5 6.5 0 10.5 3.5 11.5 7.5l3-4-.4 7.5-3.6 1.2c-2 3-6 5-10.5 5-6.5 0-11-3.8-11-8.7z" fill="#4b8fe0" ' + SW + '/><path d="M5.5 21q5 4.5 15 2" stroke="#cfe3fb" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="10" cy="16" r="1.6" fill="K"/><path d="M13.5 9c0-2-1.6-3-3-4.2M13.5 9c0-2 1.6-3 3-4.2" stroke="#4b8fe0" stroke-width="1.6" fill="none" stroke-linecap="round"/>'),
  ('deshi', 'まほうつかいの でし', '称号『コードの まほうつかい』で', {'title': 'chd'},
   '<circle cx="16" cy="21.5" r="7.5" fill="#ffd9b8" ' + SW + '/><path d="M8.5 15.5L17 2.5l6.8 13z" fill="#5b3fa6" ' + SW + '/><ellipse cx="16" cy="15.5" rx="10" ry="2.4" fill="#5b3fa6" ' + SW + '/><path d="M16.5 7.5l.8 1.7 1.8.2-1.4 1.2.4 1.8-1.6-.9-1.6.9.4-1.8-1.4-1.2 1.8-.2z" fill="#ffd23f"/>' + EY(13.3, 18.7, 21) + '<path d="M14.3 24q1.7 1.3 3.4 0" stroke="K" stroke-width="1.1" fill="none" stroke-linecap="round"/>'),
  ('tsuki', 'つきの うさぎ', 'ログイン50日で', {'need': 50},
@@ -35,7 +35,7 @@ AC = [
  ('clover', 'よつばの クローバー', 'ログイン25日で', {'need': 25},
   '<path d="M16 16q2 7 6 11" stroke="#2e7d32" stroke-width="2" fill="none" stroke-linecap="round"/><g fill="#3aa655" stroke="K" stroke-width="1.3"><circle cx="11.5" cy="11.5" r="4.6"/><circle cx="20.5" cy="11.5" r="4.6"/><circle cx="11.5" cy="20" r="4.6"/><circle cx="20.5" cy="20" r="4.6"/></g><circle cx="16" cy="15.8" r="1.6" fill="#8fdc95"/>'),
  ('mikazuki', 'みかづき', 'ログイン40日で', {'need': 40},
-  '<path d="M19 3a12 12 0 1 0 10 18A10 10 0 1 1 19 3z" fill="#ffd23f" ' + SW + '/><circle cx="14" cy="19" r="1.1" fill="K"/><path d="M12 23q2 1.4 4 .2" stroke="K" stroke-width="1.1" fill="none" stroke-linecap="round"/>'),
+  '<path d="M19 3a12 12 0 1 0 10 18A10 10 0 1 1 19 3z" fill="#ffd23f" ' + SW + '/><circle cx="13.5" cy="18.5" r="1.6" fill="K"/><path d="M12 23q2 1.4 4 .2" stroke="K" stroke-width="1.1" fill="none" stroke-linecap="round"/>'),
  ('tsue', 'ほしの つえ', '称号『図鑑の たび人』で', {'title': 'z10'},
   '<path d="M5 28L18.5 14.5" stroke="K" stroke-width="4" stroke-linecap="round"/><path d="M5 28L18.5 14.5" stroke="#9b6a3c" stroke-width="2.2" stroke-linecap="round"/><path d="M22 3.5l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L14.8 8.8l5-.7z" fill="#ffd23f" ' + SW + '/>'),
  ('shiori', '図鑑の しおり', '称号『図鑑の けんきゅう家』で', {'title': 'z30'},
@@ -74,7 +74,7 @@ N_A = ("+(k3.length?'　🎨 きせかえも '+k3.length+'こ！':'')+'　「�
 N_B = ("+(k.length?'　🎨 きせかえ『'+k.map(function(x){return x.n}).join('』『')+'』も！':''))}}",
        "+(k.length?'　🎨 きせかえ『'+k.map(function(x){return x.n}).join('』『')+'』も！':'')+bdIcT(nw))}}")
 CSS_A = ".avx{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;overflow:visible}"
-CSS = "/*ic7c*/.bdpk button.w{border-width:3px}.bdpk button.w::after{content:'✔';position:absolute;left:2px;top:0;font-size:11px;line-height:1;color:#1f9d6b;font-weight:900}.bdnew li i .bdsv{width:1.2em;height:1.2em}.bdsv{width:1.15em;height:1.15em;display:block}.avx b .bdsv{width:1.05em;height:1.05em}.bdpk button .bdsv{margin:auto}/*/ic7c*/"
+CSS = "/*ic7c*/#dc .bdpk button.w{border-width:3px}#dc .bdpk button.cl.w{border-width:3px}#dc .bdpk button.cl.w::after{content:none}.bdpk button.w::after{content:'✔';position:absolute;left:2px;top:0;font-size:11px;line-height:1;color:#1f9d6b;font-weight:900}.bdnew li i .bdsv{width:1.2em;height:1.2em}.bdsv{width:1.15em;height:1.15em;display:block}.avx b .bdsv{width:1.05em;height:1.05em}.bdpk button .bdsv{margin:auto}/*/ic7c*/"
 def run():
     for f in ['index.html', 'preview/index.html']:
         s = open(f, encoding='utf-8').read()

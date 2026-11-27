@@ -39,7 +39,7 @@ async function login(p){await p.goto(URL_);await p.waitForSelector('#prof.on');a
  ok(store.profile.bd.ic==='s:deshi|s:boushi','サーバーに保存');
  await p.evaluate(()=>{const q=P();delete q.bd.earned.chd});ok(await p.evaluate(()=>bdIc(P().bd).c===''&&bdIc(P().bd).a==='s:boushi'),'条件がないと使えない');
  ok(await p.evaluate(()=>bdIcT([{id:'ch1'},{id:'z10'}]).includes('2こ')&&bdIcT([{id:'hello'}])===''),'称号をもらったときのお知らせ');
- const lg=await p.evaluate(()=>bdAv(P(),1));ok(lg.includes('lg'),'大きいアイコン');
+ const lg=await p.evaluate(()=>bdAv(P(),1));ok(lg.includes('lg'),'大きいアイコン');await p.evaluate(()=>bdShow('ic'));await p.waitForTimeout(300);ok(await p.evaluate(()=>getComputedStyle(document.querySelector('#dc .bdpk button.w:not(.cl)')).borderTopWidth==='3px'),'えらんでいるものは枠が太い');await p.evaluate(()=>dcClose());
  await p.context().close();
  // 別の端末で読み込み
  p=await ctx(b);await login(p);await p.waitForTimeout(2500);ok(await p.evaluate(()=>P().bd.ic==='s:deshi|s:boushi'),'別の端末で読み込み');
