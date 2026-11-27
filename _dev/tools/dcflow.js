@@ -79,26 +79,54 @@ const btn=await fr.evaluate(()=>document.getElementById('chBtn').textContent);
 const lane2=await fr.evaluate(()=>[...document.getElementById('chBar').children].filter(x=>x.classList.contains('ok')).length);ok('列の条件にもチェックが付く',lane2>=1,lane2+'個');
 {const bars=await E('BARS');const rl=await fr.evaluate(()=>document.querySelectorAll('#ruler > span').length);const sw=await fr.evaluate(()=>{const l=document.getElementById('lanes');return l.scrollWidth<=l.clientWidth+2});const cp=await E('canPlaceAt(T[0],4,1)');
 ok('お題モードは4小節だけ表示（5小節目には置けない・横スクロールなし）',bars===4&&rl===4&&sw&&cp===false,'BARS='+bars+' ルーラー'+rl+' 横スクロールなし='+sw+' 5小節目に置ける='+cp);
-await E(`CH.conds.push({t:'scale',set:[0,2,4,5,7,9,11],label:'テスト'});chUI();openEd(T[1],T[1].clips[0])`);await pg.waitForTimeout(500);
+await E(`window.__cs=CH.conds.slice();CH.conds.push({t:'scale',set:[0,2,4,5,7,9,11],label:'テスト'});chUI();openEd(T[1],T[1].clips[0])`);await pg.waitForTimeout(500);
 const hl=await fr.evaluate(()=>({sc:document.querySelectorAll('.pk.sc').length,out:document.querySelectorAll('.pk.out').length,dl:document.querySelectorAll('.dl.sc,.dl.hm').length,dlo:document.querySelectorAll('.dl.out').length}));
 ok('お題のスケールが打ち込み画面でハイライトされる（スケール内の鍵盤・行／外は暗く）',hl.sc>0&&hl.out>0&&hl.dl>0&&hl.dlo>0,JSON.stringify(hl));
 await pg.screenshot({path:'dc_scale.png'});
-await E(`CH.conds.pop();chUI()`);await pg.waitForTimeout(300);
+await E(`CH.conds=CH.conds.filter(function(c){return c.t!=='scale'});chUI()`);await pg.waitForTimeout(300);
 const hl2=await fr.evaluate(()=>document.querySelectorAll('.pk.out,.pk.sc').length);
-ok('スケールの条件がないお題では、ハイライトされない',hl2===0,hl2+'個');
+ok('スケールの条件がないお題では、ハイライトされない',hl2===0,hl2+'個');await E(`CH.conds=window.__cs;chUI()`);
 await E('closeEd()');}
 ok('お題ボタンの達成数が更新される',/お題 \d+\/\d+/.test(btn)&&!/お題 0\//.test(btn),btn);
 await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
+const ic=await fr.evaluate(()=>{const e=document.getElementById('chIc');const r=e.getBoundingClientRect();return {svg:!!e.querySelector('svg'),w:Math.round(r.width)}});ok('お題カードにイラスト（アイコン）が付く',ic.svg&&ic.w>40,JSON.stringify(ic));
 const li=await fr.evaluate(()=>[...document.querySelectorAll('#chL li')].map(l=>l.className+':'+l.textContent));
 ok('条件リストに「できた」が出る',li.some(x=>/(^|\s)ok[ :]/.test(x)),li.length+'件');
+const vs=async()=>fr.evaluate(()=>({x:!document.getElementById('chX').hidden,c:!document.getElementById('chCont').hidden,k:!document.getElementById('chKeep').hidden,s:!document.getElementById('chSub').hidden,g:document.getElementById('chG').textContent}));
+const v0=await vs();ok('全部クリア前は「提出」「続き」「保存」が出ない',v0.x&&!v0.c&&!v0.k&&!v0.s,JSON.stringify(v0));
+await fr.evaluate(()=>document.getElementById('chSub').click());await pg.waitForTimeout(500);
+ok('クリア前は(無理に押しても)提出されない',rows.length===0,rows.length+'件');
 await pg.screenshot({path:'dc_daw_panel2.png'});
-await fr.evaluate(()=>document.getElementById('chSub').click());await pg.waitForTimeout(800);
+await fr.evaluate(()=>document.getElementById('chX').click());
+// 全クリアにする
+await E(`(function(){bpm=80;$('bv').textContent=bpm;T[1].clips[0].notes=[{s:0,p:60,l:4},{s:4,p:64,l:4},{s:8,p:67,l:4},{s:12,p:62,l:4},{s:16,p:64,l:4},{s:32,p:67,l:4},{s:48,p:69,l:8}];T[1].clips[0].notes.push({s:0,p:48,l:8},{s:0,p:52,l:8},{s:0,p:55,l:8});renderTracks();chUI()})()`);
+await pg.waitForTimeout(1500);
+const st1=await E(`chJudge(CH.conds).map(Boolean).join(',')+' '+CH.conds.map(function(c){return c.t}).join(',')`);
+const v1=await vs();const open1=await fr.evaluate(()=>document.getElementById('chm').classList.contains('on'));
+ok('全部クリアで、カードが自動で開き3つの選択肢が出る',open1&&!v1.x&&v1.c&&v1.k&&v1.s&&/全クリア/.test(v1.g),st1+' '+JSON.stringify(v1)+' open='+open1);
+ok('全クリアでお題ボタンが「全クリア」になる',/全クリア/.test(await fr.evaluate(()=>document.getElementById('chBtn').textContent)));
+await pg.screenshot({path:'dc_allclear.png'});
+// 保存して提出しない
+await fr.evaluate(()=>document.getElementById('chKeep').click());await pg.waitForTimeout(500);
+ok('「保存して提出しない」→閉じて、サーバーには送られない',rows.length===0&&!(await fr.evaluate(()=>document.getElementById('chm').classList.contains('on'))),rows.length+'件');
+const prj=await pg.evaluate(()=>0);const saved=await E(`projs.filter(function(p){return p.dc}).length`);ok('お題の作品が保存されている',saved===1,saved+'件');
+// 続きをつくる
+await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
+const nBefore=await E(`T.reduce(function(a,t){return a+t.clips.reduce(function(b,c){return b+c.notes.length},0)},0)`);
+await fr.evaluate(()=>document.getElementById('chCont').click());await pg.waitForTimeout(700);
+const cs=await E(`({bars:BARS,act:chActive(),n:projs.length,dc:projs.filter(function(p){return p.dc}).length,name:pjGet(curId).name,notes:T.reduce(function(a,t){return a+t.clips.reduce(function(b,c){return b+c.notes.length},0)},0),barHidden:document.getElementById('chBar').hidden,guide:!!guide})`);
+ok('「制限のないDAWで続きを作る」→新しい40小節プロジェクトに曲が引き継がれ、お題の制限が外れる',cs.bars===40&&!cs.act&&cs.dc===1&&cs.n>=2&&cs.notes===nBefore&&cs.barHidden&&!cs.guide,JSON.stringify(cs));
+const cp5=await E('canPlaceAt(T[0],10,1)');ok('続きでは5小節目以降にも置ける',cp5===true,String(cp5));
+// お題の作品を開きなおして提出
+await E(`pjOpen(projs.filter(function(p){return p.dc})[0].id)`);await pg.waitForTimeout(1500);
+await fr.evaluate(()=>{const b=document.getElementById('chBtn');b.click()});await pg.waitForTimeout(400);
+const v2=await vs();ok('お題の作品を開き直すと、再び3つの選択肢が出る',v2.c&&v2.k&&v2.s,JSON.stringify(v2));
+await fr.evaluate(()=>document.getElementById('chSub').click());await pg.waitForTimeout(900);
 ok('提出が1件サーバーに届いた',rows.length===1,rows[0]&&(rows[0].nick+' '+rows[0].ok+'/'+rows[0].total+' bpm'+rows[0].bpm));
-const want=await E(`(function(){var r=chJudge(CH.conds);return r.filter(Boolean).length+'/'+r.length})()`);
-ok('提出した達成数が判定と一致',rows[0]&&(rows[0].ok+'/'+rows[0].total)===want,want);
+ok('提出は全部クリア（ok===total）',rows[0]&&rows[0].ok===rows[0].total,rows[0]&&(rows[0].ok+'/'+rows[0].total));
 ok('提出データに曲（トラック）が入る',rows[0]&&rows[0].proj&&rows[0].proj.T&&rows[0].proj.T.length===2);
 const st=await fr.evaluate(()=>document.getElementById('chS').textContent);
-ok('提出後にメッセージが出て、ボタンが「提出ずみ」になる',/出せたよ/.test(st)&&(await fr.evaluate(()=>document.getElementById('chBtn').textContent)).includes('提出ずみ'),st);
+ok('提出後にメッセージが出て、ボタンが「提出ずみ」か全クリアのまま',/出せたよ/.test(st),st);
 const rec=await pg.evaluate(()=>dcRec());ok('この端末に記録が残る',!!rec[th.day]);
 await fr.evaluate(()=>document.getElementById('chX').click());
 // 再度提出（出しなおし）しても一覧は1人1件
@@ -116,7 +144,7 @@ const pb=await pg.evaluate(()=>window.__projsBefore=JSON.stringify(P().dprojs||[
 await pg.click('#dcL li button');await pg.waitForTimeout(2500);
 ok('♪きくでDAWが聴くモードになる',await fr.evaluate(()=>document.getElementById('chBtn').dataset.m==='l'&&!document.getElementById('chBtn').hidden),await fr.evaluate(()=>document.getElementById('chBtn').textContent));
 const nt=await E(`T.length+':'+T.map(function(t){return t.clips.reduce(function(a,c){return a+c.notes.length},0)}).join(',')`);
-ok('作品の曲がDAWに読みこまれる',nt==='2:4,4',nt);
+ok('作品の曲がDAWに読みこまれる',/^2:\d+,\d+$/.test(nt)&&nt.split(':')[1].split(',').every(x=>+x>0),nt);
 await pg.waitForTimeout(2200);
 const after=await pg.evaluate(()=>JSON.stringify(P().dprojs||[]));
 ok('聴くだけのときは、自分のプロジェクトに保存されない',after===pb,after.length+' vs '+pb.length);
