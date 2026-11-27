@@ -32,7 +32,7 @@ ok(await pg.evaluate(()=>getComputedStyle($('dawf')).display!=='none'&&!zkIsOpen
 const fr=await (await pg.$('#dawf')).contentFrame();const E=c=>fr.evaluate(c=>__g(c),c);
 await pg.waitForTimeout(800);
 let r=await E(`(function(){var t=T.filter(function(t){return t.name==='王道進行'})[0];return {free:free,n:t&&t.clips[0].notes.length,l:t&&t.clips[0].l,inst:t&&t.inst||'piano'}})()`);
-ok(r.free&&r.n===12&&r.l===4,'スタジオに「王道進行」のトラック（4小節・12音）',JSON.stringify(r));
+ok(r.free&&r.n===28&&r.l===4,'スタジオに「王道進行」のトラック（4小節・28音）',JSON.stringify(r));
 await pg.screenshot({path:OUT+'/zk4_studio.png'});
 // 3) 右のブラウザ「もらった素材」
 const nb=await fr.evaluate(()=>document.querySelectorAll('#zkbl .bi').length);
@@ -68,7 +68,7 @@ ok(await C('chActive()'),'お題DAWが開く');
 const nc=await fc.evaluate(()=>document.querySelectorAll('#zkbl .bi').length);ok(nc===10,'お題DAWにも「もらった素材」10こ',nc);
 await fc.evaluate(()=>{var it=[...document.querySelectorAll('#zkbl .bi')].filter(e=>e.textContent.includes('カノンの宝箱'))[0];it.querySelector('button.ad').click()});await pg.waitForTimeout(300);
 r=await C(`(function(){var t=T[T.length-1];return {name:t.name,l:t.clips[0].l,s:t.clips[0].s,n:t.clips[0].notes.length,bars:BARS,max:Math.max.apply(null,t.clips[0].notes.map(function(n){return n.s+n.l}))}})()`);
-ok(r.name==='カノン進行'&&r.l===4&&r.s===0&&r.n===12&&r.bars===4&&r.max<=64,'お題DAWで8小節のカノンは、はじめの4小節だけ置ける',JSON.stringify(r));
+ok(r.name==='カノン進行'&&r.l===4&&r.s===0&&r.n===16&&r.bars===4&&r.max<=64,'お題DAWで8小節のカノンは、はじめの4小節だけ置ける',JSON.stringify(r));
 await fc.evaluate(()=>{var it=[...document.querySelectorAll('#zkbl .bi')].filter(e=>e.textContent.includes('8ビットの精'))[0];it.querySelector('button.ad').click()});await pg.waitForTimeout(300);
 ok(await C('T[T.length-1].inst')==='chip','お題DAWで音源「8ビット」のトラック');
 const jd=await C(`(function(){try{chJudge(CH.conds);return 'ok'}catch(e){return String(e)}})()`);ok(jd==='ok','お題の判定がエラーにならない',jd);
