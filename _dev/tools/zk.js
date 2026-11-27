@@ -17,11 +17,16 @@ async function ctx(b,init){const c=await b.newContext({viewport:{width:W,height:
 async function login(p,mode){await p.goto(URL_);await p.waitForSelector('#prof.on');await p.click(mode==='reg'?'#frg':'#flg');
  await p.fill('#nk','てすと');await p.fill('#pw','abcdef12');await p.click('#go2');await p.waitForTimeout(1500)}
 const closeDc=async p=>{await p.waitForTimeout(3600);if(await p.$('#dc.on'))await p.evaluate(()=>dcClose())};
+const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000});await p.waitForTimeout(1100);await p.click('#zkGetOk')}catch(e){}};
 (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
  // 1) 前の版で作ったアカウントの記録（図鑑の項目なし）を読みこむ
  const old={id:'p1',name:'てすと',col:'#ffc531',created:1,u:1,last:'2-4',ls:{'1-1':{d:1,n:1},'1-2':{d:1,n:1},'2-1':{d:1,n:2},'2-4':{d:1,n:1}},studio:{x:1},dw:{'D-1':1},dprojs:[],bd:{days:[],earned:{hello:5},post:{},wear:'hello',skin:'',ic:''}};
  store={v:1,nick:'てすと',profile:old};
  let p=await ctx(b);await login(p,'login');await closeDc(p);
+ await p.waitForSelector('#zkGet.on',{timeout:8000}).catch(()=>{});await p.waitForTimeout(2200);await p.screenshot({path:OUT+'/zk_get.png'});
+ ok(await p.isVisible('#zkGet .zkgbox'),'ホームで獲得の演出が出る: '+(await p.textContent('#zkGetT')));await p.click('#zkGetOk');await p.waitForTimeout(400);
+ ok(await p.evaluate(()=>Object.keys(P().bd.seen||{}).length===4),'見たカードは記録');await p.waitForTimeout(3500);ok(!await p.isVisible('#zkGet .zkgbox'),'同じカードの演出は2回出ない');
+ ok(await p.isVisible('#zkNext1'),'つぎのカードの案内: '+(await p.textContent('#zkNext1')));
  await p.screenshot({path:OUT+'/zk_home.png'});
  ok((await p.textContent('#zkBtn')).includes('4/30'),'ボタンに 4/30（初ログイン, 1-2, 2-1, 2-4）: '+await p.textContent('#zkBtn'));
  await p.click('#zkBtn');await p.waitForTimeout(250);await p.screenshot({path:OUT+'/zk_flip.png'});await p.waitForTimeout(1200);await p.screenshot({path:OUT+'/zk_book.png'});
@@ -56,10 +61,15 @@ const closeDc=async p=>{await p.waitForTimeout(3600);if(await p.$('#dc.on'))awai
  store=null;
  // 2) テスト用アカウント：登録 → レッスンをクリア → 図鑑 → サーバーへ保存 → 別の端末で読みこみ
  p=await ctx(b);await login(p,'reg');await closeDc(p);
- await p.evaluate(()=>{markDone('1-2');markDone('2-1')});await closeDc(p);
+ await closeGet(p);
+ await p.evaluate(()=>{markDone('1-2');markDone('2-1')});
+ ok(await p.waitForSelector('#zkGet.on',{timeout:8000}).then(()=>true,()=>false),'レッスンの節目で演出（ログインのカードも）');await p.waitForTimeout(1100);await p.keyboard.press('Escape');
+ // 提出の節目
+ await p.evaluate(()=>{openDawC()});await p.waitForTimeout(1500);await p.evaluate(()=>bdPost(dcJst(),6,6));
+ ok(await p.waitForSelector('#zkGet.on',{timeout:8000}).then(()=>true,()=>false),'曲の提出の直後（ホーム以外）でも演出');await p.waitForTimeout(2200);await p.screenshot({path:OUT+'/zk_get_post.png'});
+ ok((await p.textContent('#zkGetRow')).includes('4つ打ちの小箱'),'提出1回のカード');await p.click('#zkGetBook');await p.waitForTimeout(900);ok(await p.isVisible('#zk .zkbook'),'演出から図鑑へ');ok(await p.$$eval('#zk .zkc em',a=>a.length)>0,'新しいカードに NEW');await p.click('#zkX');await p.evaluate(()=>openHome(false));await closeDc(p);
  await p.screenshot({path:OUT+'/zk_acc_home.png'});
  await p.click('#zkBtn');await p.waitForTimeout(1500);await p.screenshot({path:OUT+'/zk_acc_book.png'});
- ok(await p.$$eval('#zk .zkc em',a=>a.length)>0,'新しいカードに NEW');
  await p.focus('#zk .zkc >> nth=0').catch(()=>{});await p.evaluate(()=>document.querySelector('#zk .zkc').focus());await p.keyboard.press('ArrowRight');ok(await p.evaluate(()=>document.activeElement.classList.contains('zkc')),'矢印でめくってもフォーカスが残る');
  await p.keyboard.press('Enter');await p.waitForTimeout(200);ok(await p.evaluate(()=>$('zkSp').inert===true),'詳細の間、うしろは inert');await p.setViewportSize({width:W,height:H-20});await p.waitForTimeout(300);ok(await p.isVisible('.zkd')||H<=540,'少し大きさが変わっても詳細は閉じない');await p.keyboard.press('Escape');await p.setViewportSize({width:W,height:H});
  await p.keyboard.press('Escape');await p.evaluate(()=>markDone('2-4'));await p.waitForTimeout(1200);ok(!!(store.profile.bd.cards||{})['t-kick4'],'図鑑を開かなくても、クリアした時点で保存');
@@ -67,6 +77,7 @@ const closeDc=async p=>{await p.waitForTimeout(3600);if(await p.$('#dc.on'))awai
  ok(['t-listen','t-parts','t-bpm'].every(k=>sc[k]),'サーバーに保存: '+Object.keys(sc));
  const t0=sc['t-listen'];await p.context().close();
  p=await ctx(b);await login(p,'login');await closeDc(p);
+ ok(await p.evaluate(()=>!!(P().bd.seen||{})['t-parts']),'見た記録も別の端末へ');
  const got=await p.evaluate(()=>P().bd.cards);ok(['t-listen','t-parts','t-bpm'].every(k=>got&&got[k])&&got['t-listen']===t0,'別の端末で読みこみ（もらった時刻も同じ）');
  // 古い版が bd.cards を持たない記録を送ってきても消えない
  const m=await p.evaluate(()=>bdMerge({days:[],cards:{'t-bpm':5,'t-x':9}},{days:[],cards:{'t-bpm':3}},true).cards);ok(m['t-bpm']===3&&m['t-x']===9,'合流：両方のカードが残り、早い時刻になる');

@@ -8,6 +8,8 @@ function zkCount(){return Object.keys(zkOwned()).length}
 function zkBtnUpd(){var t='📖 図鑑 '+zkCount()+'/'+ZKCARDS.length;$('zkBtn').textContent=t;$('zkBtn').setAttribute('aria-label','図鑑をひらく。集めたカードは '+ZKCARDS.length+'枚中 '+zkCount()+'枚')}
 /* 新しくもらったカードを記録して、次に図鑑を開いたとき NEW を付ける */
 function zkAuto(){try{zkEval().forEach(function(d){zkNew[d.id]=1})}catch(e){}}
+/* seen … 「もらったよ」を見せ終わったカード。まだのものがあれば、ホームで演出を出す */
+function zkSeen(ids){var p=P();if(!p||!ids.length)return;var b=bdOf(p);if(!b.seen||typeof b.seen!=='object')b.seen={};var ch=0;ids.forEach(function(id){if(!b.seen[id]){b.seen[id]=1;ch=1}});if(ch){p.u=Date.now();saveDB()}}
 function zkSnd(){try{if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();AC.resume();var t=AC.currentTime+.01,n=Math.floor(AC.sampleRate*.16),buf=AC.createBuffer(1,n,AC.sampleRate),d=buf.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.sin(Math.PI*i/n);var s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=buf;f.type='bandpass';f.frequency.value=2600;f.Q.value=.7;g.gain.value=.07;s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t)}catch(e){}}
 function zkEl(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
 function zkIcon(d){var i=zkEl('i');i.setAttribute('aria-hidden','true');i.appendChild(zkEl('span','',d.ic));return i}
@@ -59,7 +61,12 @@ function zkOpen(){if(zkIsOpen)return;zkBack=document.activeElement;
   $('zkDet').classList.remove('on');$('zk').classList.add('on');zkRender();zkFlip(5,false,true);zkBtnUpd();
   setTimeout(function(){try{$('zkT').focus()}catch(e){}},30)}
 function zkClose(){if(!zkIsOpen)return;zkIsOpen=false;zkNew={};zkBehind(false);$('zk').classList.remove('on');$('zkDet').classList.remove('on');$('zkFx').innerHTML='';zkSnd();zkBtnUpd();
-  try{var b=zkBack&&document.contains(zkBack)&&zkBack.offsetParent!==null?zkBack:$('zkBtn');b.focus()}catch(e){}}
+  zkFocusBack(zkBack)}
+/* もとの場所へフォーカスを戻す。固定表示のボタンは offsetParent が無いので、画面に出ているかは getClientRects で見る */
+function zkFocusBack(x){try{var b=x&&x!==document.body&&document.contains(x)&&x.getClientRects().length?x:null;
+  if(!b&&$('zkBtn').getClientRects().length)b=$('zkBtn');
+  if(!b&&document.body.classList.contains('dm'))b=dcIn?$('dawc'):$('dawf');
+  if(!b)return;b.focus();if(b.tagName==='IFRAME')b.contentWindow.focus()}catch(e){}}
 $('zkBtn').onclick=zkOpen;$('zkX').onclick=zkClose;
 $('zkPrev').onclick=function(){zkTurn(-1)};$('zkNext').onclick=function(){zkTurn(1)};
 $('zk').addEventListener('pointerdown',function(e){if(e.target===$('zk'))zkClose()});
@@ -72,7 +79,7 @@ window.addEventListener('resize',function(){if(!zkIsOpen||zkShape===zkShapeNow()
 (function(){var s=$('sel');if(!s)return;var b=zkEl('button','hb','📖 図鑑');b.type='button';b.id='zkBarBtn';b.onclick=zkOpen;s.parentNode.insertBefore(b,s)})();
 var _zkChip=chip;chip=function(){_zkChip.apply(this,arguments);try{zkBtnUpd()}catch(e){}};
 /* 条件を満たしたら、図鑑を開かなくてもすぐ記録する（あとで章にレッスンが増えても、もらったカードは消えない） */
-var _zkBdc=bdCheck;bdCheck=function(){if(zkIsOpen)return;_zkBdc();zkAuto()};
+var _zkBdc=bdCheck;bdCheck=function(){if(zkIsOpen||$('zkGet').classList.contains('on'))return;_zkBdc();zkAuto()};
 var _zkMd=markDone;markDone=function(id){_zkMd(id);zkAuto()};
 var _zkBp=bdPost;bdPost=function(a,b,c){var r=_zkBp(a,b,c);zkAuto();return r};
 setInterval(function(){try{if(!zkIsOpen)zkBtnUpd()}catch(e){}},3000);
