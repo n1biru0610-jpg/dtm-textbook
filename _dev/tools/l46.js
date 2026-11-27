@@ -21,6 +21,7 @@ const waitNext=async()=>{for(let w=0;w<40&&!await nextOn();w++)await p.waitForTi
 const goNext=async(n)=>{if(!await waitNext()){ng('つぎへが押せない step'+n+' '+await fr.evaluate(()=>document.getElementById('line').textContent));return false}await p.screenshot({path:OUT+'/l46_'+W+'_s'+n+'.png'});await click('#next');await p.waitForTimeout(400);return true};
 // 0：おさらい
 if(await nextOn())ng('最初から つぎへ が押せる');
+await click('#slots .sl:nth-child(2)');if(!/聴くだけ/.test(await fr.evaluate(()=>document.getElementById('hb').textContent)))ng('固定の四角の案内');
 await click('[data-k=play]');if(!await goNext(0))return fin();
 // 1：3つのリズムを聴く
 for(let k=0;k<3;k++){if(await nextOn())ng('全部聴く前に進める');await click('#pal .pi:nth-child('+(k+1)+')')}
@@ -29,11 +30,14 @@ if(!await goNext(1))return fin();
 await click('#pal .pi:nth-child(1)');await click('#slots .sl:nth-child(1)');
 await click('#pal .pi:nth-child(3)');for(let k=1;k<=4;k++)await click('#slots .sl:nth-child('+k+')');
 await click('[data-k=play]');log('step2',JSON.stringify(await st()));if(!await goNext(2))return fin();
+const ln=()=>fr.evaluate(()=>document.getElementById('line').textContent);
+if(!/ひと息/.test(await ln()))ng('ステップ3の説明が見えない: '+await ln());
 // 3：さいごだけのばす。まちがい：さいごを2回
 await click('#pal .pi:nth-child(2)');await click('#slots .sl:nth-child(4)');
 const w=await fr.evaluate(()=>document.getElementById('line').textContent);if(!/4小節めだけ/.test(w))ng('まちがいの案内が出ない');
-await click('[data-k=play]');await p.waitForTimeout(3000);if(await nextOn())ng('まちがいでも進める');
+await click('[data-k=play]');await p.waitForTimeout(11000);if(await nextOn())ng('まちがいでも進める');
 await click('#pal .pi:nth-child(1)');await click('#slots .sl:nth-child(4)');await click('[data-k=play]');if(!await goNext(3))return fin();
+if(!/はずむ」リズムがあるよ/.test(await ln()))ng('ステップ4の説明が見えない: '+await ln());
 // 4：はずむ
 if((await fr.evaluate(()=>document.querySelectorAll('#pal .pi').length))!==4)ng('はずむが出ていない');
 await click('#pal .pi:nth-child(4)');await click('#slots .sl:nth-child(2)');await click('[data-k=play]');if(!await goNext(4))return fin();

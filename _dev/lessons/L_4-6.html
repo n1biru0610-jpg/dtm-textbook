@@ -172,29 +172,31 @@ main{min-height:auto!important;flex:1 0 auto!important}
 (function(){
 var NEXT=true;
 var BARS=['1小節め','2小節め','3小節め','4小節め'];
+var ed=0; /* このステップで四角を変えたか（変えるまでは説明文を見せる） */
 var PRG=[0,2,3,1],PRN=['C','G','Am','F'];
 /* コードを鳴らすリズム（8分音符を1マスとして [はじまり, 長さ]） */
-var RP=[{n:'のばす',sub:'1回',c:'#2c64f0',p:[[0,8]]},{n:'2回',sub:'タ〜ン タ〜ン',c:'#1f9d6b',p:[[0,4],[4,4]]},{n:'4回',sub:'タン タン タン タン',c:'#e0841f',p:[[0,2],[2,2],[4,2],[6,2]]},{n:'はずむ',sub:'タン・タン・タ',c:'#8a5cf0',p:[[0,3],[3,3],[6,2]]}];
+var RP=[{n:'のばす',sub:'1回',c:'#2c64f0',p:[[0,8]]},{n:'2回',sub:'タ〜ン タ〜ン',c:'#1f9d6b',p:[[0,4],[4,4]]},{n:'4回',sub:'タン タン タン タン',c:'#e0841f',p:[[0,2],[2,2],[4,2],[6,2]]},{n:'はずむ',sub:'タ〜ン・タ〜ン・タン',c:'#8a5cf0',p:[[0,3],[3,3],[6,2]]}];
 function crh(ci,p,t){var E=BAR/8;RP[p].p.forEach(function(x){chord(ci,t+x[0]*E,x[1]*E*.92)})}
 function rsnd(i,v,t){drums(t,true);if(v>=0)crh(PRG[i],v,t)}
+function rpv(i,v,t){drums(t,true);crh(PRG[i],v,t)}
 function rlab(i){return PRN[i]}
 function rsub(i,v){return v>=0?RP[v].n:'リズム？'}
 function rcol(i,v){return v>=0?RP[v].c:'#999'}
 function full(){for(var i=0;i<4;i++)if(g[i]<0)return false;return true}
 function only(a){for(var i=0;i<4;i++)if(g[i]!==a[i])return false;return true}
 var CFG={bpm:100,steps:[
-{t:'まずはおさらい。4-3 で聴いた C → G → Am → F だよ。▶ を押して聴いてみよう。いまは、どのコードも1小節ずっと「のばして」いるよ。',pal:'chords',hidePal:1,slots:4,set:[0,2,3,1],fix:[0,1,2,3],top:BARS,btns:['play'],spot:'play',snd:function(i,v,t){drums(t,true);if(v>=0)chord(v,t,BAR*.97)},gate:function(){return played>=1}},
+{t:'まずはおさらい。4-3 で作った C → G → Am → F を、ドラムといっしょに ▶ で聴いてみよう。いまは、どのコードも1小節ずっと「のばして」いるよ。',fixMsg:'いまは聴くだけだよ。▶ を押してね',pal:'chords',hidePal:1,slots:4,set:[0,2,3,1],fix:[0,1,2,3],top:BARS,btns:['play'],spot:'play',snd:function(i,v,t){drums(t,true);if(v>=0)chord(v,t,BAR*.97)},gate:function(){return played>=1}},
 {t:'コードは、鳴らす「リズム」を変えられるんだ。下の3つのリズムを、ぜんぶ押して聴きくらべてみよう。',pal:'crhy3',slots:0,spot:'pal',gate:function(){return heard.r0&&heard.r1&&heard.r2}},
-{t:'4つの小節に、リズムを入れよう。まずは、ぜんぶ「4回」にして ▶ で聴いてみよう。',hint:'下のリズムを選んでから、上の四角を押してね',pal:'crhy3',slots:4,reset:1,top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
- warn:function(){if(full()&&!only([2,2,2,2]))return 'ぜんぶ「4回」にしてみよう。ちがう四角は、「4回」を選んでから押すと変わるよ。'},
+{slotpv:rpv,t:'4つの小節に、リズムを入れよう。まずは、ぜんぶ「4回」にして ▶ で聴いてみよう。',hint:'下のリズムを選んでから、上の四角を押してね',pal:'crhy3',slots:4,reset:1,top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
+ warn:function(){if(ed&&full()&&!only([2,2,2,2]))return 'ぜんぶ「4回」にしてみよう。「4回」になっていない四角は、下の「4回」を選んでから押すと変わるよ。'},
  gate:function(){return only([2,2,2,2])&&played>=1}},
-{t:'4回だと、ノリが出るね！ つぎは、さいごの4小節めだけ「のばす」にして ▶ で聴こう。さいごをのばすと「おわった〜」という感じが出るよ。',pal:'crhy3',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
- warn:function(){if(full()&&!only([2,2,2,0]))return '1〜3小節めは「4回」、4小節めだけ「のばす」にしよう。'},
+{slotpv:rpv,t:'4回だと、ノリが出るね！ つぎは、さいごの4小節めだけ「のばす」にして ▶ で聴こう。さいごをのばすと、ひと息つく感じが出るよ。',pal:'crhy3',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
+ warn:function(){if(ed&&full()&&!only([2,2,2,0]))return '1〜3小節めは「4回」、4小節めだけ「のばす」にしよう。'},
  gate:function(){return only([2,2,2,0])&&played>=1}},
-{t:'もう1つ、「はずむ」リズムがあるよ。「タン・タン・タ」と、少しずらして鳴らすんだ。どこか1つ以上の小節を「はずむ」にして、▶ で聴いてみよう。',pal:'crhy',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
- warn:function(){if(full()&&g.indexOf(3)<0)return '下の「はずむ」を選んでから、上の四角を1つ押してみよう。'},
+{slotpv:rpv,t:'もう1つ、「はずむ」リズムがあるよ。「タ〜ン・タ〜ン・タン」と、少しずらして鳴らすんだ。どこか1つ以上の小節を「はずむ」にして、▶ で聴いてみよう。',pal:'crhy',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play'],spot:'play',snd:rsnd,
+ warn:function(){if(ed&&full()&&g.indexOf(3)<0)return '下の「はずむ」を選んでから、上の四角を1つ押してみよう。'},
  gate:function(){return full()&&g.indexOf(3)>=0&&played>=1}},
-{t:'同じコードでも、リズムを変えるだけで雰囲気がガラッと変わるね。好きなリズムを組み合わせて、いろいろ聴いてみよう！',pal:'crhy',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play','clear'],snd:rsnd,last:1}
+{slotpv:rpv,t:'同じコードでも、リズムを変えるだけで雰囲気がガラッと変わるね。好きなリズムを組み合わせて、いろいろ聴いてみよう！',pal:'crhy',top:BARS,lab:rlab,sublab:rsub,slotc:rcol,btns:['play','clear'],snd:rsnd,last:1}
 ]};
 var ctx=null,master=null,cur=0,timers=[],played=0,heard={},brush=-1,N=0,g=[],fx=[],playing=false;
 var $=function(i){return document.getElementById(i)};
@@ -299,11 +301,11 @@ function renderSlots(){
     var ck=s.chk?s.chk(i,v):null;b.classList.toggle('good',ck==='good');b.classList.toggle('bad',ck==='bad')}
 }
 function clickSlot(i){
-  var s=S[cur];if(fx[i])return;
+  var s=S[cur];if(fx[i]){if(s.fixMsg)hb(s.fixMsg);return}
   if(s.mode==='tapplay'){stopPlay();var t=T0();if(s.tap)s.tap(i,t);heard['t'+i]=1;flash(i,BAR*2);gate();return}
   if(s.mode==='toggle'){g[i]=g[i]>=0?-1:0;if(g[i]>=0&&s.tick){s.tick(i,T0())}stopPlay();renderSlots();gate();return}
   if(brush<0){hb('先に、下のなかから選んでね');return}
-  g[i]=brush;stopPlay();var it=item(brush);if(it){var t2=T0();it.pv(t2)}if(s.chk&&s.chk(i,g[i])==='bad')wrongSnd();renderSlots();gate()
+  g[i]=brush;ed=1;played=0;stopPlay();var it=item(brush);if(it){var t2=T0();if(s.slotpv)s.slotpv(i,brush,t2);else it.pv(t2)}if(s.chk&&s.chk(i,g[i])==='bad')wrongSnd();renderSlots();gate()
 }
 function hb(x){$('hb').textContent=x||''}
 function flash(i,d){var b=$('slots').children[i];if(!b)return;b.classList.add('now');timers.push({id:setTimeout(function(){b.classList.remove('now')},d*1000)})}
@@ -314,7 +316,7 @@ function playAll(){
     if(s.snd)s.snd(i,g[i],tt);
     var id=setTimeout(function(){var sl=$('slots');Array.prototype.forEach.call(sl.children,function(b,j){b.classList.toggle('now',j===i)})},(tt-ctx.currentTime)*1000);timers.push({id:id,pl:1})})(i);
   var e=setTimeout(function(){playing=false;Array.prototype.forEach.call($('slots').children,function(b){b.classList.remove('now')});played++;gate()},(t0+N*dur-ctx.currentTime)*1000+100);timers.push({id:e,pl:1})}
-var BTN={play:{t:'▶ きく',f:function(){playAll()}},clear:{t:'けす',f:function(){for(var i=0;i<N;i++)if(!fx[i])g[i]=-1;stopPlay();renderSlots();gate()}},
+var BTN={play:{t:'▶ きく',f:function(){playAll()}},clear:{t:'けす',f:function(){ed=1;played=0;for(var i=0;i<N;i++)if(!fx[i])g[i]=-1;stopPlay();renderSlots();gate()}},
  A:{t:'A を聴く',f:function(){var s=S[cur];s.setA();heard.A=1;renderSlots();playAll();gate()}},B:{t:'B を聴く',f:function(){var s=S[cur];s.setB();heard.B=1;renderSlots();playAll();gate()}}};
 function mkBtns(l){var m=$('mbtns');m.innerHTML='';(l||[]).forEach(function(k){var b=document.createElement('button');b.className='clear';b.textContent=BTN[k].t;b.dataset.k=k;b.onclick=function(){BTN[k].f()};m.appendChild(b)})}
 var S=CFG.steps;S.forEach(function(x,i){if(x.slots===undefined&&i>0&&S[i-1].slots)x.slots=S[i-1].slots});
@@ -324,7 +326,7 @@ function gate(){var s=S[cur],ok=!s.gate||s.gate();$('next').disabled=!ok;$('next
   Array.prototype.forEach.call($('pal').children,function(b){b.classList.toggle('spot',!ok&&s.spot==='pal'&&!b.classList.contains('heard'))})}
 function show(i){
   timers.forEach(function(t){clearTimeout(t.id||t)});timers=[];stopPlay();
-  cur=i;var s=S[i];$('line').textContent=s.t;brush=-1;played=0;if(i===0||s.resetHeard)heard={};hb('');
+  cur=i;ed=0;var s=S[i];$('line').textContent=s.t;brush=-1;played=0;if(i===0||s.resetHeard)heard={};hb('');
   build();$('pal').style.display=s.hidePal?'none':'flex';mkSlots();if(s.hint)hb(s.hint);
   var n=s.slots||0;if(s.set){var a=s.set;for(var k=0;k<n;k++)g[k]=a[k]===undefined?-1:a[k]}else if(s.reset||n!==g.length){g=[];for(var k2=0;k2<n;k2++)g.push(-1)}
   fx=[];if(s.fix)s.fix.forEach(function(k){fx[k]=1});

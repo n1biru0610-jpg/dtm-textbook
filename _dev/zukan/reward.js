@@ -38,10 +38,10 @@ var _zkBp2=bdPost;bdPost=function(a,b,c){var r=_zkBp2(a,b,c);if(zkPending().leng
 /* つぎにもらえるカード。基礎編の順に進むと、あと何レッスンでもらえるか */
 function zkNextCard(){var p=P(),own=zkOwned();if(!p)return null;var nxt=resumeIdx(),done=function(i){return isDone(L[i].id)},best=null;
   ZKCARDS.forEach(function(d){if(own[d.id])return;var c=d.c,ids=null;
-    if(c.k==='lesson')ids=[c.id];else if(c.k==='chap'){var h=chObj(c.n);ids=h&&h.ids}else if(c.k==='basic')ids=L.map(function(l){return l.id});
+    if(c.k==='lesson')ids=[c.id];else if(c.k==='chap'){var h=chObj(c.n);ids=h&&rwIds(h)}else if(c.k==='basic')ids=L.map(function(l){return l.id}).filter(function(id){return NEWL.indexOf(id)<0});
     if(!ids)return;var last=-1;ids.forEach(function(id){if(!isDone(id))for(var i=0;i<L.length;i++)if(L[i].id===id)last=Math.max(last,i)});if(last<0)return;
     /* 残り＝「いまのレッスン」からその場所まで（とばして残した章内のレッスンも数える） */
-    var n=0;for(var i=0;i<=last;i++)if(!done(i)&&(i>=nxt||ids.indexOf(L[i].id)>=0))n++;
+    var n=0;for(var i=0;i<=last;i++)if(!done(i)&&(i>=nxt||ids.indexOf(L[i].id)>=0)&&(NEWL.indexOf(L[i].id)<0||ids.indexOf(L[i].id)>=0))n++;
     if(!best||n<best.n)best={d:d,n:n,text:'あと'+n+'レッスンで'}});
   if(!best&&bdAcc())ZKCARDS.forEach(function(d){if(own[d.id]||(d.c.k!=='login'&&d.c.k!=='post'))return;var g=zkProg(d.c,p),n=g.need-g.have;
     if(!best||n<best.n)best={d:d,n:n,text:d.c.k==='login'?'あと'+n+'日のログインで':'あと'+n+'回、べつの日に曲を提出すると'}});
