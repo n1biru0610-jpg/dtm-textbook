@@ -2,7 +2,11 @@
 var TSN=0,TSLAST=0,TSTOAST=false,TSSTAMPS=['👍','🎵','🌟','💪','🎉'];
 function tsHead(t){return '<div class="dh"><span>'+t+'</span><button class="dx" id="dcX">✕ とじる</button></div>'}
 function tsDt(s){try{return new Date(s).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}}
-function tsErr(e){return e&&e.s?(e.s===404||/42P01|PGRST205|relation/.test(String(e.t))?'先生の受け取り口が、まだ準備できていないよ（エラー '+e.s+'）。先生に伝えてね。':(e.s===401||e.s===403?'ログインの有効期限が切れたかも。いちどログインしなおしてね（エラー '+e.s+'）。':'うまく通信できなかったよ（エラー '+e.s+'）。')):(navigator.onLine===false?'インターネットにつながっていないみたい。つながったら、もう一度ためしてね。':'うまく通信できなかったよ。もう一度ためしてね。')}
+function tsErr(e){if(e&&e.s){var d='';try{var o=JSON.parse(e.t);d=[o.code,o.message].filter(Boolean).join(' ').slice(0,110)}catch(x){d=String(e.t||'').replace(/\s+/g,' ').slice(0,110)}
+  if(e.s===404||/42P01|PGRST205|schema cache|does not exist/.test(d))return '先生の受け取り口が、まだ準備できていないよ（エラー '+e.s+'）。先生に伝えてね。';
+  if(e.s===401||e.s===403)return 'ログインの有効期限が切れたかも。いちどログインしなおしてね（エラー '+e.s+(d?'：'+d:'')+'）。';
+  return 'うまく受けとれなかったよ（エラー '+e.s+(d?'：'+d:'')+'）。先生に、このエラーを伝えてね。'}
+ return navigator.onLine===false?'インターネットにつながっていないみたい。つながったら、もう一度ためしてね。':'うまく通信できなかったよ。もう一度ためしてね。'}
 function tsForm(d){dcBack=$('dawf');var c=$('dcc');$('dc').classList.add('on');
  if(!ACC){c.innerHTML=tsHead('🎧 先生に聴いてもらう')+'<h2 id="dcH" tabindex="-1">先生に聴いてもらう</h2><p class="ds">先生に曲を送るには、アカウントでログインしてね。（先生が、返事を ニックネームあてに かえせるよ）</p><div class="db"><button class="go" id="tsLg">ログイン／登録する</button><button id="dcBk">とじる</button></div>';
   $('dcX').onclick=dcClose;$('dcBk').onclick=dcClose;$('tsLg').onclick=function(){dcClose();openProf()};setTimeout(function(){try{$('dcH').focus()}catch(e){}},30);return}

@@ -42,10 +42,12 @@ ok('打ち込み画面もshift+ホイールで横スクロール',(await E(`$('e
 await E(`closeEd();CWZ=1`);
 // お題 → 自由なDAW
 await pg.evaluate(()=>dcStart());await pg.waitForTimeout(2500);
-const ch=await E(`({act:chActive(),bars:BARS,dc:!!(pjGet(curId)||{}).dc})`);ok('お題DAWは4小節',ch.act&&ch.bars===4,JSON.stringify(ch));
-await pg.evaluate(()=>dcOpenDaw({}));await pg.waitForTimeout(1800);
+const frc=await (await pg.$('#dawc')).contentFrame();const EC=c=>frc.evaluate(c=>__g(c),c);
+const ch=await EC(`({act:chActive(),bars:BARS,dc:!!(pjGet(curId)||{}).dc})`);ok('お題DAW（別画面）は4小節',ch.act&&ch.bars===4,JSON.stringify(ch));
+await pg.evaluate(()=>document.getElementById('mtD')&&openDaw());await pg.waitForTimeout(1200);
 const fr2=await E(`({act:chActive(),bars:BARS,dc:!!(pjGet(curId)||{}).dc,can:canPlaceAt(T[0],10,1),bar:document.getElementById('chBar').hidden})`);
-ok('お題から自由なDAWに行くと、お題の制限がなくなり4小節より先にも作れる',!fr2.act&&fr2.bars>=40&&fr2.can===true&&fr2.bar,JSON.stringify(fr2));
-ok('お題のプロジェクトは残っている',(await E(`projs.filter(function(p){return p.dc}).length`))===1);
+ok('自由なDAWは、お題の制限がなく4小節より先にも作れる',!fr2.act&&fr2.bars>=40&&fr2.can===true&&fr2.bar,JSON.stringify(fr2));
+ok('自由DAWの一覧にお題の作品は混ざらない',(await E(`projs.filter(function(p){return p.dc}).length`))===0);
+ok('お題のプロジェクトは お題のDAWに残っている',(await EC(`projs.filter(function(p){return p.dc}).length`))===1);
 ok('ページエラー0件',errs.length===0,errs.slice(0,3).join('|'));
 console.log(res.every(x=>x)?'結果：すべてOK':'結果：NG あり');await b.close()})();

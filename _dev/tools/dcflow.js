@@ -34,7 +34,7 @@ const t2=await pg.evaluate(()=>[dcTheme('2026-11-27').title,dcTheme('2026-11-27'
 ok('同じ日は同じお題・次の日は別のお題',t2[0]===t2[1]&&t2[0]!==t2[2],t2.join(' / '));
 // DAWで作る
 await pg.click('#mtC');await pg.waitForTimeout(2800);
-const fh=await pg.$('#dawf');const fr=await fh.contentFrame();
+const fh=await pg.$('#dawc');const fr=await fh.contentFrame();
 const E=c=>fr.evaluate(c=>__g(c),c);
 ok('タブを押すとDAWが直接開き、お題カードが配られる',await fr.evaluate(()=>document.getElementById('chm').classList.contains('on')));
 ok('お題ボタンが「お題 0/N」',(await fr.evaluate(()=>document.getElementById('chBtn').textContent)).includes('お題 0/'+th.conds.length),await fr.evaluate(()=>document.getElementById('chBtn').textContent));
@@ -115,11 +115,18 @@ const prj=await pg.evaluate(()=>0);const saved=await E(`projs.filter(function(p)
 await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
 const nBefore=await E(`T.reduce(function(a,t){return a+t.clips.reduce(function(b,c){return b+c.notes.length},0)},0)`);
 await fr.evaluate(()=>document.getElementById('chCont').click());await pg.waitForTimeout(700);
-const cs=await E(`({bars:BARS,act:chActive(),n:projs.length,dc:projs.filter(function(p){return p.dc}).length,name:pjGet(curId).name,notes:T.reduce(function(a,t){return a+t.clips.reduce(function(b,c){return b+c.notes.length},0)},0),barHidden:document.getElementById('chBar').hidden,guide:!!guide})`);
-ok('「制限のないDAWで続きを作る」→新しい40小節プロジェクトに曲が引き継がれ、お題の制限が外れる',cs.bars===40&&!cs.act&&cs.dc===1&&cs.n>=2&&cs.notes===nBefore&&cs.barHidden&&!cs.guide,JSON.stringify(cs));
-const cp5=await E('canPlaceAt(T[0],10,1)');ok('続きでは5小節目以降にも置ける',cp5===true,String(cp5));
-// お題の作品を開きなおして提出
-await E(`pjOpen(projs.filter(function(p){return p.dc})[0].id)`);await pg.waitForTimeout(1500);
+await pg.waitForTimeout(800);
+const fh2=await pg.$('#dawf');const fr2=await fh2.contentFrame();const E2=c=>fr2.evaluate(c=>__g(c),c);
+const cs=await E2(`({bars:BARS,act:chActive(),n:projs.length,dc:projs.filter(function(p){return p.dc}).length,name:pjGet(curId).name,notes:T.reduce(function(a,t){return a+t.clips.reduce(function(b,c){return b+c.notes.length},0)},0),barHidden:document.getElementById('chBar').hidden,guide:!!guide})`);
+const vis2=await pg.evaluate(()=>({f:getComputedStyle(document.getElementById('dawf')).display,c:getComputedStyle(document.getElementById('dawc')).display}));
+ok('「制限のないDAWで続きを作る」→自由DAW（別画面）に40小節の新プロジェクトとして曲が引き継がれる',cs.bars===40&&!cs.act&&cs.dc===0&&cs.notes===nBefore&&cs.barHidden&&!cs.guide&&/続き/.test(cs.name)&&vis2.f==='block'&&vis2.c==='none',JSON.stringify(Object.assign(cs,vis2)));
+const cp5=await E2('canPlaceAt(T[0],10,1)');ok('続きでは5小節目以降にも置ける',cp5===true,String(cp5));
+const frs=await E(`projs.filter(function(p){return p.dc}).length`);
+ok('お題のDAWには、お題の作品がそのまま残っている',frs===1,String(frs));
+// お題にもどる
+await pg.evaluate(()=>document.getElementById('mtC').click());await pg.waitForTimeout(1800);
+ok('「今日のお題」タブでお題のDAWにもどれる（自由DAWは隠れる）',await pg.evaluate(()=>getComputedStyle(document.getElementById('dawc')).display==='block'&&getComputedStyle(document.getElementById('dawf')).display==='none'&&document.getElementById('mtC').getAttribute('aria-pressed')==='true'));
+
 await fr.evaluate(()=>{const b=document.getElementById('chBtn');b.click()});await pg.waitForTimeout(400);
 const v2=await vs();ok('お題の作品を開き直すと、再び3つの選択肢が出る',v2.c&&v2.k&&v2.s,JSON.stringify(v2));
 await fr.evaluate(()=>document.getElementById('chSub').click());await pg.waitForTimeout(900);

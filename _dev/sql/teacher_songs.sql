@@ -20,14 +20,13 @@ alter table teacher_songs enable row level security;
 drop policy if exists "read own or staff teacher songs" on teacher_songs;
 create policy "read own or staff teacher songs" on teacher_songs for select using (
   user_id = auth.uid() or exists (select 1 from staff s where s.user_id = auth.uid()));
--- 送れる人：ログイン中のアカウントだけ（ゲストは送れない）。大きすぎる・長すぎるものは受けつけない。1日20曲まで
+-- 送れる人：ログイン中のアカウントだけ（ゲストは送れない）。大きすぎる・長すぎるものは受けつけない。
 drop policy if exists "post own teacher songs" on teacher_songs;
 create policy "post own teacher songs" on teacher_songs for insert with check (
   user_id = auth.uid() and auth.uid() is not null
   and char_length(nick) <= 40 and char_length(title) <= 40 and char_length(msg) <= 200
   and reply = '' and stamp = '' and replied_at is null
-  and pg_column_size(proj) < 300000
-  and (select count(*) from teacher_songs t where t.user_id = auth.uid() and t.created_at > now() - interval '1 day') < 20);
+  and pg_column_size(proj) < 300000);
 -- 返事を書けるのはスタッフだけ
 drop policy if exists "staff reply teacher songs" on teacher_songs;
 create policy "staff reply teacher songs" on teacher_songs for update
