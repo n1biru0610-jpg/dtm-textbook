@@ -77,6 +77,16 @@ await E(`(function(){T[0].clips[0].notes=[{s:0,p:0,l:1},{s:16,p:0,l:1},{s:32,p:1
 await fr.waitForTimeout?.(0);await pg.waitForTimeout(1300);
 const btn=await fr.evaluate(()=>document.getElementById('chBtn').textContent);
 const lane2=await fr.evaluate(()=>[...document.getElementById('chBar').children].filter(x=>x.classList.contains('ok')).length);ok('列の条件にもチェックが付く',lane2>=1,lane2+'個');
+{const bars=await E('BARS');const rl=await fr.evaluate(()=>document.querySelectorAll('#ruler > span').length);const sw=await fr.evaluate(()=>{const l=document.getElementById('lanes');return l.scrollWidth<=l.clientWidth+2});const cp=await E('canPlaceAt(T[0],4,1)');
+ok('お題モードは4小節だけ表示（5小節目には置けない・横スクロールなし）',bars===4&&rl===4&&sw&&cp===false,'BARS='+bars+' ルーラー'+rl+' 横スクロールなし='+sw+' 5小節目に置ける='+cp);
+await E(`CH.conds.push({t:'scale',set:[0,2,4,5,7,9,11],label:'テスト'});chUI();openEd(T[1],T[1].clips[0])`);await pg.waitForTimeout(500);
+const hl=await fr.evaluate(()=>({sc:document.querySelectorAll('.pk.sc').length,out:document.querySelectorAll('.pk.out').length,dl:document.querySelectorAll('.dl.sc,.dl.hm').length,dlo:document.querySelectorAll('.dl.out').length}));
+ok('お題のスケールが打ち込み画面でハイライトされる（スケール内の鍵盤・行／外は暗く）',hl.sc>0&&hl.out>0&&hl.dl>0&&hl.dlo>0,JSON.stringify(hl));
+await pg.screenshot({path:'dc_scale.png'});
+await E(`CH.conds.pop();chUI()`);await pg.waitForTimeout(300);
+const hl2=await fr.evaluate(()=>document.querySelectorAll('.pk.out,.pk.sc').length);
+ok('スケールの条件がないお題では、ハイライトされない',hl2===0,hl2+'個');
+await E('closeEd()');}
 ok('お題ボタンの達成数が更新される',/お題 \d+\/\d+/.test(btn)&&!/お題 0\//.test(btn),btn);
 await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
 const li=await fr.evaluate(()=>[...document.querySelectorAll('#chL li')].map(l=>l.className+':'+l.textContent));
