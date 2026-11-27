@@ -43,6 +43,9 @@ await pg.waitForTimeout(1200);await pg.screenshot({path:'dc_daw_panel.png'});
 // パネルを閉じる(Esc)
 await fr.evaluate(()=>document.getElementById('chm').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
 ok('Escでお題パネルが閉じる',!(await fr.evaluate(()=>document.getElementById('chm').classList.contains('on'))));
+const lane=await fr.evaluate(()=>{const b=document.getElementById('chBar'),m=document.getElementById('midiBtn'),p=document.getElementById('mapBtn');const rb=b.getBoundingClientRect(),rm=m.getBoundingClientRect(),rp=p.getBoundingClientRect();return {vis:!b.hidden&&rb.width>0,n:b.children.length,dy:Math.abs((rb.top+rb.height/2)-(rm.top+rm.height/2)),left:rb.right<=rm.left+1,mapOk:rp.right<=innerWidth+1&&rm.right<=innerWidth+1,txt:[...b.children].map(x=>x.textContent).join(' / ')}});
+ok('はじめたら、お題の条件が「MIDI書き出し」「マップ」と同じ列に並ぶ',lane.vis&&lane.n===th.conds.length&&lane.dy<12&&lane.left&&lane.mapOk,JSON.stringify({n:lane.n,dy:Math.round(lane.dy),left:lane.left,mapOk:lane.mapOk}));
+await pg.screenshot({path:'dc_lane.png'});
 // 判定ユニット：条件ごとに作った曲で true/false
 const unit=await E(`(function(){
  function mk(tr,b){T=tr;if(b)bpm=b}
@@ -73,6 +76,7 @@ ok('条件の判定（'+Object.keys(exp).length+'パターン）',bad.length===0
 await E(`(function(){T[0].clips[0].notes=[{s:0,p:0,l:1},{s:16,p:0,l:1},{s:32,p:1,l:1},{s:48,p:2,l:1}];addTrack('ピアノ','inst');T[1].clips.push({s:0,l:4,notes:[{s:0,p:60,l:4},{s:16,p:62,l:4},{s:32,p:64,l:4},{s:48,p:60,l:4}]});renderTracks();chUI()})()`);
 await fr.waitForTimeout?.(0);await pg.waitForTimeout(1300);
 const btn=await fr.evaluate(()=>document.getElementById('chBtn').textContent);
+const lane2=await fr.evaluate(()=>[...document.getElementById('chBar').children].filter(x=>x.classList.contains('ok')).length);ok('列の条件にもチェックが付く',lane2>=1,lane2+'個');
 ok('お題ボタンの達成数が更新される',/お題 \d+\/\d+/.test(btn)&&!/お題 0\//.test(btn),btn);
 await fr.evaluate(()=>document.getElementById('chBtn').click());await pg.waitForTimeout(300);
 const li=await fr.evaluate(()=>[...document.querySelectorAll('#chL li')].map(l=>l.className+':'+l.textContent));
