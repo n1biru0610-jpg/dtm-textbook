@@ -28,10 +28,10 @@ const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000})
  ok(await p.evaluate(()=>Object.keys(P().bd.seen||{}).length===4),'見たカードは記録');await p.waitForTimeout(3500);ok(!await p.isVisible('#zkGet .zkgbox'),'同じカードの演出は2回出ない');
  ok(await p.isVisible('#zkNext1'),'つぎのカードの案内: '+(await p.textContent('#zkNext1')));
  await p.screenshot({path:OUT+'/zk_home.png'});
- ok((await p.textContent('#zkBtn')).includes('4/30'),'ボタンに 4/30（初ログイン, 1-2, 2-1, 2-4）: '+await p.textContent('#zkBtn'));
+ ok((await p.textContent('#zkBtn')).includes('4/53'),'ボタンに 4/53（初ログイン, 1-2, 2-1, 2-4）: '+await p.textContent('#zkBtn'));
  await p.click('#zkBtn');await p.waitForTimeout(250);await p.screenshot({path:OUT+'/zk_flip.png'});await p.waitForTimeout(1200);await p.screenshot({path:OUT+'/zk_book.png'});
  ok(await p.isVisible('#zk .zkbook'),'図鑑が開く');
- ok((await p.textContent('#zkN'))==='4 / 30','枚数表示 4 / 30');
+ ok((await p.textContent('#zkN'))==='4 / 53','枚数表示 4 / 53');
  ok(await p.$$eval('#zk .zkc:not(.no)',a=>a.length)>=1,'持っているカードがある');
  ok(await p.$$eval('#zk .zkc.no',a=>a.length)>=1,'未獲得（シルエット）がある');
  const d=await p.evaluate(()=>JSON.parse(localStorage.getItem('dtm.progress.v1')).profiles.p1);
@@ -86,7 +86,7 @@ const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000})
  // 3) はじめての人（記録なし）
  p=await ctx(b);await p.goto(URL_);await p.waitForTimeout(2500);
  ok(await p.isVisible('#prof.on'),'はじめての人にはログイン画面');
- await p.evaluate(()=>{$('prof').classList.remove('on');zkOpen()});await p.waitForTimeout(900);ok((await p.textContent('#zkN'))==='0 / 30','記録なしでも開ける 0 / 30');
- await p.evaluate(()=>{zkClose();newProf('ゲスト','#ffc531');markDone('1-2');zkOpen()});await p.waitForTimeout(900);ok((await p.textContent('#zkN'))==='1 / 30','ゲストはレッスンのカードが集まる');await p.screenshot({path:OUT+'/zk_guest.png'});
+ await p.evaluate(()=>{$('prof').classList.remove('on');zkOpen()});await p.waitForTimeout(900);ok((await p.textContent('#zkN'))==='0 / 53','記録なしでも開ける 0 / 53');
+ await p.evaluate(()=>{zkClose();newProf('ゲスト','#ffc531');markDone('1-2');zkOpen()});await p.waitForTimeout(900);ok((await p.textContent('#zkN'))==='1 / 53','ゲストはレッスンのカードが集まる');await p.screenshot({path:OUT+'/zk_guest.png'});
  await p.context().close();
  console.log('ページエラー',errs.length,errs.slice(0,5));console.log(ng||errs.length?'結果：NG あり '+ng:'結果：すべてOK');await b.close()})();
