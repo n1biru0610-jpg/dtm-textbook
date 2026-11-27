@@ -125,6 +125,7 @@ footer{display:grid;grid-template-columns:1fr;gap:16px;align-items:end;padding:0
 .sl.now{transform:scale(1.07);box-shadow:0 0 0 6px var(--sun)}
 .sl.fix{cursor:default}
 .sl.good{box-shadow:0 0 0 5px #1f9d6b}.sl.bad{box-shadow:0 0 0 5px var(--red)}
+.sl.bad::after{content:"×";position:absolute;top:4px;right:10px;color:#fff;background:var(--red);border-radius:50%;width:24px;height:24px;font-size:16px;line-height:24px;text-align:center}
 .sl.good::after{content:"✓";position:absolute;top:4px;right:10px;color:#fff;background:#1f9d6b;border-radius:50%;width:24px;height:24px;font-size:16px;line-height:24px;text-align:center}
 .sl.sm{min-height:clamp(60px,12vh,100px)}
 .pal{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
@@ -201,11 +202,12 @@ var CFG={bpm:100,steps:[
  snd:function(i,v,t){drums(t,true);if(v>=0)crh(CC[i],v,t);mel(i,t)},
  warn:function(){if(ed&&!full())return 'まだ「リズム？」の四角があるよ。4つぜんぶに、リズムを入れよう。'},
  gate:function(){return full()&&played>=1}},
-{enter:function(){RR=g.slice();solo=0},t:'さいごに、ひくい音の「ベース」も入れたよ。「メロディだけ」と「伴奏つき」を聴きくらべてみよう。',fixMsg:'いまは聴くだけだよ。下のボタンを押してね',pal:'chords',hidePal:1,slots:4,set:function(){return CC.slice()},fix:[0,1,2,3],top:MTOP,
+{enter:function(){RR=g.slice();solo=0},t:'さいごに、ひくい音の「ベース」と「ドラム」も入れたよ（ベースは5章でくわしくやるよ）。「メロディだけ」と「伴奏つき」を聴きくらべてみよう。',fixMsg:'いまは聴くだけだよ。下のボタンを押してね',pal:'chords',hidePal:1,slots:4,set:function(){return CC.slice()},fix:[0,1,2,3],top:MTOP,
  lab:function(i,v){return CH[v].n},sublab:function(i){return RP[rr(i)].n},slotc:function(i,v){return CH[v].c},btns:['mo','ba'],spot:function(){return heard.mo?'ba':'mo'},
  snd:function(i,v,t){if(solo){mel(i,t)}else band(i,v,t)},gate:function(){return heard.mo&&heard.ba}},
 {t:'伴奏があると、ぐっと曲らしくなるね！ これで、メロディに伴奏をつけられるようになったよ。コードを入れかえて、いろいろ聴いてみよう。',pal:'chords',slots:4,set:function(){return CC.slice()},top:MTOP,
- lab:function(i,v){return v>=0?CH[v].n:''},sublab:function(i){return RP[rr(i)].n},btns:['play','clear'],
+ lab:function(i,v){return v>=0?CH[v].n:''},sublab:function(i,v){return v>=0?RP[rr(i)].n:''},btns:['play','clear'],
+ chk:function(i,v){if(v<0)return null;return fits(i,v)?'good':'bad'},
  slotpv:function(i,v,t){crh(v,rr(i),t);mel(i,t)},snd:band,last:1}
 ]};
 var ctx=null,master=null,cur=0,timers=[],played=0,heard={},brush=-1,N=0,g=[],fx=[],playing=false;
@@ -305,7 +307,7 @@ function renderSlots(){
   for(var i=0;i<N;i++){var b=sl.children[i],v=g[i],it=item(v);
     b.classList.toggle('on',s.mode==='toggle'?v>=0:!!it);b.classList.toggle('dnd',!!(s.dnd&&it));b.classList.toggle('fix',!!(fx[i]));
     var lab=s.lab?s.lab(i,v):(it?it.n:'');var sub=s.sublab?s.sublab(i,v):(it?it.sub:'');
-    b.children[0].textContent=lab||(s.mode==='toggle'?'':'？');b.children[1].textContent=sub||'';b.setAttribute('aria-label',(i+1)+'ばんめ：'+(s.mode==='toggle'?(v>=0?'オン':'オフ'):(lab||'まだ空いているよ'))+(sub?'（'+sub+'）':''));
+    b.children[0].textContent=lab||(s.mode==='toggle'?'':'？');b.children[1].textContent=sub||'';b.setAttribute('aria-label',(i+1)+'ばんめ：'+(s.mode==='toggle'?(v>=0?'オン':'オフ'):(lab||'まだ空いているよ'))+(sub?'（'+sub+'）':'')+(s.chk?(s.chk(i,v)==='good'?'、ぴったり':s.chk(i,v)==='bad'?'、ちがうよ':''):''));
     var col=s.slotc?s.slotc(i,v):(it?it.c:'#999');b.style.setProperty('--c',col);b.classList.toggle('tg',col==='#e0841f'||col==='#ffc531');
     var ck=s.chk?s.chk(i,v):null;b.classList.toggle('good',ck==='good');b.classList.toggle('bad',ck==='bad')}
 }

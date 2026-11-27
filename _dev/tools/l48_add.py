@@ -14,6 +14,8 @@ def build():
     R('<title>4-3 コードをならべよう</title>', '<title>4-8 コードを完成させよう</title>')
     # スマホ横：上の文字（メロディの音）が、親ページの「ホーム／スタジオ／図鑑」のボタンにかくれないように、見出しの高さをとる
     R("main{min-height:auto!important;flex:1 0 auto!important}\n</style>", "main{min-height:auto!important;flex:1 0 auto!important}\n@media (max-height:500px) and (orientation:landscape) and (pointer:coarse){header{min-height:42px!important}}\n</style>")
+    R('.sl.good::after{', '.sl.bad::after{content:"×";position:absolute;top:4px;right:10px;color:#fff;background:var(--red);border-radius:50%;width:24px;height:24px;font-size:16px;line-height:24px;text-align:center}\n.sl.good::after{')
+    R("(lab||'まだ空いているよ'))+(sub?'（'+sub+'）':''));", "(lab||'まだ空いているよ'))+(sub?'（'+sub+'）':'')+(s.chk?(s.chk(i,v)==='good'?'、ぴったり':s.chk(i,v)==='bad'?'、ちがうよ':''):''));")
     R('<header><b>4-3</b>　コードをならべよう</header>', '<header><b>4-8</b>　コードを完成させよう</header>')
     i = h.index('var CFG={bpm:100,steps:['); j = h.index('var ctx=null')
     steps = r'''var ed=0; /* このステップで四角を変えたか（変えるまでは説明文を見せる） */
@@ -45,11 +47,12 @@ var CFG={bpm:100,steps:[
  snd:function(i,v,t){drums(t,true);if(v>=0)crh(CC[i],v,t);mel(i,t)},
  warn:function(){if(ed&&!full())return 'まだ「リズム？」の四角があるよ。4つぜんぶに、リズムを入れよう。'},
  gate:function(){return full()&&played>=1}},
-{enter:function(){RR=g.slice();solo=0},t:'さいごに、ひくい音の「ベース」も入れたよ。「メロディだけ」と「伴奏つき」を聴きくらべてみよう。',fixMsg:'いまは聴くだけだよ。下のボタンを押してね',pal:'chords',hidePal:1,slots:4,set:function(){return CC.slice()},fix:[0,1,2,3],top:MTOP,
+{enter:function(){RR=g.slice();solo=0},t:'さいごに、ひくい音の「ベース」と「ドラム」も入れたよ（ベースは5章でくわしくやるよ）。「メロディだけ」と「伴奏つき」を聴きくらべてみよう。',fixMsg:'いまは聴くだけだよ。下のボタンを押してね',pal:'chords',hidePal:1,slots:4,set:function(){return CC.slice()},fix:[0,1,2,3],top:MTOP,
  lab:function(i,v){return CH[v].n},sublab:function(i){return RP[rr(i)].n},slotc:function(i,v){return CH[v].c},btns:['mo','ba'],spot:function(){return heard.mo?'ba':'mo'},
  snd:function(i,v,t){if(solo){mel(i,t)}else band(i,v,t)},gate:function(){return heard.mo&&heard.ba}},
 {t:'伴奏があると、ぐっと曲らしくなるね！ これで、メロディに伴奏をつけられるようになったよ。コードを入れかえて、いろいろ聴いてみよう。',pal:'chords',slots:4,set:function(){return CC.slice()},top:MTOP,
- lab:function(i,v){return v>=0?CH[v].n:''},sublab:function(i){return RP[rr(i)].n},btns:['play','clear'],
+ lab:function(i,v){return v>=0?CH[v].n:''},sublab:function(i,v){return v>=0?RP[rr(i)].n:''},btns:['play','clear'],
+ chk:function(i,v){if(v<0)return null;return fits(i,v)?'good':'bad'},
  slotpv:function(i,v,t){crh(v,rr(i),t);mel(i,t)},snd:band,last:1}
 ]};
 '''
