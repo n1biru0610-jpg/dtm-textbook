@@ -12,7 +12,8 @@ fr.on('pageerror',e=>errs.push('daw: '+e.message));
 await E("$('dfree').click()");await pg.waitForTimeout(800);
 ok((await E("TACB")).endsWith('/tac/')&&!(await E("TACB")).includes('preview'),'素材の場所: '+await E("TACB"));
 // 録音の楽器の欄を開いて、アップライトピアノを「＋ 追加」（実際のクリック）
-const hd=await fr.$('text=録音の楽器');ok(!!hd,'ブラウザに「録音の楽器」がある');if(hd){await hd.click();await pg.waitForTimeout(400)}
+ok(!(await fr.$('text=録音の楽器')),'「録音の楽器」の欄はなく、インストゥルメントにまとまっている');
+const brw=await E("$('brw').textContent");ok(brw.includes('アップライトピアノ')&&brw.includes('けんばん')&&!brw.includes('シンセ・リード')&&!brw.includes('ドラム（アコースティック）'),'インストゥルメントは TAC の楽器だけ（前のシンセは出ない）');
 await pg.screenshot({path:'/tmp/nmt/out/tac1.png'});
 const n0=await E("T.length");
 const add=await fr.evaluateHandle(()=>{var it=[...document.querySelectorAll('#brw *')].filter(e=>e.children.length&&/アップライトピアノ/.test(e.textContent)&&e.querySelectorAll('button').length>=2&&e.textContent.length<80)[0];return it&&[...it.querySelectorAll('button')].filter(x=>/追加/.test(x.textContent))[0]});
@@ -41,6 +42,19 @@ for(const p of [1,2,3,4,5,6,7,8,10,14,15]){const v=await peak("drumHit("+p+",ctx
 // 再生（ピアノのクリップに音を入れて ▶）
 await E("var t=T.filter(function(x){return x.inst==='tac:UprightKW'})[0];t.clips=[{s:0,l:1,notes:[{s:0,p:60,l:4},{s:4,p:64,l:4,v:.4},{s:8,p:67,l:4}]}];renderTracks()");
 const pPlay=await peak("$('play').click()",900);await E("if(playing)$('play').click()");ok(pPlay>0.02,'▶で再生すると鳴る（'+pPlay.toFixed(3)+'）');
+// ＋ボタンで作ったトラックの最初の音
+await E("addTrack('メロディ','inst');addTrack('ドラム','drum')");ok(await E("T[T.length-2].inst")==='tac:UprightKW'&&await E("T[T.length-1].tk")===0,'＋で作るトラックは、アップライトピアノ／DISTKIT');
+await E("T.splice(T.length-2,2);renderTracks()");
+// お題の「楽器」の条件は種類で判定
+ok(await E("tacFam('tac:ConcertHarp')==='pluck'&&tacFam('tac:FingerBassYR')==='bass'&&tacFam('pad')==='pad'&&tacFam(undefined)==='piano'"),'楽器の種類（お題の判定用）');
+// 前の音の曲：音色の欄に「前の音」として残る
+await E("addTrack('むかし','inst');T[T.length-1].inst='lead';sel=T.length-1;renderTracks();inspSound()");await pg.waitForTimeout(300);
+const op=await E("(function(){var s=document.querySelector('#isI');return s?[].map.call(s.options,function(o){return o.textContent}).join('|')+' ='+s.value:'none'})()");
+ok(op.includes('シンセ・リード（前の音）')&&op.includes('アップライトピアノ')&&!op.includes('ベル（')&&op.endsWith('=lead'),'前の音の曲は、音色の欄に「前の音」として残る');
+await E("addTrack('むかしドラム','drum');T[T.length-1].kit=1;delete T[T.length-1].tk;sel=T.length-1;renderTracks();inspSound()");await pg.waitForTimeout(300);
+const ok2=await E("(function(){var s=document.querySelector('#isK');return s?[].map.call(s.options,function(o){return o.textContent}).join('|')+' ='+s.value:'none'})()");
+ok(ok2.includes('エレクトロ（前の音）')&&!ok2.includes('アコースティック')&&ok2.includes('DISTKIT')&&ok2.endsWith('=1'),'前のキットも「前の音」として残る: '+ok2);
+await E("T.splice(T.length-2,2);renderTracks()");
 // 保存（プロジェクト）に音源が残る
 ok(await E("JSON.stringify(T).indexOf('tac:UprightKW')>=0&&JSON.stringify(T).indexOf('\"tk\":0')>=0"),'プロジェクトに音源が記録される');
 ok(await E("JSON.stringify(chClean(T)).indexOf('tac:UprightKW')>=0&&JSON.stringify(chClean(T)).indexOf('\"tk\":0')>=0"),'お題の提出データにも音源が残る');
