@@ -48,7 +48,7 @@ await E("$('escroll').scrollLeft=cw*16");await pg.waitForTimeout(200);await tapC
 ok('横にスクロールして2小節めにも置ける',await E("T["+di+"].clips[0].notes.some(function(n){return n.s===16&&n.p===0})"));
 await click('#ecl');s=await st();ok('✕ で打ち込み画面を閉じる',!s.open);
 // 5. ブラウザの「＋追加」でピアノのトラック
-const n1=s.T.length;if(!(await R('#brw .bi .ad'))){await click('#tabBr');await pg.waitForTimeout(400)}await E("(function(){var b=Array.prototype.filter.call(document.querySelectorAll('#brw .bi'),function(x){return x.getClientRects().length&&/^🎹 ?ピアノ/.test(x.textContent.trim())})[0];if(b)b.querySelector('.ad').setAttribute('data-t','1')})()");await click('#brw .bi .ad[data-t]');await pg.waitForTimeout(400);ok('重ねて開いた楽器ブラウザは、＋追加のあと自動で閉じる',!(await E("document.body.classList.contains('brOpen')")));s=await st();ok('楽器ブラウザの「＋追加」でトラックが増える',s.T.length===n1+1,JSON.stringify(s.T[s.T.length-1]));
+const n1=s.T.length;if(!(await R('#brw .bi .ad'))){await click('#tabBr');await pg.waitForTimeout(400)}await E("(function(){var b=Array.prototype.filter.call(document.querySelectorAll('#brw .bi'),function(x){return x.getClientRects().length&&/アップライトピアノ/.test(x.textContent.trim())})[0];if(b)b.querySelector('.ad').setAttribute('data-t','1')})()");await click('#brw .bi .ad[data-t]');await pg.waitForTimeout(400);ok('重ねて開いた楽器ブラウザは、＋追加のあと自動で閉じる',!(await E("document.body.classList.contains('brOpen')")));s=await st();ok('楽器ブラウザの「＋追加」でトラックが増える',s.T.length===n1+1,JSON.stringify(s.T[s.T.length-1]));
 const pi=s.T.length-1;
 // 6. 鉛筆でクリップ → 開いて鉛筆でメロディ
 await click('#toolPen');L=await lane(pi);
