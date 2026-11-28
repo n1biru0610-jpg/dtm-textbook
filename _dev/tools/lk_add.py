@@ -21,7 +21,7 @@ function dcLkTap(b){var m=$('dcMs');if(!ACC){if(m)m.textContent='スタンプは
 CSS="#dc .dg li{flex-wrap:wrap}#dc .dg .lk{flex-basis:100%;display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 2px}#dc .dg .lk[hidden]{display:none}#dc .dg .lk button{background:#f3effc;color:#3b2f6b;border:2px solid #e3dcf5;padding:3px 10px;font-size:15px;min-height:36px;min-width:52px}#dc .dg .lk button i{font-style:normal;margin-left:4px;font-size:13px}#dc .dg .lk button.on{background:#ffe9a8;border-color:#e0a400;color:#2a2100}#dc .dg .lk button:focus-visible{outline:3px solid #5b4fd6;outline-offset:2px}"
 R=[("ol.appendChild(li)})}).catch(function(e){if(!$('dcMs'))return;","dcLkRow(li,e.id);ol.appendChild(li)});dcLkLoad(L.map(function(e){return e.id}))}).catch(function(e){if(!$('dcMs'))return;"),
    ("function dcListen(",JS+"function dcListen("),
-   ("#dc .dg{max-height:36vh}","#dc .dg{max-height:36vh}"+CSS),
+   ("#dc .dg li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #e3dcf5;border-radius:12px;padding:6px 10px;font-size:15px}","#dc .dg li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #e3dcf5;border-radius:12px;padding:6px 10px;font-size:15px}"+CSS),
    ("L.length+'人の作品があるよ。「♪きく」でDAWにひらけるよ（きくだけで、保存はされないよ）。'","L.length+'人の作品があるよ。「♪きく」でDAWにひらけるよ（きくだけで、保存はされないよ）。気に入ったら👍などのスタンプをおしてね。'")]
 for f in FILES:
     s=open(f,encoding='utf8').read()

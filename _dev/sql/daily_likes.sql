@@ -5,6 +5,7 @@ create table if not exists daily_likes (
   user_id uuid not null default auth.uid(),
   stamp smallint not null check (stamp between 0 and 3),
   created_at timestamptz not null default now(),
+  nick text not null default '' check (char_length(nick) <= 40),
   primary key (entry_id, user_id, stamp)
 );
 alter table daily_likes enable row level security;

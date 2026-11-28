@@ -271,3 +271,10 @@
 
 ## 手作業の変更（2026-11-28 19:08 JST・preview のみ）
 - v1.36.0（本番反映済み 19:1x・SW dtm-v16）：デイリー「みんなの作品」にスタンプ（👍❤️🎉🎵）。ログインした人だけ押せる・もう一度で取り消し。`_dev/tools/lk_add.py`（本番は `python3 _dev/tools/lk_add.py index.html`）、テスト `_dev/tools/lk.js`。**いぶきさんが `_dev/sql/daily_likes.sql` を Supabase で実行する必要あり**（未実行のあいだはスタンプ欄を出さない）。本番反映は「本番に」待ち。
+
+## 手作業の変更（2026-11-28 19:33 JST・preview のみ）
+- v1.37.0（preview）：
+  - スタンプ欄の見た目が PC で効いていなかった（CSS をスマホ用の @media の中に入れていた）→ 全体の CSS へ移動。`lk_add.py` も修正済み。
+  - スタンプをもらったら通知（ログイン時・ログイン中は45秒ごと）。`_dev/tools/lkn_add.py`、テスト `_dev/tools/lkn.js`。押した人の名前を出すには `_dev/sql/daily_likes_nick.sql` の実行が必要（なくても「みんなから」で動く）。
+  - 作品を「きく」DAW・お題DAWの「マップ」でDAW編のマップに迷いこみ、ホームに戻れなかった → 「🏠 ホーム」ボタンに。`_dev/tools/hm_fix.py`。
+  - 本番へは `python3 _dev/tools/hm_fix.py index.html && python3 _dev/tools/lkn_add.py index.html`（lk_add.py は本番に適用済みなので CSS 位置の修正を手で行うこと）。
