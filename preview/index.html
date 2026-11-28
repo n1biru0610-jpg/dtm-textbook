@@ -860,7 +860,7 @@ function merge(r){if(!r||r.version!==1||!r.profiles)return;
     for(var k in rp.ls){var a=lp.ls[k],b=rp.ls[k];if(!a)lp.ls[k]=b;else{if(b.d&&!a.d){a.d=1;a.at=b.at}a.n=Math.max(a.n||0,b.n||0)}}
     if(rp.bd)lp.bd=bdMerge(lp.bd,rp.bd,(rp.u||0)>(lp.u||0));
     if((rp.su||0)>(lp.su||0)){lp.studio=rp.studio;lp.su=rp.su}
-    if((rp.u||0)>(lp.u||0)){lp.name=rp.name;if(rp.dn!==undefined)lp.dn=rp.dn;lp.col=rp.col;lp.last=rp.last;lp.u=rp.u;['st','dprojs','dcur','cprojs','ccur','dw','dr','rh','mel','mode'].forEach(function(k){if(rp[k]!==undefined)lp[k]=rp[k]})}}
+    if(rp.upd)lp.upd=rp.upd;if(rp.lkSeen&&(!lp.lkSeen||rp.lkSeen>lp.lkSeen))lp.lkSeen=rp.lkSeen;if((rp.u||0)>(lp.u||0)){lp.name=rp.name;if(rp.dn!==undefined)lp.dn=rp.dn;lp.col=rp.col;lp.last=rp.last;lp.u=rp.u;['st','dprojs','dcur','cprojs','ccur','dw','dr','rh','mel','mode'].forEach(function(k){if(rp[k]!==undefined)lp[k]=rp[k]})}}
   if(!DB.active||!DB.profiles[DB.active])DB.active=(r.active&&DB.profiles[r.active])?r.active:Object.keys(DB.profiles)[0]||null}
 /* ---------- アカウント連携（claude.ai にログイン中なら同期） ---------- */
 var CLOUD=null,sync='local',pt=null;
@@ -978,7 +978,7 @@ var UKL='<style id="ukl">:root:root{--bg:#0a0714;--panel:#1a1433;--ink:#f6f1ff;-
 var Y2L='<style id="y2l">:root:root{--bg:#d7ecff;--panel:#fff;--ink:#0b1020;--sub:#3b4d6e;--blue:#ff2e93;--sun:#ffe600;--line:#0b1020;--red:#e0245e}html,body{background:linear-gradient(180deg,#9fd2ff,#dff0ff 60%,#bff7ef)!important;color:#0b1020;font-weight:700}</style>';
 var THEMES=['y2k','uk','classic'],THN={y2k:'Y2Kフライヤー',uk:'ナイトUKG',classic:'クラシック'},theme='classic';try{var tv=localStorage.getItem('dtm-theme');if(0&&THEMES.indexOf(tv)>=0)theme=tv}catch(e){}
 var DARKV=':root{--bg:#0f1c2a;--panel:#182a3d;--ink:#eaf2f8;--sub:#9db3c6;--blue:#6e9bff;--sun:#ffc531;--line:#2b4259}';
-var APP_VER='1.39.0',APP_BUILD='2026.11.28 20:24';
+var APP_VER='1.40.0',APP_BUILD='2026.11.28 20:45';
 function modeGet(){var p=null;try{p=P()}catch(e){}if(p&&p.mode)return p.mode;try{return localStorage.getItem('dtm-mode')||'auto'}catch(e){return 'auto'}}
 function modeApply(){var m=modeGet();document.documentElement.setAttribute('data-mode',m);try{var d=f.contentDocument;if(d&&d.documentElement&&d.head){var r=d.documentElement;if(m==='light')r.setAttribute('data-theme','light');else r.removeAttribute('data-theme');var st=d.getElementById('__dm');if(m==='dark'){if(!st){st=d.createElement('style');st.id='__dm';st.textContent=DARKV;d.head.appendChild(st)}}else if(st)st.remove()}}catch(e){}
   Array.prototype.forEach.call(document.querySelectorAll('#setSg button'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
@@ -1386,6 +1386,28 @@ function bdCheck(){var p=bdAcc(),today=dcJst();
  bdDay=key;var b=bdOf(p),first=b.days.indexOf(today)<0;
  if(first){b.days.push(today);b.days.sort();if(b.days.length>400)b.days=b.days.slice(-400);p.u=Date.now();saveDB()}
  var nw=bdEval();if(first){bdWelcome(p,nw)}else if(nw.length)bdNote(nw);bdHL()}
+var UPD_ID='2026-11-tac',UPD_HEAD='🎉 アップデートのお知らせ',UPD_TITLE='本物の楽器の音が 40こ ふえたよ！',
+ UPD_HTML='<p class="ds">スタジオと「今日のお題」のDAWで、録音した <b>本物の楽器の音</b> が使えるようになったよ。ぜんぶで <b>楽器35こ ＋ ドラム5キット</b>。</p>'
+ +'<div class="bdnew"><ul>'
+ +'<li><i>🎹</i><span><b>けんばん</b><small>ピアノ・エレピ・チェンバロ・オルガン</small></span></li>'
+ +'<li><i>🎻</i><span><b>弦の楽器</b><small>バイオリン・ビオラ・チェロ・コントラバス（はじく音・はねる音も）</small></span></li>'
+ +'<li><i>🎸</i><span><b>ギター・ベース</b><small>アコギ・エレキ・クラシックギター・ウクレレ・ハープ・エレキベース</small></span></li>'
+ +'<li><i>🎺</i><span><b>管楽器</b><small>サックス・トランペット・ホルン・トロンボーン・フルート・クラリネット・オーボエ・ファゴット・ハーモニカ</small></span></li>'
+ +'<li><i>🔔</i><span><b>たたく鍵盤</b><small>グロッケン・ビブラフォン・マリンバ</small></span></li>'
+ +'<li><i>🥁</i><span><b>ドラム</b><small>キットが5つ（12このパッド）</small></span></li></ul></div>'
+ +'<p class="ds">DAWの右の「インストゥルメント」から、▶ で聴いて「＋ 追加」で使えるよ。前につくった曲は、前の音のままだよ。</p>';
+function updSeen(){var p=bdAcc();if(p)return p.upd===UPD_ID;try{return localStorage.getItem('dtm-upd')===UPD_ID}catch(e){return true}}
+function updMark(){var p=bdAcc();if(p){p.upd=UPD_ID;p.u=Date.now();saveDB();pushAcc()}else{try{localStorage.setItem('dtm-upd',UPD_ID)}catch(e){}}}
+function updCheck(){if(updCheck.done||!homeOn)return;if(ACC&&(!bdSync||!bdAcc()))return;if(ACC){updCheck.t0=updCheck.t0||Date.now();if(String(bdDay).indexOf(dcJst())!==0&&Date.now()-updCheck.t0<20000)return}
+  if(['dc','zkGet','prof','sideDlg'].some(function(i){var e=$(i);return e&&e.classList.contains('on')}))return;
+  if(updSeen()){updCheck.done=1;return}updCheck.done=1;updMark();updShow()}
+function updShow(){var c=$('dcc');dcBack=$('home');
+  c.innerHTML='<div class="dh"><span>'+UPD_HEAD+'</span><button class="dx" id="dcX">✕ とじる</button></div><h2 id="dcH" tabindex="-1">'+UPD_TITLE+'</h2>'+UPD_HTML
+   +'<div class="db"><button id="updGo" class="pri">🎛 スタジオでためす</button><button id="updLater">あとで</button></div>';
+  $('dc').classList.add('on');$('dcX').onclick=dcClose;$('updLater').onclick=dcClose;
+  $('updGo').onclick=function(){dcClose();try{openStudio()}catch(e){}};try{sfx('ok')}catch(e){}
+  setTimeout(function(){try{$('dcH').focus()}catch(e){}},30)}
+setInterval(updCheck,2000);
 function bdWelcome(p,nw){var b=bdOf(p),c=$('dcc'),today=dcJst(),th=dcTheme(today),n=b.days.length,i,st='';dcBack=$('home');
  for(i=6;i>=0;i--){var dd=dcJst(new Date(Date.now()-i*86400000));st+='<li class="'+(b.days.indexOf(dd)>=0?'on':'')+(i===0?' today':'')+'"><small>'+dcEsc(dcMd(dd).replace(/（.*$/,''))+'</small><b>'+(b.days.indexOf(dd)>=0?'✔':'・')+'</b></li>'}
  var nsk=bdSkNew(n,nw),nic=bdIcNew(n,nw);var nx=bdDefs().filter(function(d){return d.g==='login'&&!b.earned[d.id]})[0],nxt=nx?'つぎの称号『'+nx.ic+' '+nx.n+'』まで、あと '+(nx.need-n)+'日':'ログインの称号は ぜんぶ そろったよ！';
