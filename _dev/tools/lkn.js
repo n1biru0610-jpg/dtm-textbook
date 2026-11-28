@@ -9,7 +9,7 @@ const NOTE=[{stamp:0,created_at:'2026-11-28T10:00:00+00:00',nick:'あおい',dai
 await c.route(/googleapis|gstatic/,r=>r.abort());const hd={'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'*'};
 await c.route(/supabase\.co/,async r=>{const u=decodeURIComponent(r.request().url()),m=r.request().method();const j=(o,s=200)=>r.fulfill({status:s,contentType:'application/json',headers:hd,body:JSON.stringify(o)});if(m==='OPTIONS')return j({});
  if(/auth\/v1/.test(u))return j({access_token:'t',refresh_token:'r',expires_in:3600,user:{id:'me'}});
- if(/progress/.test(u)){if(m==='POST'){store=JSON.parse(r.request().postData()).data;return r.fulfill({status:201,headers:hd,body:''})}return j([{data:store||{v:1,nick:'てすと',profile:{id:'p1',name:'てすと',col:'#ffc531',created:1,u:1,ls:{}}}}])}
+ if(/progress/.test(u)){if(m==='POST'){store=JSON.parse(r.request().postData()).data;return r.fulfill({status:201,headers:hd,body:''})}return j([{data:store||{v:1,nick:'てすと',profile:{id:'p1',name:'てすと',col:'#ffc531',created:1,u:1,ls:{},upd:'2026-11-tac'}}}])}
  if(/daily_entries/.test(u)&&!/daily_likes/.test(u))return j([{id:E1,created_at:'x',nick:'てすと',ok:3,total:3,bpm:100}]);
  if(/daily_likes/.test(u)){
    if(m==='POST'){const bd=JSON.parse(r.request().postData());if(NONICK&&'nick' in bd)return j({message:'Could not find the \'nick\' column'},400);posts.push(bd);return r.fulfill({status:201,headers:hd,body:''})}

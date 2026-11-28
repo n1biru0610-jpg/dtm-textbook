@@ -16,7 +16,7 @@ async function ctx(b,init){const c=await b.newContext({viewport:{width:W,height:
  const p=await c.newPage();p.on('pageerror',e=>errs.push(e.message));return p}
 async function login(p,mode){await p.goto(URL_);await p.waitForSelector('#prof.on');await p.click(mode==='reg'?'#frg':'#flg');
  await p.fill('#nk','てすと');await p.fill('#pw','abcdef12');await p.click('#go2');await p.waitForTimeout(1500)}
-const closeDc=async p=>{await p.waitForTimeout(3600);if(await p.$('#dc.on'))await p.evaluate(()=>dcClose())};
+const closeDc=async p=>{await p.waitForTimeout(3600);for(let i=0;i<3;i++){if(await p.$('#dc.on'))await p.evaluate(()=>dcClose());if(i<2)await p.waitForTimeout(2300)}}; // アップデートのお知らせも閉じる
 const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000});await p.waitForTimeout(1100);await p.click('#zkGetOk')}catch(e){}};
 (async()=>{const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
  // 1) 前の版で作ったアカウントの記録（図鑑の項目なし）を読みこむ
@@ -29,7 +29,7 @@ const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000})
  ok(await p.isVisible('#zkNext1'),'つぎのカードの案内: '+(await p.textContent('#zkNext1')));
  await p.screenshot({path:OUT+'/zk_home.png'});
  ok((await p.textContent('#zkBtn')).includes('4/53'),'ボタンに 4/53（初ログイン, 1-2, 2-1, 2-4）: '+await p.textContent('#zkBtn'));
- await p.click('#zkBtn');await p.waitForTimeout(250);await p.screenshot({path:OUT+'/zk_flip.png'});await p.waitForTimeout(1200);await p.screenshot({path:OUT+'/zk_book.png'});
+ await p.waitForTimeout(2300);await p.evaluate(()=>{try{if(document.getElementById('updGo'))dcClose()}catch(e){}});await p.click('#zkBtn');await p.waitForTimeout(250);await p.screenshot({path:OUT+'/zk_flip.png'});await p.waitForTimeout(1200);await p.screenshot({path:OUT+'/zk_book.png'});
  ok(await p.isVisible('#zk .zkbook'),'図鑑が開く');
  ok((await p.textContent('#zkN'))==='4 / 53','枚数表示 4 / 53');
  ok(await p.$$eval('#zk .zkc:not(.no)',a=>a.length)>=1,'持っているカードがある');
@@ -69,7 +69,7 @@ const closeGet=async p=>{try{await p.waitForSelector('#zkGet.on',{timeout:6000})
  ok(await p.waitForSelector('#zkGet.on',{timeout:8000}).then(()=>true,()=>false),'曲の提出の直後（ホーム以外）でも演出');await p.waitForTimeout(2200);await p.screenshot({path:OUT+'/zk_get_post.png'});
  ok((await p.textContent('#zkGetRow')).includes('4つ打ちの小箱'),'提出1回のカード');await p.click('#zkGetBook');await p.waitForTimeout(900);ok(await p.isVisible('#zk .zkbook'),'演出から図鑑へ');ok(await p.$$eval('#zk .zkc em',a=>a.length)>0,'新しいカードに NEW');await p.click('#zkX');await p.evaluate(()=>openHome(false));await closeDc(p);
  await p.screenshot({path:OUT+'/zk_acc_home.png'});
- await p.click('#zkBtn');await p.waitForTimeout(1500);await p.screenshot({path:OUT+'/zk_acc_book.png'});
+ await p.waitForTimeout(2300);await p.evaluate(()=>{try{if(document.getElementById('updGo'))dcClose()}catch(e){}});await p.click('#zkBtn');await p.waitForTimeout(1500);await p.screenshot({path:OUT+'/zk_acc_book.png'});
  await p.focus('#zk .zkc >> nth=0').catch(()=>{});await p.evaluate(()=>document.querySelector('#zk .zkc').focus());await p.keyboard.press('ArrowRight');ok(await p.evaluate(()=>document.activeElement.classList.contains('zkc')),'矢印でめくってもフォーカスが残る');
  await p.keyboard.press('Enter');await p.waitForTimeout(200);ok(await p.evaluate(()=>$('zkSp').inert===true),'詳細の間、うしろは inert');await p.setViewportSize({width:W,height:H-20});await p.waitForTimeout(300);ok(await p.isVisible('.zkd')||H<=540,'少し大きさが変わっても詳細は閉じない');await p.keyboard.press('Escape');await p.setViewportSize({width:W,height:H});
  await p.keyboard.press('Escape');await p.evaluate(()=>markDone('2-4'));await p.waitForTimeout(1200);ok(!!(store.profile.bd.cards||{})['t-kick4'],'図鑑を開かなくても、クリアした時点で保存');
