@@ -18,7 +18,7 @@ await c.route(/supabase\.co/,async r=>{const u=decodeURIComponent(r.request().ur
    return j([])}
  return j([])});
 const p=await c.newPage();p.on('pageerror',e=>errs.push(e.message));await p.goto('http://localhost:'+PORT+'/'+PAGE);await p.waitForSelector('#prof.on');
-await p.click('#flg');await p.fill('#nk','てすと');await p.fill('#pw','abcdef12');await p.click('#go2');await p.waitForTimeout(5000);
+await p.click('#flg');await p.fill('#nk','てすと');await p.fill('#pw','abcdef12');await p.click('#go2');await p.waitForTimeout(8000);
 ok(!(await p.evaluate(()=>!!document.querySelector('#lkT.on'))),'ログインボーナスの画面が出ているあいだは待つ');
 await p.evaluate(()=>{try{dcClose()}catch(e){};try{if($('zkGet').classList.contains('on'))$('zkGetOk').click()}catch(e){}});await p.waitForTimeout(2500);await p.evaluate(()=>{try{if($('zkGet').classList.contains('on'))$('zkGetOk').click()}catch(e){};try{if($('dc').classList.contains('on'))dcClose()}catch(e){}});await p.waitForTimeout(2500);
 ok(await p.evaluate(()=>!!document.querySelector('#lkT.on')),'閉じたら通知が出る');

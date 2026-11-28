@@ -1,0 +1,122 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "French Horn",
+  "type": "brass",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact bank; selected onset trims and region gain calibration. Finite tails and a note-off envelope.",
+  "gainDb": -14,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.25
+    }
+  },
+  "samples": {
+    "036V001": "FrenchHorn_036V001.flac",
+    "036V085": "FrenchHorn_036V085.flac",
+    "046V001": "FrenchHorn_046V001.flac",
+    "046V085": "FrenchHorn_046V085.flac",
+    "053V001": "FrenchHorn_053V001.flac",
+    "053V085": "FrenchHorn_053V085.flac",
+    "060V001": "FrenchHorn_060V001.flac",
+    "060V085": "FrenchHorn_060V085.flac",
+    "074V001": "FrenchHorn_074V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V001",
+          "loKey": 36,
+          "hiKey": 41,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 10.49
+        },
+        {
+          "sample": "046V001",
+          "loKey": 42,
+          "hiKey": 49,
+          "rootKey": 46,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 24.0
+        },
+        {
+          "sample": "053V001",
+          "loKey": 50,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 17.5
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 67,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 9.26
+        },
+        {
+          "sample": "074V001",
+          "loKey": 68,
+          "hiKey": 74,
+          "rootKey": 74,
+          "loVel": 1,
+          "hiVel": 127,
+          "gainDb": -3.27
+        },
+        {
+          "sample": "036V085",
+          "loKey": 36,
+          "hiKey": 41,
+          "rootKey": 36,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 6,
+          "gainDb": 8.2
+        },
+        {
+          "sample": "046V085",
+          "loKey": 42,
+          "hiKey": 49,
+          "rootKey": 46,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 12.32
+        },
+        {
+          "sample": "053V085",
+          "loKey": 50,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 5.36
+        },
+        {
+          "sample": "060V085",
+          "loKey": 57,
+          "hiKey": 67,
+          "rootKey": 60,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 4.31
+        }
+      ]
+    }
+  ]
+}

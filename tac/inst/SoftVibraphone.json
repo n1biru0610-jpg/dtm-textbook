@@ -1,0 +1,251 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Soft Mallet Vibraphone",
+  "type": "percussion",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://github.com/sgossner/VCSL/tree/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.22
+    }
+  },
+  "samples": {
+    "053V001": "SoftVibraphone_053V001.flac",
+    "053V082": "SoftVibraphone_053V082.flac",
+    "057V001": "SoftVibraphone_057V001.flac",
+    "057V082": "SoftVibraphone_057V082.flac",
+    "060V001": "SoftVibraphone_060V001.flac",
+    "060V082": "SoftVibraphone_060V082.flac",
+    "064V001": "SoftVibraphone_064V001.flac",
+    "064V082": "SoftVibraphone_064V082.flac",
+    "067V001": "SoftVibraphone_067V001.flac",
+    "067V082": "SoftVibraphone_067V082.flac",
+    "074V001": "SoftVibraphone_074V001.flac",
+    "074V082": "SoftVibraphone_074V082.flac",
+    "077V001": "SoftVibraphone_077V001.flac",
+    "077V082": "SoftVibraphone_077V082.flac",
+    "081V001": "SoftVibraphone_081V001.flac",
+    "081V082": "SoftVibraphone_081V082.flac",
+    "084V001": "SoftVibraphone_084V001.flac",
+    "084V082": "SoftVibraphone_084V082.flac",
+    "088V001": "SoftVibraphone_088V001.flac",
+    "088V082": "SoftVibraphone_088V082.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "053V001",
+          "loKey": 53,
+          "hiKey": 55,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 10,
+          "gainDb": 22.03
+        },
+        {
+          "sample": "053V082",
+          "loKey": 53,
+          "hiKey": 55,
+          "rootKey": 53,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 6.26
+        },
+        {
+          "sample": "057V001",
+          "loKey": 56,
+          "hiKey": 58,
+          "rootKey": 57,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 16.18
+        },
+        {
+          "sample": "057V082",
+          "loKey": 56,
+          "hiKey": 58,
+          "rootKey": 57,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 5.65
+        },
+        {
+          "sample": "060V001",
+          "loKey": 59,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 13.37
+        },
+        {
+          "sample": "060V082",
+          "loKey": 59,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 13.37
+        },
+        {
+          "sample": "064V001",
+          "loKey": 63,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 8.5
+        },
+        {
+          "sample": "064V082",
+          "loKey": 63,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 6.32
+        },
+        {
+          "sample": "067V001",
+          "loKey": 66,
+          "hiKey": 70,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 11.38
+        },
+        {
+          "sample": "067V082",
+          "loKey": 66,
+          "hiKey": 70,
+          "rootKey": 67,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 7.99
+        },
+        {
+          "sample": "074V001",
+          "loKey": 71,
+          "hiKey": 75,
+          "rootKey": 74,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 11.26
+        },
+        {
+          "sample": "074V082",
+          "loKey": 71,
+          "hiKey": 75,
+          "rootKey": 74,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 0.82
+        },
+        {
+          "sample": "077V001",
+          "loKey": 76,
+          "hiKey": 79,
+          "rootKey": 77,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 11.7
+        },
+        {
+          "sample": "077V082",
+          "loKey": 76,
+          "hiKey": 79,
+          "rootKey": 77,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.99
+        },
+        {
+          "sample": "081V001",
+          "loKey": 80,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 16.03
+        },
+        {
+          "sample": "081V082",
+          "loKey": 80,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 0.77
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 8.26
+        },
+        {
+          "sample": "084V082",
+          "loKey": 83,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -1.7
+        },
+        {
+          "sample": "088V001",
+          "loKey": 87,
+          "hiKey": 88,
+          "rootKey": 88,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 15.53
+        },
+        {
+          "sample": "088V082",
+          "loKey": 87,
+          "hiKey": 88,
+          "rootKey": 88,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 1.64
+        }
+      ]
+    }
+  ]
+}

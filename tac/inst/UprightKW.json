@@ -1,0 +1,278 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Upright Piano",
+  "type": "keys",
+  "author": "FreePats (Gonzalo and Roberto)",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html#UprightKW",
+  "description": "Stereo Upright Piano KW with two strike layers and finite sample tails",
+  "gainDb": -12.0,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.85
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.6
+    }
+  },
+  "samples": {
+    "024L": "UprightKW_024L.flac",
+    "030L": "UprightKW_030L.flac",
+    "036L": "UprightKW_036L.flac",
+    "042L": "UprightKW_042L.flac",
+    "048L": "UprightKW_048L.flac",
+    "057L": "UprightKW_057L.flac",
+    "063L": "UprightKW_063L.flac",
+    "069L": "UprightKW_069L.flac",
+    "078L": "UprightKW_078L.flac",
+    "087L": "UprightKW_087L.flac",
+    "096L": "UprightKW_096L.flac",
+    "105L": "UprightKW_105L.flac",
+    "108L": "UprightKW_108L.flac",
+    "024H": "UprightKW_024H.flac",
+    "030H": "UprightKW_030H.flac",
+    "036H": "UprightKW_036H.flac",
+    "042H": "UprightKW_042H.flac",
+    "048H": "UprightKW_048H.flac",
+    "057H": "UprightKW_057H.flac",
+    "063H": "UprightKW_063H.flac",
+    "069H": "UprightKW_069H.flac",
+    "078H": "UprightKW_078H.flac",
+    "087H": "UprightKW_087H.flac",
+    "096H": "UprightKW_096H.flac",
+    "105H": "UprightKW_105H.flac",
+    "108H": "UprightKW_108H.flac"
+  },
+  "groups": [
+    {
+      "name": "Soft",
+      "regions": [
+        {
+          "sample": "024L",
+          "loKey": 21,
+          "hiKey": 27,
+          "rootKey": 24,
+          "loVel": 1,
+          "hiVel": 80,
+          "fineTune": 40
+        },
+        {
+          "sample": "030L",
+          "loKey": 28,
+          "hiKey": 33,
+          "rootKey": 30,
+          "loVel": 1,
+          "hiVel": 80,
+          "fineTune": 47
+        },
+        {
+          "sample": "036L",
+          "loKey": 34,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 80,
+          "fineTune": 28
+        },
+        {
+          "sample": "042L",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 42,
+          "loVel": 1,
+          "hiVel": 80,
+          "fineTune": 19
+        },
+        {
+          "sample": "048L",
+          "loKey": 46,
+          "hiKey": 52,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "057L",
+          "loKey": 53,
+          "hiKey": 60,
+          "rootKey": 57,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "063L",
+          "loKey": 61,
+          "hiKey": 66,
+          "rootKey": 63,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "069L",
+          "loKey": 67,
+          "hiKey": 73,
+          "rootKey": 69,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "078L",
+          "loKey": 74,
+          "hiKey": 82,
+          "rootKey": 78,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "087L",
+          "loKey": 83,
+          "hiKey": 91,
+          "rootKey": 87,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "096L",
+          "loKey": 92,
+          "hiKey": 100,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "105L",
+          "loKey": 101,
+          "hiKey": 106,
+          "rootKey": 105,
+          "loVel": 1,
+          "hiVel": 80
+        },
+        {
+          "sample": "108L",
+          "loKey": 107,
+          "hiKey": 108,
+          "rootKey": 108,
+          "loVel": 1,
+          "hiVel": 80
+        }
+      ]
+    },
+    {
+      "name": "Strong",
+      "regions": [
+        {
+          "sample": "024H",
+          "loKey": 21,
+          "hiKey": 27,
+          "rootKey": 24,
+          "loVel": 81,
+          "hiVel": 127,
+          "fineTune": 40
+        },
+        {
+          "sample": "030H",
+          "loKey": 28,
+          "hiKey": 33,
+          "rootKey": 30,
+          "loVel": 81,
+          "hiVel": 127,
+          "fineTune": 47
+        },
+        {
+          "sample": "036H",
+          "loKey": 34,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 81,
+          "hiVel": 127,
+          "fineTune": 28
+        },
+        {
+          "sample": "042H",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 42,
+          "loVel": 81,
+          "hiVel": 127,
+          "fineTune": 19
+        },
+        {
+          "sample": "048H",
+          "loKey": 46,
+          "hiKey": 52,
+          "rootKey": 48,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "057H",
+          "loKey": 53,
+          "hiKey": 60,
+          "rootKey": 57,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "063H",
+          "loKey": 61,
+          "hiKey": 66,
+          "rootKey": 63,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "069H",
+          "loKey": 67,
+          "hiKey": 73,
+          "rootKey": 69,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "078H",
+          "loKey": 74,
+          "hiKey": 82,
+          "rootKey": 78,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "087H",
+          "loKey": 83,
+          "hiKey": 91,
+          "rootKey": 87,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "096H",
+          "loKey": 92,
+          "hiKey": 100,
+          "rootKey": 96,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "105H",
+          "loKey": 101,
+          "hiKey": 106,
+          "rootKey": 105,
+          "loVel": 81,
+          "hiVel": 127
+        },
+        {
+          "sample": "108H",
+          "loKey": 107,
+          "hiKey": 108,
+          "rootKey": 108,
+          "loVel": 81,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

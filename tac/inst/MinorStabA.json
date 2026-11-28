@@ -1,0 +1,1 @@
+{"format":"tac-instrument","formatVersion":1,"name":"Bass House Minor Stab","type":"keys","samples":{"stab":"MinorStabA.flac"},"maxPolyphony":8,"defaults":{"mode":"oneShot"},"groups":[{"name":"stab","regions":[{"sample":"stab","rootKey":48}]}]}

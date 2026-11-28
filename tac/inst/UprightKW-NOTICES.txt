@@ -1,0 +1,15 @@
+Upright Piano KW — FreePats, stereo SFZ/FLAC release 2022-02-21
+Recording: Gonzalo and Roberto, January 2017. Editing: Roberto / FreePats.
+Source: https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html#UprightKW
+Upstream: https://github.com/freepats/upright-piano-KW
+Archive: https://freepats.zenvoid.org/Piano/UprightPianoKW/UprightPianoKW-SFZ%2BFLAC-20220221.7z
+Archive SHA-256: 3a66da3b25a2fd9499d90bcf09f1aee4431825796e249361b48af59b1201e703
+Dedication: CC0 1.0 Universal, https://creativecommons.org/publicdomain/zero/1.0/
+
+Adaptation for TAC Studio: 13 paired keys from the original samples;
+32 kHz stereo, 16-bit FLAC, finite 1.0–2.5 second excerpts with faded ends;
+nearest sampled key across MIDI 21–108, original velocity split at 80/81.
+The original SFZ filter and loop opcodes are not implemented by this bank.
+
+TAC adaptation also applies measured pitch offsets to roots 24/30/36/42
+(+40/+47/+28/+19 cents, respectively) and sets a -12 dB instrument gain.

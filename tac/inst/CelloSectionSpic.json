@@ -1,0 +1,152 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Cello Section · Spiccato",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Recorded Spiccato; compact finite samples with a note-off envelope.",
+  "gainDb": -10,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.16
+    }
+  },
+  "samples": {
+    "036V1": "CelloSectionSpic_036V1.flac",
+    "036V2": "CelloSectionSpic_036V2.flac",
+    "043V1": "CelloSectionSpic_043V1.flac",
+    "043V2": "CelloSectionSpic_043V2.flac",
+    "047V1": "CelloSectionSpic_047V1.flac",
+    "047V2": "CelloSectionSpic_047V2.flac",
+    "053V1": "CelloSectionSpic_053V1.flac",
+    "053V2": "CelloSectionSpic_053V2.flac",
+    "060V2": "CelloSectionSpic_060V2.flac",
+    "071V1": "CelloSectionSpic_071V1.flac",
+    "071V2": "CelloSectionSpic_071V2.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V1",
+          "loKey": 36,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -12,
+          "gainDb": 12.76
+        },
+        {
+          "sample": "036V2",
+          "loKey": 36,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -15,
+          "gainDb": 1.0
+        },
+        {
+          "sample": "043V1",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 43,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -5,
+          "gainDb": 11.36
+        },
+        {
+          "sample": "043V2",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 43,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.7
+        },
+        {
+          "sample": "047V1",
+          "loKey": 46,
+          "hiKey": 50,
+          "rootKey": 47,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -1,
+          "gainDb": 10.58
+        },
+        {
+          "sample": "047V2",
+          "loKey": 46,
+          "hiKey": 50,
+          "rootKey": 47,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -2,
+          "gainDb": 3.71
+        },
+        {
+          "sample": "053V1",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 2,
+          "gainDb": 8.9
+        },
+        {
+          "sample": "053V2",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 6,
+          "gainDb": 1.1
+        },
+        {
+          "sample": "060V2",
+          "loKey": 57,
+          "hiKey": 65,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -2,
+          "gainDb": 3.07
+        },
+        {
+          "sample": "071V1",
+          "loKey": 66,
+          "hiKey": 71,
+          "rootKey": 71,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -2,
+          "gainDb": 10.33
+        },
+        {
+          "sample": "071V2",
+          "loKey": 66,
+          "hiKey": 71,
+          "rootKey": 71,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -4,
+          "gainDb": 2.1
+        }
+      ]
+    }
+  ]
+}

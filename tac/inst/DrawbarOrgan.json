@@ -1,0 +1,112 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Drawbar Organ",
+  "type": "keys",
+  "author": "Roberto / FreePats. Drawbar organ emulation rendered from setBfree, 2019-07-12.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/Organ/electric-organ.html#DrawbarOrganEmulation",
+  "description": "7 second finite sample with a note-off envelope; long sustains baked with original loop points.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.18
+    }
+  },
+  "samples": {
+    "036V001": "DrawbarOrgan_036V001.flac",
+    "044V001": "DrawbarOrgan_044V001.flac",
+    "052V001": "DrawbarOrgan_052V001.flac",
+    "060V001": "DrawbarOrgan_060V001.flac",
+    "068V001": "DrawbarOrgan_068V001.flac",
+    "076V001": "DrawbarOrgan_076V001.flac",
+    "084V001": "DrawbarOrgan_084V001.flac",
+    "092V001": "DrawbarOrgan_092V001.flac",
+    "096V001": "DrawbarOrgan_096V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V001",
+          "loKey": 33,
+          "hiKey": 40,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "044V001",
+          "loKey": 41,
+          "hiKey": 48,
+          "rootKey": 44,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "052V001",
+          "loKey": 49,
+          "hiKey": 56,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 64,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "068V001",
+          "loKey": 65,
+          "hiKey": 72,
+          "rootKey": 68,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "076V001",
+          "loKey": 73,
+          "hiKey": 80,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "084V001",
+          "loKey": 81,
+          "hiKey": 88,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "092V001",
+          "loKey": 89,
+          "hiKey": 94,
+          "rootKey": 92,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "096V001",
+          "loKey": 95,
+          "hiKey": 98,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

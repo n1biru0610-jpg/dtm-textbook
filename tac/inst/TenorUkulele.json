@@ -1,0 +1,174 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Tenor Ukulele",
+  "type": "guitar",
+  "author": "Mateusz Dąbrowski / FreePats",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/GuitarFamily/ukulele.html",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.35
+    }
+  },
+  "samples": {
+    "060V001": "TenorUkulele_060V001.flac",
+    "062V001": "TenorUkulele_062V001.flac",
+    "064V001": "TenorUkulele_064V001.flac",
+    "066V001": "TenorUkulele_066V001.flac",
+    "067V001": "TenorUkulele_067V001.flac",
+    "069V001": "TenorUkulele_069V001.flac",
+    "071V001": "TenorUkulele_071V001.flac",
+    "073V001": "TenorUkulele_073V001.flac",
+    "075V001": "TenorUkulele_075V001.flac",
+    "077V001": "TenorUkulele_077V001.flac",
+    "079V001": "TenorUkulele_079V001.flac",
+    "081V001": "TenorUkulele_081V001.flac",
+    "084V001": "TenorUkulele_084V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "060V001",
+          "loKey": 60,
+          "hiKey": 61,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -5,
+          "gainDb": -1.94
+        },
+        {
+          "sample": "062V001",
+          "loKey": 62,
+          "hiKey": 63,
+          "rootKey": 62,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -8,
+          "gainDb": -3.39
+        },
+        {
+          "sample": "064V001",
+          "loKey": 64,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -2,
+          "gainDb": -5.44
+        },
+        {
+          "sample": "066V001",
+          "loKey": 66,
+          "hiKey": 66,
+          "rootKey": 66,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -11,
+          "gainDb": -4.44
+        },
+        {
+          "sample": "067V001",
+          "loKey": 67,
+          "hiKey": 68,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -1,
+          "gainDb": -5.28
+        },
+        {
+          "sample": "069V001",
+          "loKey": 69,
+          "hiKey": 70,
+          "rootKey": 69,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.15
+        },
+        {
+          "sample": "071V001",
+          "loKey": 71,
+          "hiKey": 72,
+          "rootKey": 71,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -6.24
+        },
+        {
+          "sample": "073V001",
+          "loKey": 73,
+          "hiKey": 74,
+          "rootKey": 73,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -6.02
+        },
+        {
+          "sample": "075V001",
+          "loKey": 75,
+          "hiKey": 76,
+          "rootKey": 75,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 3,
+          "gainDb": -7.27
+        },
+        {
+          "sample": "077V001",
+          "loKey": 77,
+          "hiKey": 78,
+          "rootKey": 77,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 4,
+          "gainDb": -5.26
+        },
+        {
+          "sample": "079V001",
+          "loKey": 79,
+          "hiKey": 80,
+          "rootKey": 79,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 6,
+          "gainDb": -6.85
+        },
+        {
+          "sample": "081V001",
+          "loKey": 81,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 8,
+          "gainDb": -4.58
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 84,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 4,
+          "gainDb": -4.1
+        }
+      ]
+    }
+  ]
+}

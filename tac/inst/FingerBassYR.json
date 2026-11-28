@@ -1,0 +1,139 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Finger Electric Bass",
+  "type": "bass",
+  "author": "Andrea Biasior, edits by Roberto / FreePats. Finger Bass YR, 2019-09-30.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/ElectricGuitar/clean-electric-bass.html#BassYR",
+  "description": "Compact bank with finite samples and a note-off envelope.",
+  "gainDb": -13,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.15
+    }
+  },
+  "samples": {
+    "028V001": "FingerBassYR_028V001.flac",
+    "029V001": "FingerBassYR_029V001.flac",
+    "030V001": "FingerBassYR_030V001.flac",
+    "031V001": "FingerBassYR_031V001.flac",
+    "032V001": "FingerBassYR_032V001.flac",
+    "033V001": "FingerBassYR_033V001.flac",
+    "034V001": "FingerBassYR_034V001.flac",
+    "035V001": "FingerBassYR_035V001.flac",
+    "036V001": "FingerBassYR_036V001.flac",
+    "037V001": "FingerBassYR_037V001.flac",
+    "038V001": "FingerBassYR_038V001.flac",
+    "039V001": "FingerBassYR_039V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "028V001",
+          "loKey": 26,
+          "hiKey": 28,
+          "rootKey": 28,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "029V001",
+          "loKey": 29,
+          "hiKey": 29,
+          "rootKey": 29,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "030V001",
+          "loKey": 30,
+          "hiKey": 30,
+          "rootKey": 30,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "031V001",
+          "loKey": 31,
+          "hiKey": 31,
+          "rootKey": 31,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "032V001",
+          "loKey": 32,
+          "hiKey": 32,
+          "rootKey": 32,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "033V001",
+          "loKey": 33,
+          "hiKey": 33,
+          "rootKey": 33,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "034V001",
+          "loKey": 34,
+          "hiKey": 34,
+          "rootKey": 34,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "035V001",
+          "loKey": 35,
+          "hiKey": 35,
+          "rootKey": 35,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "036V001",
+          "loKey": 36,
+          "hiKey": 36,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "037V001",
+          "loKey": 37,
+          "hiKey": 37,
+          "rootKey": 37,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "038V001",
+          "loKey": 38,
+          "hiKey": 38,
+          "rootKey": 38,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "039V001",
+          "loKey": 39,
+          "hiKey": 45,
+          "rootKey": 39,
+          "loVel": 1,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

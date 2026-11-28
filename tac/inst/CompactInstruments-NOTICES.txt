@@ -1,0 +1,117 @@
+TAC Studio – Compact bundled instrument recordings
+Licence: CC0 1.0 Universal – https://creativecommons.org/publicdomain/zero/1.0/
+TAC edits: converted to 32 kHz PCM16 FLAC and mapped to TAC regions. Selected orchestral onsets trimmed and gains calibrated.
+Drawbar Organ and Tenor Saxophone use original loop points baked into finite 7.0 and 4.8 second samples, with 14 ms joins and a gate envelope.
+VSCO 2 Community Edition pinned source: https://github.com/sgossner/VSCO-2-CE/tree/440300901dfe9275fd84e0b7763af1f8443ae62e
+VSCO 2 CE LICENSE SHA-256: 36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673
+
+Solo Violin
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 55–96.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Violin/Arco%20Vib
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Cello Section
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 36–77.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Cello%20Section/susvib
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Viola Section
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 48–86.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Viola%20Section/susvib
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Solo Contrabass
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 28–59.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Contrabass/SusNV
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+FM Electric Piano
+Roberto / FreePats. FM Synthesized Piano #1, stereo/mono as supplied, 2019-09-16.
+https://freepats.zenvoid.org/ElectricPiano/synthesized-piano.html#FM_Piano1
+Preserved source channels (per sample). MIDI 27–98.
+https://github.com/freepats/fm-piano1/releases/download/2019-09-16/FM-Piano1-SFZ%2BFLAC-20190916.7z
+Archive SHA-256: fa308cead617211b29f500db2f962f34e18c9cd55a94ae9176e1d63babeab083
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Finger Electric Bass
+Andrea Biasior, edits by Roberto / FreePats. Finger Bass YR, 2019-09-30.
+https://freepats.zenvoid.org/ElectricGuitar/clean-electric-bass.html#BassYR
+Preserved source channels (per sample). MIDI 26–45.
+https://github.com/freepats/electric-bass-YR/releases/download/2019-09-30/FingerBassYR-SFZ%2BFLAC-20190930.7z
+Archive SHA-256: 36f87ec9eb086ef25050312522aacf71213c582f46989e0c5a12681304596587
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Clean Electric Guitar
+FreePats. FSBS Electric Guitar Clean #1, bridge pickup, small SFZ/FLAC, 2026-08-07.
+https://freepats.zenvoid.org/ElectricGuitar/clean-electric-guitar.html
+Preserved source channels (per sample). MIDI 35–86.
+https://github.com/freepats/electric-guitar-FSBS-clean/releases/download/2026-08-07/EGuitarFSBS-clean-bridge-small-SFZ%2BFLAC-20260807.7z
+Archive SHA-256: 07c8cdf94dc9b4875ff6c43e51440d84f939a45530060c0761093a56d4a1f032
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Nylon Acoustic Guitar
+Roberto / FreePats. Spanish classical guitar, 2019-06-18.
+https://freepats.zenvoid.org/Guitar/acoustic-guitar.html
+Preserved source channels (per sample). MIDI 35–84.
+https://freepats.zenvoid.org/Guitar/SpanishClassicalGuitar/SpanishClassicalGuitar-SFZ%2BFLAC-20190618.7z
+Archive SHA-256: 903916921a21662d2237ade7f0e98e55de93cb7b86da219e4e10f4ad385b8f5e
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Drawbar Organ
+Roberto / FreePats. Drawbar organ emulation rendered from setBfree, 2019-07-12.
+https://freepats.zenvoid.org/Organ/electric-organ.html#DrawbarOrganEmulation
+Preserved source channels (per sample). MIDI 33–98.
+https://freepats.zenvoid.org/Organ/DrawbarOrganEmulation/DrawbarOrganEmulation-SFZ-20190712.tar.xz
+Archive SHA-256: e2da18b0a4d13be7020037e18e4a719387433357e7603d0773990e794dcf5d0f
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Trumpet
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 53–84.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Trumpet/sus
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+French Horn
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 36–74.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/F%20Horn/sus
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Tenor Saxophone
+Roberto / FreePats and original recordings by Versilian Studios LLC. Tenor Saxophone small, 2020-07-17.
+https://freepats.zenvoid.org/Reed/saxophone.html#TenorSax
+Preserved source channels (per sample). MIDI 38–90.
+https://freepats.zenvoid.org/Reed/TenorSaxophone/TenorSaxophone-small-SFZ%2BFLAC-20200717.tar.gz
+Archive SHA-256: a94847ba5bafdc0b922bfd54cef0b475a8023cd5d111f91f984a18b03fead04a
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Concert Harp
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 35–86.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Harp
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Clarinet
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 50–86.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Woodwinds/Clarinet/susLong
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.
+
+Marimba
+Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.
+https://versilian-studios.com/vsco-community/
+Preserved source channels (per sample). MIDI 41–96.
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Marimba
+Per-sample original IDs, input/output hashes and mapping: sample-provenance.json.

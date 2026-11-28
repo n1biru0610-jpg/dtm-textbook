@@ -28,8 +28,8 @@ CSS="#lkT{position:fixed;right:16px;top:70px;z-index:130;display:flex;align-item
 R=[("sbf('/rest/v1/daily_likes',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({entry_id:b.dataset.id,stamp:st})},t)","lkPost(b.dataset.id,st,t)"),
    ("function dcListen(",JS+"function dcListen("),
    ("#dc .dg li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #e3dcf5;border-radius:12px;padding:6px 10px;font-size:15px}","#dc .dg li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #e3dcf5;border-radius:12px;padding:6px 10px;font-size:15px}"+CSS),
-   ("then(function(){bdSync=true;try{bdCheck()}catch(e){}})}","then(function(){bdSync=true;try{bdCheck()}catch(e){}setTimeout(lkCheck,2500)})}"),
-   ("bdSync=true;closeProf();chip();hopPos=null;renderHome(false)}","bdSync=true;closeProf();chip();hopPos=null;renderHome(false);setTimeout(lkCheck,2500)}")]
+   ("then(function(){bdSync=true;try{bdCheck()}catch(e){}})}","then(function(){bdSync=true;try{bdCheck()}catch(e){}setTimeout(lkCheck,6000)})}"),
+   ("bdSync=true;closeProf();chip();hopPos=null;renderHome(false)}","bdSync=true;closeProf();chip();hopPos=null;renderHome(false);setTimeout(lkCheck,6000)}")]
 for f in FILES:
     s=open(f,encoding='utf8').read()
     if MARK in s:print(f,'already');continue

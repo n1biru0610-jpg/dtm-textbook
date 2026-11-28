@@ -1,0 +1,172 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Viola Section",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact bank; selected onset trims and region gain calibration. Finite tails and a note-off envelope.",
+  "gainDb": -13,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.25
+    }
+  },
+  "samples": {
+    "048V001": "ViolaSection_048V001.flac",
+    "048V085": "ViolaSection_048V085.flac",
+    "055V001": "ViolaSection_055V001.flac",
+    "055V085": "ViolaSection_055V085.flac",
+    "062V001": "ViolaSection_062V001.flac",
+    "062V085": "ViolaSection_062V085.flac",
+    "069V001": "ViolaSection_069V001.flac",
+    "069V085": "ViolaSection_069V085.flac",
+    "076V001": "ViolaSection_076V001.flac",
+    "076V085": "ViolaSection_076V085.flac",
+    "083V001": "ViolaSection_083V001.flac",
+    "083V085": "ViolaSection_083V085.flac",
+    "086V001": "ViolaSection_086V001.flac",
+    "086V085": "ViolaSection_086V085.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "048V001",
+          "loKey": 48,
+          "hiKey": 51,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 20.55
+        },
+        {
+          "sample": "055V001",
+          "loKey": 52,
+          "hiKey": 58,
+          "rootKey": 55,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 24.0
+        },
+        {
+          "sample": "062V001",
+          "loKey": 59,
+          "hiKey": 65,
+          "rootKey": 62,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 24.0
+        },
+        {
+          "sample": "069V001",
+          "loKey": 66,
+          "hiKey": 72,
+          "rootKey": 69,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 16.2
+        },
+        {
+          "sample": "076V001",
+          "loKey": 73,
+          "hiKey": 79,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 24.0
+        },
+        {
+          "sample": "083V001",
+          "loKey": 80,
+          "hiKey": 84,
+          "rootKey": 83,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 24.0
+        },
+        {
+          "sample": "086V001",
+          "loKey": 85,
+          "hiKey": 86,
+          "rootKey": 86,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 19.54
+        },
+        {
+          "sample": "048V085",
+          "loKey": 48,
+          "hiKey": 51,
+          "rootKey": 48,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 2.78
+        },
+        {
+          "sample": "055V085",
+          "loKey": 52,
+          "hiKey": 58,
+          "rootKey": 55,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 0.31
+        },
+        {
+          "sample": "062V085",
+          "loKey": 59,
+          "hiKey": 65,
+          "rootKey": 62,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 0.95
+        },
+        {
+          "sample": "069V085",
+          "loKey": 66,
+          "hiKey": 72,
+          "rootKey": 69,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": -4.3
+        },
+        {
+          "sample": "076V085",
+          "loKey": 73,
+          "hiKey": 79,
+          "rootKey": 76,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 1.64
+        },
+        {
+          "sample": "083V085",
+          "loKey": 80,
+          "hiKey": 84,
+          "rootKey": 83,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 3.21
+        },
+        {
+          "sample": "086V085",
+          "loKey": 85,
+          "hiKey": 86,
+          "rootKey": 86,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 3.06
+        }
+      ]
+    }
+  ]
+}

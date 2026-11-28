@@ -1,0 +1,130 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Solo Contrabass · Pizzicato",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Recorded Pizzicato; compact finite samples with a note-off envelope.",
+  "gainDb": -10,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.18
+    }
+  },
+  "samples": {
+    "028V1": "SoloContrabassPizz_028V1.flac",
+    "028V2": "SoloContrabassPizz_028V2.flac",
+    "031V1": "SoloContrabassPizz_031V1.flac",
+    "031V2": "SoloContrabassPizz_031V2.flac",
+    "036V1": "SoloContrabassPizz_036V1.flac",
+    "036V2": "SoloContrabassPizz_036V2.flac",
+    "040V2": "SoloContrabassPizz_040V2.flac",
+    "042V1": "SoloContrabassPizz_042V1.flac",
+    "045V1": "SoloContrabassPizz_045V1.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "028V1",
+          "loKey": 28,
+          "hiKey": 29,
+          "rootKey": 28,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 2,
+          "gainDb": 23.0
+        },
+        {
+          "sample": "028V2",
+          "loKey": 28,
+          "hiKey": 29,
+          "rootKey": 28,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 5,
+          "gainDb": 11.71
+        },
+        {
+          "sample": "031V1",
+          "loKey": 30,
+          "hiKey": 33,
+          "rootKey": 31,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 3,
+          "gainDb": 23.0
+        },
+        {
+          "sample": "031V2",
+          "loKey": 30,
+          "hiKey": 33,
+          "rootKey": 31,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -11,
+          "gainDb": 16.12
+        },
+        {
+          "sample": "036V1",
+          "loKey": 34,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -2,
+          "gainDb": 18.54
+        },
+        {
+          "sample": "036V2",
+          "loKey": 34,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 7,
+          "gainDb": 14.55
+        },
+        {
+          "sample": "040V2",
+          "loKey": 39,
+          "hiKey": 41,
+          "rootKey": 40,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 14,
+          "gainDb": 14.47
+        },
+        {
+          "sample": "042V1",
+          "loKey": 42,
+          "hiKey": 43,
+          "rootKey": 42,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 36,
+          "gainDb": 18.16
+        },
+        {
+          "sample": "045V1",
+          "loKey": 44,
+          "hiKey": 45,
+          "rootKey": 45,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 46,
+          "gainDb": 11.1
+        }
+      ]
+    }
+  ]
+}

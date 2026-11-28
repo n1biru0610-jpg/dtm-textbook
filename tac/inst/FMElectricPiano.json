@@ -1,0 +1,355 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "FM Electric Piano",
+  "type": "keys",
+  "author": "Roberto / FreePats. FM Synthesized Piano #1, stereo/mono as supplied, 2019-09-16.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/ElectricPiano/synthesized-piano.html#FM_Piano1",
+  "description": "Compact bank with finite samples and a note-off envelope.",
+  "gainDb": -13,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.35
+    }
+  },
+  "samples": {
+    "030V001": "FMElectricPiano_030V001.flac",
+    "036V001": "FMElectricPiano_036V001.flac",
+    "042V001": "FMElectricPiano_042V001.flac",
+    "048V001": "FMElectricPiano_048V001.flac",
+    "054V001": "FMElectricPiano_054V001.flac",
+    "060V001": "FMElectricPiano_060V001.flac",
+    "066V001": "FMElectricPiano_066V001.flac",
+    "072V001": "FMElectricPiano_072V001.flac",
+    "078V001": "FMElectricPiano_078V001.flac",
+    "084V001": "FMElectricPiano_084V001.flac",
+    "090V001": "FMElectricPiano_090V001.flac",
+    "096V001": "FMElectricPiano_096V001.flac",
+    "030V070": "FMElectricPiano_030V070.flac",
+    "036V070": "FMElectricPiano_036V070.flac",
+    "042V070": "FMElectricPiano_042V070.flac",
+    "048V070": "FMElectricPiano_048V070.flac",
+    "054V070": "FMElectricPiano_054V070.flac",
+    "060V070": "FMElectricPiano_060V070.flac",
+    "066V070": "FMElectricPiano_066V070.flac",
+    "072V070": "FMElectricPiano_072V070.flac",
+    "078V070": "FMElectricPiano_078V070.flac",
+    "084V070": "FMElectricPiano_084V070.flac",
+    "090V070": "FMElectricPiano_090V070.flac",
+    "096V070": "FMElectricPiano_096V070.flac",
+    "030V110": "FMElectricPiano_030V110.flac",
+    "036V110": "FMElectricPiano_036V110.flac",
+    "042V110": "FMElectricPiano_042V110.flac",
+    "048V110": "FMElectricPiano_048V110.flac",
+    "054V110": "FMElectricPiano_054V110.flac",
+    "060V110": "FMElectricPiano_060V110.flac",
+    "066V110": "FMElectricPiano_066V110.flac",
+    "072V110": "FMElectricPiano_072V110.flac",
+    "078V110": "FMElectricPiano_078V110.flac",
+    "084V110": "FMElectricPiano_084V110.flac",
+    "090V110": "FMElectricPiano_090V110.flac",
+    "096V110": "FMElectricPiano_096V110.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "030V001",
+          "loKey": 27,
+          "hiKey": 32,
+          "rootKey": 30,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "036V001",
+          "loKey": 33,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "042V001",
+          "loKey": 39,
+          "hiKey": 44,
+          "rootKey": 42,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "048V001",
+          "loKey": 45,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "054V001",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 54,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "066V001",
+          "loKey": 63,
+          "hiKey": 68,
+          "rootKey": 66,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "072V001",
+          "loKey": 69,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "078V001",
+          "loKey": 75,
+          "hiKey": 80,
+          "rootKey": 78,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "084V001",
+          "loKey": 81,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "090V001",
+          "loKey": 87,
+          "hiKey": 92,
+          "rootKey": 90,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "096V001",
+          "loKey": 93,
+          "hiKey": 98,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 69
+        },
+        {
+          "sample": "030V070",
+          "loKey": 27,
+          "hiKey": 32,
+          "rootKey": 30,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "036V070",
+          "loKey": 33,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "042V070",
+          "loKey": 39,
+          "hiKey": 44,
+          "rootKey": 42,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "048V070",
+          "loKey": 45,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "054V070",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 54,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "060V070",
+          "loKey": 57,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "066V070",
+          "loKey": 63,
+          "hiKey": 68,
+          "rootKey": 66,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "072V070",
+          "loKey": 69,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "078V070",
+          "loKey": 75,
+          "hiKey": 80,
+          "rootKey": 78,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "084V070",
+          "loKey": 81,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "090V070",
+          "loKey": 87,
+          "hiKey": 92,
+          "rootKey": 90,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "096V070",
+          "loKey": 93,
+          "hiKey": 98,
+          "rootKey": 96,
+          "loVel": 70,
+          "hiVel": 109
+        },
+        {
+          "sample": "030V110",
+          "loKey": 27,
+          "hiKey": 32,
+          "rootKey": 30,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "036V110",
+          "loKey": 33,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "042V110",
+          "loKey": 39,
+          "hiKey": 44,
+          "rootKey": 42,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "048V110",
+          "loKey": 45,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "054V110",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 54,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "060V110",
+          "loKey": 57,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "066V110",
+          "loKey": 63,
+          "hiKey": 68,
+          "rootKey": 66,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "072V110",
+          "loKey": 69,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "078V110",
+          "loKey": 75,
+          "hiKey": 80,
+          "rootKey": 78,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "084V110",
+          "loKey": 81,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "090V110",
+          "loKey": 87,
+          "hiKey": 92,
+          "rootKey": 90,
+          "loVel": 110,
+          "hiVel": 127
+        },
+        {
+          "sample": "096V110",
+          "loKey": 93,
+          "hiKey": 98,
+          "rootKey": 96,
+          "loVel": 110,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

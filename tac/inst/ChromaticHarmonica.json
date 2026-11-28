@@ -1,0 +1,141 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Chromatic Harmonica",
+  "type": "free reed",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://github.com/sgossner/VCSL/tree/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.14
+    }
+  },
+  "samples": {
+    "048V001": "ChromaticHarmonica_048V001.flac",
+    "052V001": "ChromaticHarmonica_052V001.flac",
+    "060V001": "ChromaticHarmonica_060V001.flac",
+    "064V001": "ChromaticHarmonica_064V001.flac",
+    "067V001": "ChromaticHarmonica_067V001.flac",
+    "076V001": "ChromaticHarmonica_076V001.flac",
+    "079V001": "ChromaticHarmonica_079V001.flac",
+    "084V001": "ChromaticHarmonica_084V001.flac",
+    "091V001": "ChromaticHarmonica_091V001.flac",
+    "096V001": "ChromaticHarmonica_096V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "048V001",
+          "loKey": 48,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -3.03
+        },
+        {
+          "sample": "052V001",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -1.11
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -2.16
+        },
+        {
+          "sample": "064V001",
+          "loKey": 63,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -3.88
+        },
+        {
+          "sample": "067V001",
+          "loKey": 66,
+          "hiKey": 71,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.11
+        },
+        {
+          "sample": "076V001",
+          "loKey": 72,
+          "hiKey": 77,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.84
+        },
+        {
+          "sample": "079V001",
+          "loKey": 78,
+          "hiKey": 81,
+          "rootKey": 79,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.36
+        },
+        {
+          "sample": "084V001",
+          "loKey": 82,
+          "hiKey": 87,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.48
+        },
+        {
+          "sample": "091V001",
+          "loKey": 88,
+          "hiKey": 93,
+          "rootKey": 91,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -0.05
+        },
+        {
+          "sample": "096V001",
+          "loKey": 94,
+          "hiKey": 96,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -4.05
+        }
+      ]
+    }
+  ]
+}

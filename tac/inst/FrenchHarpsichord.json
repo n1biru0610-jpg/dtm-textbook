@@ -1,0 +1,130 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "French Harpsichord",
+  "type": "keys",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://github.com/sgossner/VCSL/tree/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.14
+    }
+  },
+  "samples": {
+    "036V001": "FrenchHarpsichord_036V001.flac",
+    "042V001": "FrenchHarpsichord_042V001.flac",
+    "048V001": "FrenchHarpsichord_048V001.flac",
+    "054V001": "FrenchHarpsichord_054V001.flac",
+    "060V001": "FrenchHarpsichord_060V001.flac",
+    "066V001": "FrenchHarpsichord_066V001.flac",
+    "072V001": "FrenchHarpsichord_072V001.flac",
+    "078V001": "FrenchHarpsichord_078V001.flac",
+    "084V001": "FrenchHarpsichord_084V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V001",
+          "loKey": 36,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.9
+        },
+        {
+          "sample": "042V001",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 42,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 10,
+          "gainDb": 4.5
+        },
+        {
+          "sample": "048V001",
+          "loKey": 46,
+          "hiKey": 51,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.05
+        },
+        {
+          "sample": "054V001",
+          "loKey": 52,
+          "hiKey": 57,
+          "rootKey": 54,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 3.55
+        },
+        {
+          "sample": "060V001",
+          "loKey": 58,
+          "hiKey": 63,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 5.85
+        },
+        {
+          "sample": "066V001",
+          "loKey": 64,
+          "hiKey": 69,
+          "rootKey": 66,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.5
+        },
+        {
+          "sample": "072V001",
+          "loKey": 70,
+          "hiKey": 75,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 7.67
+        },
+        {
+          "sample": "078V001",
+          "loKey": 76,
+          "hiKey": 81,
+          "rootKey": 78,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 5.3
+        },
+        {
+          "sample": "084V001",
+          "loKey": 82,
+          "hiKey": 84,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 9.45
+        }
+      ]
+    }
+  ]
+}

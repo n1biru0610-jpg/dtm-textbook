@@ -1,0 +1,48 @@
+TAC Studio — Additional compact sampled instruments, prototype 2026-11-27
+
+The source recordings listed below are CC0 1.0 Universal.
+https://creativecommons.org/publicdomain/zero/1.0/
+CC0 permits copying, modification, and commercial redistribution of the recordings.
+Source names are provided for credit and traceability.
+
+Steel-String Acoustic Guitar: Meta Open Sound, Meta Steel Guitar v1.0.0, lossless WAV edition.
+https://github.com/facebookincubator/Meta-open-sound/releases/tag/meta-steel-guitar-v1.0.0
+Release tag commit e2ff154845994fe4135becc4d5b857c19f172784.
+Instrument-specific license and source manifest pinned at 514c926efecdb3c7812bf00eedf8e5c8d61dd681.
+https://raw.githubusercontent.com/facebookincubator/Meta-open-sound/514c926efecdb3c7812bf00eedf8e5c8d61dd681/systems/instruments/meta-steel-guitar/LICENSE
+TAC uses a compact subset of the normal channel's string choices, source layers Vel01 and Vel03.
+The near-correlated stereo originals are mixed to mono. The original edits for MIDI channels,
+string-group choking, and per-note randomization are omitted.
+
+Tenor Ukulele: Mateusz Dąbrowski, FreePats, version 2026-08-11.
+https://freepats.zenvoid.org/GuitarFamily/ukulele.html
+https://github.com/freepats/ukulele1/tree/86d345f6f7b79a106ace98eca0da19b087786dba
+https://raw.githubusercontent.com/freepats/ukulele1/86d345f6f7b79a106ace98eca0da19b087786dba/LICENSE.txt
+Only the pitched recordings; supplied per-note tuning retained for C4–C6.
+
+Versilian Studios LLC, VSCO 2 Community Edition (CE), official CC0 sample repository.
+https://versilian-studios.com/vsco-community/
+https://github.com/sgossner/VSCO-2-CE/tree/440300901dfe9275fd84e0b7763af1f8443ae62e
+https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/LICENSE
+Glockenspiel: Percussion/Glock (medium mallets).
+Concert Flute: Woodwinds/Flute/susNV (non-vibrato).
+Solo Oboe: Woodwinds/Oboe/Sus (sustained).
+Solo Bassoon: Woodwinds/Bassoon/sus (sustained).
+Tenor Trombone: Brass/Tenor Trombone/sus (sustained).
+
+Versilian Studios LLC, Versilian Community Sample Library (VCSL), official CC0 repository.
+https://github.com/sgossner/VCSL/tree/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e
+https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/LICENSE
+Soft Mallet Vibraphone: Idiophones/Struck Idiophones/Vibraphone/Soft Mallets.
+French Harpsichord: Chordophones/Zithers/Harpsichord, French/Sustains.
+Chromatic Harmonica: Aerophones/Free Aerophones/Harmonica-Hohner-Super64/Sustains/Normal.
+
+TAC conversion: selected recordings converted to 32 kHz PCM16 FLAC. Original channel count
+is retained except for the steel guitar. Samples use finite waveforms and gate note-off
+envelopes. Long recordings get a terminal fade where truncated. TAC definitions specify
+pitch regions, small tuning corrections and gain adjustment. Distinct recorded velocity
+layers are mapped where listed in the definitions. No product or work affiliation
+or endorsement is implied.
+
+Exact source sample IDs, file hashes, mapping and processing are in sample-provenance.json
+in the source-side asset verification record.

@@ -1,0 +1,97 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Glockenspiel",
+  "type": "percussion",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.22
+    }
+  },
+  "samples": {
+    "079V001": "Glockenspiel_079V001.flac",
+    "084V001": "Glockenspiel_084V001.flac",
+    "091V001": "Glockenspiel_091V001.flac",
+    "096V001": "Glockenspiel_096V001.flac",
+    "103V001": "Glockenspiel_103V001.flac",
+    "108V001": "Glockenspiel_108V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "079V001",
+          "loKey": 79,
+          "hiKey": 81,
+          "rootKey": 79,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -10,
+          "gainDb": 16.31
+        },
+        {
+          "sample": "084V001",
+          "loKey": 82,
+          "hiKey": 87,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -10,
+          "gainDb": 16.38
+        },
+        {
+          "sample": "091V001",
+          "loKey": 88,
+          "hiKey": 93,
+          "rootKey": 91,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -10,
+          "gainDb": 16.92
+        },
+        {
+          "sample": "096V001",
+          "loKey": 94,
+          "hiKey": 99,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -40,
+          "gainDb": 16.46
+        },
+        {
+          "sample": "103V001",
+          "loKey": 100,
+          "hiKey": 105,
+          "rootKey": 103,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -10,
+          "gainDb": 16.18
+        },
+        {
+          "sample": "108V001",
+          "loKey": 106,
+          "hiKey": 108,
+          "rootKey": 108,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -20,
+          "gainDb": 15.92
+        }
+      ]
+    }
+  ]
+}

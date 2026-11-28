@@ -1,0 +1,185 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Cello Section · Pizzicato",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Recorded Pizzicato; compact finite samples with a note-off envelope.",
+  "gainDb": -10,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.18
+    }
+  },
+  "samples": {
+    "036V1": "CelloSectionPizz_036V1.flac",
+    "036V2": "CelloSectionPizz_036V2.flac",
+    "043V1": "CelloSectionPizz_043V1.flac",
+    "043V2": "CelloSectionPizz_043V2.flac",
+    "047V1": "CelloSectionPizz_047V1.flac",
+    "047V2": "CelloSectionPizz_047V2.flac",
+    "053V1": "CelloSectionPizz_053V1.flac",
+    "060V1": "CelloSectionPizz_060V1.flac",
+    "060V2": "CelloSectionPizz_060V2.flac",
+    "067V1": "CelloSectionPizz_067V1.flac",
+    "067V2": "CelloSectionPizz_067V2.flac",
+    "071V2": "CelloSectionPizz_071V2.flac",
+    "077V1": "CelloSectionPizz_077V1.flac",
+    "077V2": "CelloSectionPizz_077V2.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V1",
+          "loKey": 36,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -8,
+          "gainDb": 11.74
+        },
+        {
+          "sample": "036V2",
+          "loKey": 36,
+          "hiKey": 39,
+          "rootKey": 36,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -5,
+          "gainDb": 5.25
+        },
+        {
+          "sample": "043V1",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 43,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -2,
+          "gainDb": 9.7
+        },
+        {
+          "sample": "043V2",
+          "loKey": 40,
+          "hiKey": 45,
+          "rootKey": 43,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 2,
+          "gainDb": 5.87
+        },
+        {
+          "sample": "047V1",
+          "loKey": 46,
+          "hiKey": 50,
+          "rootKey": 47,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 30,
+          "gainDb": 11.53
+        },
+        {
+          "sample": "047V2",
+          "loKey": 46,
+          "hiKey": 50,
+          "rootKey": 47,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 26,
+          "gainDb": 5.98
+        },
+        {
+          "sample": "053V1",
+          "loKey": 51,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 11.04
+        },
+        {
+          "sample": "060V1",
+          "loKey": 57,
+          "hiKey": 63,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 9,
+          "gainDb": 8.73
+        },
+        {
+          "sample": "060V2",
+          "loKey": 57,
+          "hiKey": 63,
+          "rootKey": 60,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -7,
+          "gainDb": 0.81
+        },
+        {
+          "sample": "067V1",
+          "loKey": 64,
+          "hiKey": 69,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 10,
+          "gainDb": 7.92
+        },
+        {
+          "sample": "067V2",
+          "loKey": 64,
+          "hiKey": 69,
+          "rootKey": 67,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 39,
+          "gainDb": 4.75
+        },
+        {
+          "sample": "071V2",
+          "loKey": 70,
+          "hiKey": 74,
+          "rootKey": 71,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -5,
+          "gainDb": 8.67
+        },
+        {
+          "sample": "077V1",
+          "loKey": 75,
+          "hiKey": 77,
+          "rootKey": 77,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 1,
+          "gainDb": 14.77
+        },
+        {
+          "sample": "077V2",
+          "loKey": 75,
+          "hiKey": 77,
+          "rootKey": 77,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 40,
+          "gainDb": 1.41
+        }
+      ]
+    }
+  ]
+}

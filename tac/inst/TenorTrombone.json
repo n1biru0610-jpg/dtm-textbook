@@ -1,0 +1,229 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Tenor Trombone",
+  "type": "brass",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.14
+    }
+  },
+  "samples": {
+    "039V001": "TenorTrombone_039V001.flac",
+    "039V082": "TenorTrombone_039V082.flac",
+    "041V001": "TenorTrombone_041V001.flac",
+    "041V082": "TenorTrombone_041V082.flac",
+    "046V001": "TenorTrombone_046V001.flac",
+    "046V082": "TenorTrombone_046V082.flac",
+    "050V001": "TenorTrombone_050V001.flac",
+    "050V082": "TenorTrombone_050V082.flac",
+    "053V001": "TenorTrombone_053V001.flac",
+    "053V082": "TenorTrombone_053V082.flac",
+    "060V001": "TenorTrombone_060V001.flac",
+    "060V082": "TenorTrombone_060V082.flac",
+    "061V001": "TenorTrombone_061V001.flac",
+    "061V082": "TenorTrombone_061V082.flac",
+    "063V001": "TenorTrombone_063V001.flac",
+    "063V082": "TenorTrombone_063V082.flac",
+    "065V001": "TenorTrombone_065V001.flac",
+    "065V082": "TenorTrombone_065V082.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "039V001",
+          "loKey": 39,
+          "hiKey": 40,
+          "rootKey": 39,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": -10,
+          "gainDb": 18.98
+        },
+        {
+          "sample": "039V082",
+          "loKey": 39,
+          "hiKey": 40,
+          "rootKey": 39,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 15.04
+        },
+        {
+          "sample": "041V001",
+          "loKey": 41,
+          "hiKey": 43,
+          "rootKey": 41,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 17.74
+        },
+        {
+          "sample": "041V082",
+          "loKey": 41,
+          "hiKey": 43,
+          "rootKey": 41,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 15.45
+        },
+        {
+          "sample": "046V001",
+          "loKey": 44,
+          "hiKey": 48,
+          "rootKey": 46,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 19.12
+        },
+        {
+          "sample": "046V082",
+          "loKey": 44,
+          "hiKey": 48,
+          "rootKey": 46,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 6.95
+        },
+        {
+          "sample": "050V001",
+          "loKey": 49,
+          "hiKey": 51,
+          "rootKey": 50,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 24
+        },
+        {
+          "sample": "050V082",
+          "loKey": 49,
+          "hiKey": 51,
+          "rootKey": 50,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 15.89
+        },
+        {
+          "sample": "053V001",
+          "loKey": 52,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 23.32
+        },
+        {
+          "sample": "053V082",
+          "loKey": 52,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 11.6
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 60,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 20.26
+        },
+        {
+          "sample": "060V082",
+          "loKey": 57,
+          "hiKey": 60,
+          "rootKey": 60,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 7.14
+        },
+        {
+          "sample": "061V001",
+          "loKey": 61,
+          "hiKey": 62,
+          "rootKey": 61,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 16.3
+        },
+        {
+          "sample": "061V082",
+          "loKey": 61,
+          "hiKey": 62,
+          "rootKey": 61,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 8.47
+        },
+        {
+          "sample": "063V001",
+          "loKey": 63,
+          "hiKey": 64,
+          "rootKey": 63,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 20.97
+        },
+        {
+          "sample": "063V082",
+          "loKey": 63,
+          "hiKey": 64,
+          "rootKey": 63,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 9.67
+        },
+        {
+          "sample": "065V001",
+          "loKey": 65,
+          "hiKey": 65,
+          "rootKey": 65,
+          "loVel": 1,
+          "hiVel": 81,
+          "fineTune": 0,
+          "gainDb": 11.56
+        },
+        {
+          "sample": "065V082",
+          "loKey": 65,
+          "hiKey": 65,
+          "rootKey": 65,
+          "loVel": 82,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 4.34
+        }
+      ]
+    }
+  ]
+}

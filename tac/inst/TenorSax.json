@@ -1,0 +1,193 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Tenor Saxophone",
+  "type": "winds",
+  "author": "Roberto / FreePats and original recordings by Versilian Studios LLC. Tenor Saxophone small, 2020-07-17.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/Reed/saxophone.html#TenorSax",
+  "description": "4.8 second finite sample with a note-off envelope; long sustains baked with original loop points.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.23
+    }
+  },
+  "samples": {
+    "040V001": "TenorSax_040V001.flac",
+    "044V001": "TenorSax_044V001.flac",
+    "044V090": "TenorSax_044V090.flac",
+    "048V001": "TenorSax_048V001.flac",
+    "048V090": "TenorSax_048V090.flac",
+    "052V001": "TenorSax_052V001.flac",
+    "052V090": "TenorSax_052V090.flac",
+    "056V001": "TenorSax_056V001.flac",
+    "056V090": "TenorSax_056V090.flac",
+    "060V001": "TenorSax_060V001.flac",
+    "060V090": "TenorSax_060V090.flac",
+    "064V001": "TenorSax_064V001.flac",
+    "068V001": "TenorSax_068V001.flac",
+    "072V001": "TenorSax_072V001.flac",
+    "076V001": "TenorSax_076V001.flac",
+    "080V001": "TenorSax_080V001.flac",
+    "084V001": "TenorSax_084V001.flac",
+    "088V001": "TenorSax_088V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "040V001",
+          "loKey": 38,
+          "hiKey": 42,
+          "rootKey": 40,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "044V001",
+          "loKey": 43,
+          "hiKey": 46,
+          "rootKey": 44,
+          "loVel": 1,
+          "hiVel": 89
+        },
+        {
+          "sample": "044V090",
+          "loKey": 43,
+          "hiKey": 46,
+          "rootKey": 44,
+          "loVel": 90,
+          "hiVel": 127
+        },
+        {
+          "sample": "048V001",
+          "loKey": 47,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 89
+        },
+        {
+          "sample": "048V090",
+          "loKey": 47,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 90,
+          "hiVel": 127
+        },
+        {
+          "sample": "052V001",
+          "loKey": 51,
+          "hiKey": 54,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 89
+        },
+        {
+          "sample": "052V090",
+          "loKey": 51,
+          "hiKey": 54,
+          "rootKey": 52,
+          "loVel": 90,
+          "hiVel": 127
+        },
+        {
+          "sample": "056V001",
+          "loKey": 55,
+          "hiKey": 58,
+          "rootKey": 56,
+          "loVel": 1,
+          "hiVel": 89
+        },
+        {
+          "sample": "056V090",
+          "loKey": 55,
+          "hiKey": 58,
+          "rootKey": 56,
+          "loVel": 90,
+          "hiVel": 127
+        },
+        {
+          "sample": "060V001",
+          "loKey": 59,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 89
+        },
+        {
+          "sample": "060V090",
+          "loKey": 59,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 90,
+          "hiVel": 127
+        },
+        {
+          "sample": "064V001",
+          "loKey": 63,
+          "hiKey": 66,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "068V001",
+          "loKey": 67,
+          "hiKey": 70,
+          "rootKey": 68,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "072V001",
+          "loKey": 71,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "076V001",
+          "loKey": 75,
+          "hiKey": 78,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "080V001",
+          "loKey": 79,
+          "hiKey": 82,
+          "rootKey": 80,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "088V001",
+          "loKey": 87,
+          "hiKey": 90,
+          "rootKey": 88,
+          "loVel": 1,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

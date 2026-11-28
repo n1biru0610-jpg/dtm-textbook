@@ -1,0 +1,148 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Nylon Acoustic Guitar",
+  "type": "guitar",
+  "author": "Roberto / FreePats. Spanish classical guitar, 2019-06-18.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/Guitar/acoustic-guitar.html",
+  "description": "Compact bank with finite samples and a note-off envelope.",
+  "gainDb": -12,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.27
+    }
+  },
+  "samples": {
+    "036V001": "NylonGuitar_036V001.flac",
+    "040V001": "NylonGuitar_040V001.flac",
+    "043V001": "NylonGuitar_043V001.flac",
+    "048V001": "NylonGuitar_048V001.flac",
+    "052V001": "NylonGuitar_052V001.flac",
+    "056V001": "NylonGuitar_056V001.flac",
+    "060V001": "NylonGuitar_060V001.flac",
+    "064V001": "NylonGuitar_064V001.flac",
+    "067V001": "NylonGuitar_067V001.flac",
+    "072V001": "NylonGuitar_072V001.flac",
+    "076V001": "NylonGuitar_076V001.flac",
+    "080V001": "NylonGuitar_080V001.flac",
+    "084V001": "NylonGuitar_084V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V001",
+          "loKey": 35,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "040V001",
+          "loKey": 39,
+          "hiKey": 41,
+          "rootKey": 40,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "043V001",
+          "loKey": 42,
+          "hiKey": 45,
+          "rootKey": 43,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "048V001",
+          "loKey": 46,
+          "hiKey": 50,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "052V001",
+          "loKey": 51,
+          "hiKey": 54,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "056V001",
+          "loKey": 55,
+          "hiKey": 58,
+          "rootKey": 56,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "060V001",
+          "loKey": 59,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "064V001",
+          "loKey": 63,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "067V001",
+          "loKey": 66,
+          "hiKey": 69,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "072V001",
+          "loKey": 70,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "076V001",
+          "loKey": 75,
+          "hiKey": 78,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "080V001",
+          "loKey": 79,
+          "hiKey": 82,
+          "rootKey": 80,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 84,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

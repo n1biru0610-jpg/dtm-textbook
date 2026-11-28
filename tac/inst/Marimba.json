@@ -1,0 +1,115 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Marimba",
+  "type": "mallet",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact bank; selected onset trims and region gain calibration. Finite tails and a note-off envelope.",
+  "gainDb": -13,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.31
+    }
+  },
+  "samples": {
+    "041V001": "Marimba_041V001.flac",
+    "048V001": "Marimba_048V001.flac",
+    "055V001": "Marimba_055V001.flac",
+    "065V001": "Marimba_065V001.flac",
+    "072V001": "Marimba_072V001.flac",
+    "079V001": "Marimba_079V001.flac",
+    "089V001": "Marimba_089V001.flac",
+    "096V001": "Marimba_096V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "041V001",
+          "loKey": 41,
+          "hiKey": 44,
+          "rootKey": 41,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": 18.67
+        },
+        {
+          "sample": "048V001",
+          "loKey": 45,
+          "hiKey": 51,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -12,
+          "gainDb": 13.45
+        },
+        {
+          "sample": "055V001",
+          "loKey": 52,
+          "hiKey": 60,
+          "rootKey": 55,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": 18.28
+        },
+        {
+          "sample": "065V001",
+          "loKey": 61,
+          "hiKey": 68,
+          "rootKey": 65,
+          "loVel": 1,
+          "hiVel": 127,
+          "gainDb": 15.3
+        },
+        {
+          "sample": "072V001",
+          "loKey": 69,
+          "hiKey": 75,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": 15.87
+        },
+        {
+          "sample": "079V001",
+          "loKey": 76,
+          "hiKey": 84,
+          "rootKey": 79,
+          "loVel": 1,
+          "hiVel": 127,
+          "gainDb": 18.16
+        },
+        {
+          "sample": "089V001",
+          "loKey": 85,
+          "hiKey": 92,
+          "rootKey": 89,
+          "loVel": 1,
+          "hiVel": 127,
+          "gainDb": 22.8
+        },
+        {
+          "sample": "096V001",
+          "loKey": 93,
+          "hiKey": 96,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 127,
+          "gainDb": 17.51
+        }
+      ]
+    }
+  ]
+}

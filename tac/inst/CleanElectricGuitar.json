@@ -1,0 +1,148 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Clean Electric Guitar",
+  "type": "guitar",
+  "author": "FreePats. FSBS Electric Guitar Clean #1, bridge pickup, small SFZ/FLAC, 2026-08-07.",
+  "license": "CC0-1.0",
+  "source": "https://freepats.zenvoid.org/ElectricGuitar/clean-electric-guitar.html",
+  "description": "Compact bank with finite samples and a note-off envelope.",
+  "gainDb": -12,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.24
+    }
+  },
+  "samples": {
+    "036V001": "CleanElectricGuitar_036V001.flac",
+    "041V001": "CleanElectricGuitar_041V001.flac",
+    "045V001": "CleanElectricGuitar_045V001.flac",
+    "048V001": "CleanElectricGuitar_048V001.flac",
+    "052V001": "CleanElectricGuitar_052V001.flac",
+    "055V001": "CleanElectricGuitar_055V001.flac",
+    "059V001": "CleanElectricGuitar_059V001.flac",
+    "064V001": "CleanElectricGuitar_064V001.flac",
+    "067V001": "CleanElectricGuitar_067V001.flac",
+    "071V001": "CleanElectricGuitar_071V001.flac",
+    "074V001": "CleanElectricGuitar_074V001.flac",
+    "080V001": "CleanElectricGuitar_080V001.flac",
+    "085V001": "CleanElectricGuitar_085V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "036V001",
+          "loKey": 35,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "041V001",
+          "loKey": 39,
+          "hiKey": 42,
+          "rootKey": 41,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "045V001",
+          "loKey": 43,
+          "hiKey": 46,
+          "rootKey": 45,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "048V001",
+          "loKey": 47,
+          "hiKey": 49,
+          "rootKey": 48,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "052V001",
+          "loKey": 50,
+          "hiKey": 53,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "055V001",
+          "loKey": 54,
+          "hiKey": 56,
+          "rootKey": 55,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "059V001",
+          "loKey": 57,
+          "hiKey": 61,
+          "rootKey": 59,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "064V001",
+          "loKey": 62,
+          "hiKey": 65,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "067V001",
+          "loKey": 66,
+          "hiKey": 69,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "071V001",
+          "loKey": 70,
+          "hiKey": 72,
+          "rootKey": 71,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "074V001",
+          "loKey": 73,
+          "hiKey": 76,
+          "rootKey": 74,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "080V001",
+          "loKey": 77,
+          "hiKey": 82,
+          "rootKey": 80,
+          "loVel": 1,
+          "hiVel": 127
+        },
+        {
+          "sample": "085V001",
+          "loKey": 83,
+          "hiKey": 86,
+          "rootKey": 85,
+          "loVel": 1,
+          "hiVel": 127
+        }
+      ]
+    }
+  ]
+}

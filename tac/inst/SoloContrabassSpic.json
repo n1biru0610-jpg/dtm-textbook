@@ -1,0 +1,152 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Solo Contrabass · Spiccato",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Recorded Spiccato; compact finite samples with a note-off envelope.",
+  "gainDb": -10,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.16
+    }
+  },
+  "samples": {
+    "028V1": "SoloContrabassSpic_028V1.flac",
+    "028V2": "SoloContrabassSpic_028V2.flac",
+    "031V1": "SoloContrabassSpic_031V1.flac",
+    "031V2": "SoloContrabassSpic_031V2.flac",
+    "036V1": "SoloContrabassSpic_036V1.flac",
+    "040V1": "SoloContrabassSpic_040V1.flac",
+    "040V2": "SoloContrabassSpic_040V2.flac",
+    "042V1": "SoloContrabassSpic_042V1.flac",
+    "045V1": "SoloContrabassSpic_045V1.flac",
+    "052V1": "SoloContrabassSpic_052V1.flac",
+    "059V1": "SoloContrabassSpic_059V1.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "028V1",
+          "loKey": 28,
+          "hiKey": 29,
+          "rootKey": 28,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 17,
+          "gainDb": 20.79
+        },
+        {
+          "sample": "028V2",
+          "loKey": 28,
+          "hiKey": 29,
+          "rootKey": 28,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": 10.39
+        },
+        {
+          "sample": "031V1",
+          "loKey": 30,
+          "hiKey": 33,
+          "rootKey": 31,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -3,
+          "gainDb": 15.67
+        },
+        {
+          "sample": "031V2",
+          "loKey": 30,
+          "hiKey": 33,
+          "rootKey": 31,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 10.5
+        },
+        {
+          "sample": "036V1",
+          "loKey": 34,
+          "hiKey": 38,
+          "rootKey": 36,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 2,
+          "gainDb": 15.11
+        },
+        {
+          "sample": "040V1",
+          "loKey": 39,
+          "hiKey": 41,
+          "rootKey": 40,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 9,
+          "gainDb": 20.24
+        },
+        {
+          "sample": "040V2",
+          "loKey": 39,
+          "hiKey": 41,
+          "rootKey": 40,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 3,
+          "gainDb": 13.57
+        },
+        {
+          "sample": "042V1",
+          "loKey": 42,
+          "hiKey": 43,
+          "rootKey": 42,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -3,
+          "gainDb": 15.19
+        },
+        {
+          "sample": "045V1",
+          "loKey": 44,
+          "hiKey": 48,
+          "rootKey": 45,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 35,
+          "gainDb": 7.13
+        },
+        {
+          "sample": "052V1",
+          "loKey": 49,
+          "hiKey": 55,
+          "rootKey": 52,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 10,
+          "gainDb": 15.68
+        },
+        {
+          "sample": "059V1",
+          "loKey": 56,
+          "hiKey": 59,
+          "rootKey": 59,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": -1,
+          "gainDb": 14.94
+        }
+      ]
+    }
+  ]
+}

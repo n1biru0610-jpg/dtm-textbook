@@ -1,0 +1,141 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Concert Flute",
+  "type": "woodwind",
+  "author": "Versilian Studios LLC",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact sampled instrument with finite waveforms and note-off release.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.72
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.16
+    }
+  },
+  "samples": {
+    "060V001": "ConcertFlute_060V001.flac",
+    "064V001": "ConcertFlute_064V001.flac",
+    "069V001": "ConcertFlute_069V001.flac",
+    "072V001": "ConcertFlute_072V001.flac",
+    "076V001": "ConcertFlute_076V001.flac",
+    "081V001": "ConcertFlute_081V001.flac",
+    "084V001": "ConcertFlute_084V001.flac",
+    "088V001": "ConcertFlute_088V001.flac",
+    "093V001": "ConcertFlute_093V001.flac",
+    "096V001": "ConcertFlute_096V001.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "060V001",
+          "loKey": 60,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 10,
+          "gainDb": 24
+        },
+        {
+          "sample": "064V001",
+          "loKey": 63,
+          "hiKey": 66,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 24
+        },
+        {
+          "sample": "069V001",
+          "loKey": 67,
+          "hiKey": 70,
+          "rootKey": 69,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 18.56
+        },
+        {
+          "sample": "072V001",
+          "loKey": 71,
+          "hiKey": 74,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 13.83
+        },
+        {
+          "sample": "076V001",
+          "loKey": 75,
+          "hiKey": 78,
+          "rootKey": 76,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 8.03
+        },
+        {
+          "sample": "081V001",
+          "loKey": 79,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 6.04
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 86,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 8.27
+        },
+        {
+          "sample": "088V001",
+          "loKey": 87,
+          "hiKey": 90,
+          "rootKey": 88,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 7.96
+        },
+        {
+          "sample": "093V001",
+          "loKey": 91,
+          "hiKey": 94,
+          "rootKey": 93,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": 5.06
+        },
+        {
+          "sample": "096V001",
+          "loKey": 95,
+          "hiKey": 96,
+          "rootKey": 96,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 0,
+          "gainDb": -5.5
+        }
+      ]
+    }
+  ]
+}

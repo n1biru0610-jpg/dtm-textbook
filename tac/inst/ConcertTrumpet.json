@@ -1,0 +1,155 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Trumpet",
+  "type": "brass",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Compact bank; selected onset trims and region gain calibration. Finite tails and a note-off envelope.",
+  "gainDb": -15,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.22
+    }
+  },
+  "samples": {
+    "053V001": "ConcertTrumpet_053V001.flac",
+    "053V085": "ConcertTrumpet_053V085.flac",
+    "060V001": "ConcertTrumpet_060V001.flac",
+    "060V085": "ConcertTrumpet_060V085.flac",
+    "067V001": "ConcertTrumpet_067V001.flac",
+    "067V085": "ConcertTrumpet_067V085.flac",
+    "074V001": "ConcertTrumpet_074V001.flac",
+    "074V085": "ConcertTrumpet_074V085.flac",
+    "081V001": "ConcertTrumpet_081V001.flac",
+    "081V085": "ConcertTrumpet_081V085.flac",
+    "084V001": "ConcertTrumpet_084V001.flac",
+    "084V085": "ConcertTrumpet_084V085.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "053V001",
+          "loKey": 53,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 19.65
+        },
+        {
+          "sample": "060V001",
+          "loKey": 57,
+          "hiKey": 63,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 6,
+          "gainDb": 14.5
+        },
+        {
+          "sample": "067V001",
+          "loKey": 64,
+          "hiKey": 70,
+          "rootKey": 67,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -6,
+          "gainDb": 12.98
+        },
+        {
+          "sample": "074V001",
+          "loKey": 71,
+          "hiKey": 77,
+          "rootKey": 74,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 2.23
+        },
+        {
+          "sample": "081V001",
+          "loKey": 78,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": 0.3
+        },
+        {
+          "sample": "084V001",
+          "loKey": 83,
+          "hiKey": 84,
+          "rootKey": 84,
+          "loVel": 1,
+          "hiVel": 84,
+          "gainDb": -3.12
+        },
+        {
+          "sample": "053V085",
+          "loKey": 53,
+          "hiKey": 56,
+          "rootKey": 53,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 2.28
+        },
+        {
+          "sample": "060V085",
+          "loKey": 57,
+          "hiKey": 63,
+          "rootKey": 60,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": 2.91
+        },
+        {
+          "sample": "067V085",
+          "loKey": 64,
+          "hiKey": 70,
+          "rootKey": 67,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": -5.15
+        },
+        {
+          "sample": "074V085",
+          "loKey": 71,
+          "hiKey": 77,
+          "rootKey": 74,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": -5.56
+        },
+        {
+          "sample": "081V085",
+          "loKey": 78,
+          "hiKey": 82,
+          "rootKey": 81,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": -6,
+          "gainDb": -6.74
+        },
+        {
+          "sample": "084V085",
+          "loKey": 83,
+          "hiKey": 84,
+          "rootKey": 84,
+          "loVel": 85,
+          "hiVel": 127,
+          "gainDb": -4.64
+        }
+      ]
+    }
+  ]
+}

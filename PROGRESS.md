@@ -278,3 +278,12 @@
   - スタンプをもらったら通知（ログイン時・ログイン中は45秒ごと）。`_dev/tools/lkn_add.py`、テスト `_dev/tools/lkn.js`。押した人の名前を出すには `_dev/sql/daily_likes_nick.sql` の実行が必要（なくても「みんなから」で動く）。
   - 作品を「きく」DAW・お題DAWの「マップ」でDAW編のマップに迷いこみ、ホームに戻れなかった → 「🏠 ホーム」ボタンに。`_dev/tools/hm_fix.py`。
   - 本番へは `python3 _dev/tools/hm_fix.py index.html && python3 _dev/tools/lkn_add.py index.html`（lk_add.py は本番に適用済みなので CSS 位置の修正を手で行うこと）。
+
+## 手作業の変更（2026-11-28 19:50 JST・preview のみ）
+- v1.38.0（preview）：TAC BASE の音源を DAW（スタジオ・お題の両方）に追加。ブラウザの「録音の楽器」から。
+  - 録音の楽器 35（27音色＋弦のピチカート／スピッカート8）＋ドラム5キット（DISTKIT ほか）。素材は `tac/`（CC0、56MB）、使うときだけ読みこむ。
+  - ドラムはインスペクターの「キット」でも切りかえられる（ハットのチョークあり）。音域外の鍵盤は鳴らさない。音量は `_dev/tools/tac_trim.json` でそろえた。
+  - 組み込み `_dev/tools/tac_add.py`、テスト `_dev/tools/tac.js`。
+  - 未対応：Four Osc・Circuit・Wavetable（C++からの移植が必要）、弦の奏法を音符ごとに切りかえる機能（いまは別の楽器として選ぶ）。
+  - 本番反映時：`python3 _dev/tools/tac_add.py index.html`。sw.js は `/tac/` をキャッシュ優先にすること（毎回ダウンロードしないように）。
+- スタンプ通知の最初のチェックを、ログインボーナスの画面より後になるよう 6 秒後に変更。

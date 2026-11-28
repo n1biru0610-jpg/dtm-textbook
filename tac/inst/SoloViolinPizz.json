@@ -1,0 +1,174 @@
+{
+  "format": "tac-instrument",
+  "formatVersion": 1,
+  "name": "Solo Violin · Pizzicato",
+  "type": "strings",
+  "author": "Versilian Studios. Sam Gossner and Simon Dalzell, with sample cutting by Elan Hickler/Soundemote.",
+  "license": "CC0-1.0",
+  "source": "https://versilian-studios.com/vsco-community/",
+  "description": "Recorded Pizzicato; compact finite samples with a note-off envelope.",
+  "gainDb": -10,
+  "maxPolyphony": 12,
+  "velocity": {
+    "curve": 1.0,
+    "toGain": 0.87
+  },
+  "defaults": {
+    "mode": "gate",
+    "ampEnv": {
+      "release": 0.18
+    }
+  },
+  "samples": {
+    "055V1": "SoloViolinPizz_055V1.flac",
+    "055V2": "SoloViolinPizz_055V2.flac",
+    "060V1": "SoloViolinPizz_060V1.flac",
+    "060V2": "SoloViolinPizz_060V2.flac",
+    "064V1": "SoloViolinPizz_064V1.flac",
+    "064V2": "SoloViolinPizz_064V2.flac",
+    "069V1": "SoloViolinPizz_069V1.flac",
+    "069V2": "SoloViolinPizz_069V2.flac",
+    "072V2": "SoloViolinPizz_072V2.flac",
+    "079V1": "SoloViolinPizz_079V1.flac",
+    "079V2": "SoloViolinPizz_079V2.flac",
+    "081V1": "SoloViolinPizz_081V1.flac",
+    "081V2": "SoloViolinPizz_081V2.flac"
+  },
+  "groups": [
+    {
+      "name": "Recorded zones",
+      "regions": [
+        {
+          "sample": "055V1",
+          "loKey": 55,
+          "hiKey": 57,
+          "rootKey": 55,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 12,
+          "gainDb": 23.0
+        },
+        {
+          "sample": "055V2",
+          "loKey": 55,
+          "hiKey": 57,
+          "rootKey": 55,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 12,
+          "gainDb": 20.67
+        },
+        {
+          "sample": "060V1",
+          "loKey": 58,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 21,
+          "gainDb": 23.0
+        },
+        {
+          "sample": "060V2",
+          "loKey": 58,
+          "hiKey": 62,
+          "rootKey": 60,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 18,
+          "gainDb": 4.21
+        },
+        {
+          "sample": "064V1",
+          "loKey": 63,
+          "hiKey": 66,
+          "rootKey": 64,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 13,
+          "gainDb": 20.92
+        },
+        {
+          "sample": "064V2",
+          "loKey": 63,
+          "hiKey": 66,
+          "rootKey": 64,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 14,
+          "gainDb": 13.88
+        },
+        {
+          "sample": "069V1",
+          "loKey": 67,
+          "hiKey": 70,
+          "rootKey": 69,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": -4,
+          "gainDb": 23.0
+        },
+        {
+          "sample": "069V2",
+          "loKey": 67,
+          "hiKey": 70,
+          "rootKey": 69,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 5,
+          "gainDb": 11.27
+        },
+        {
+          "sample": "072V2",
+          "loKey": 71,
+          "hiKey": 75,
+          "rootKey": 72,
+          "loVel": 1,
+          "hiVel": 127,
+          "fineTune": 11,
+          "gainDb": -2.65
+        },
+        {
+          "sample": "079V1",
+          "loKey": 76,
+          "hiKey": 80,
+          "rootKey": 79,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 12,
+          "gainDb": 9.98
+        },
+        {
+          "sample": "079V2",
+          "loKey": 76,
+          "hiKey": 80,
+          "rootKey": 79,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 10,
+          "gainDb": 3.19
+        },
+        {
+          "sample": "081V1",
+          "loKey": 81,
+          "hiKey": 81,
+          "rootKey": 81,
+          "loVel": 1,
+          "hiVel": 84,
+          "fineTune": 20,
+          "gainDb": 15.18
+        },
+        {
+          "sample": "081V2",
+          "loKey": 81,
+          "hiKey": 81,
+          "rootKey": 81,
+          "loVel": 85,
+          "hiVel": 127,
+          "fineTune": 20,
+          "gainDb": 1.4
+        }
+      ]
+    }
+  ]
+}
